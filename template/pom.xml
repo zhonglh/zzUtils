@@ -2,21 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+    <parent>
+        <artifactId>zzUtils</artifactId>
+        <groupId>com.zz.bms.util</groupId>
+        <version>1.0.1</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.zz.bms.util</groupId>
-    <artifactId>zzUtils</artifactId>
+    <artifactId>template</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
     <modules>
-        <module>baseUtil</module>
-        <module>webUtil</module>
-        <module>spring</module>
-        <module>annotaions</module>
-        <module>fileUtils</module>
-        <module>template</module>
-        <module>expression</module>
+        <module>freemarker</module>
     </modules>
 
 
