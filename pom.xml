@@ -17,6 +17,7 @@
         <module>fileUtils</module>
         <module>template</module>
         <module>expression</module>
+        <module>remoteUtil</module>
     </modules>
 
 
