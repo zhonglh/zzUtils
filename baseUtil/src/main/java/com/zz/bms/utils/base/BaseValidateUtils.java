@@ -15,6 +15,45 @@ import java.util.regex.Pattern;
  */
 public class BaseValidateUtils {
 
+
+
+	private static Pattern alphanumericPattern = Pattern.compile("^[A-Za-z0-9]+$");
+
+	private static  Pattern lettersOnlyPattern = Pattern.compile("^[A-Za-z]+$");
+
+	private static  Pattern integerPattern = Pattern.compile("^[-\\+]?[\\d]*$");
+
+	private static  Pattern doublePattern = Pattern.compile("^[-\\+]?[.\\d]*$");
+
+	private static  Pattern doubleAnd2decimalsPattern = Pattern.compile("^(([1-9]{1}\\d*)|([0]{1}))([.](\\d){1,2})?$");
+
+	private static  Pattern emailPattern = Pattern.compile("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$");
+
+	private static  Pattern chinesePattern = Pattern.compile("[\u0391-\uFFE5]+$");
+
+	private static  Pattern mobilePattern = Pattern.compile("^1[3|4|5|7|8][0-9]{9}$");
+
+	private static  Pattern telPattern = Pattern.compile("^0[0-9]{2,3}[-|－][0-9]{7,8}([-|－][0-9]{1,4})?$");
+
+	private static  Pattern postCodePattern = Pattern.compile("^[0-9]{6}$");
+
+	private static  Pattern urlPattern = Pattern
+			.compile("^(https?|ftp):\\/\\/(((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:)*@)?(((\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5]))|((([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.)+(([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.?)(:\\d*)?)(\\/((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)+(\\/(([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)*)*)?)?(\\?((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)|[\\uE000-\\uF8FF]|\\/|\\?)*)?(\\#((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)|\\/|\\?)*)?$");
+
+
+	private static  Pattern capitalBarPattern = Pattern.compile("^[A-Z]+[-－][A-Z[22]]+(\\$[A-Z]+[-－][A-Z[22]]+)*");
+
+	private static  Pattern iPpattern = Pattern.compile("^(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])$");
+
+	private static  Pattern macPattern = Pattern.compile("^([0-9a-fA-F]{2})(([\\s:-][0-9a-fA-F]{2}){5})$");
+
+	private static  Pattern qqPattern = Pattern.compile("^[1-9][0-9]{4,14}$");
+
+
+	private static  Pattern idCardPattern = Pattern.compile("^(^\\d{15}$|^\\d{18}$|^\\d{17}(\\d|X|x))$");
+
+	private static  Pattern orgodePattern = Pattern.compile("^[0-9A-Z]{8}-[0-9X]$");
+
 	/**
 	 * 判断传入参数是否为字母与数字的组合字符串,而不是单一的字母或者数字
 	 * 
@@ -22,16 +61,21 @@ public class BaseValidateUtils {
 	 * @return
 	 */
 	public static boolean isPassword(String pwd) {
-		if (BaseValidateUtils.isInteger(pwd)) {// 是否全部为数字
-			return false;// 全部为数字
+		// 是否全部为数字
+		if (BaseValidateUtils.isInteger(pwd)) {
+			// 全部为数字
+			return false;
 		} else {
 			if (BaseValidateUtils.isLettersOnly(pwd)) {
-				return false;// 全部为字母
+				// 全部为字母
+				return false;
 			} else {
 				if (BaseValidateUtils.isAlphanumeric(pwd)) {
-					return true;// 正常数据
+					// 正常数据
+					return true;
 				} else {
-					return false;// 包含了非法数据
+					// 包含了非法数据
+					return false;
 				}
 			}
 		}
@@ -45,8 +89,7 @@ public class BaseValidateUtils {
 	 * @return 是整数返回true,否则返回false capital
 	 */
 	public static boolean isAlphanumeric(String str) {
-		Pattern pattern = Pattern.compile("^[A-Za-z0-9]+$");
-		return pattern.matcher(str).matches();
+		return alphanumericPattern.matcher(str).matches();
 	}
 
 	/**
@@ -57,8 +100,7 @@ public class BaseValidateUtils {
 	 * @return true or false .
 	 */
 	public static boolean isLettersOnly(String str) {
-		Pattern pattern = Pattern.compile("^[A-Za-z]+$");
-		return pattern.matcher(str).matches();
+		return lettersOnlyPattern.matcher(str).matches();
 	}
 
 	/**
@@ -69,8 +111,7 @@ public class BaseValidateUtils {
 	 * @return 是整数返回true,否则返回false
 	 */
 	public static boolean isInteger(String str) {
-		Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
-		return pattern.matcher(str).matches();
+		return integerPattern.matcher(str).matches();
 	}
 
 	/**
@@ -81,8 +122,7 @@ public class BaseValidateUtils {
 	 * @return 是浮点数返回true,否则返回false
 	 */
 	public static boolean isDouble(String str) {
-		Pattern pattern = Pattern.compile("^[-\\+]?[.\\d]*$");
-		return pattern.matcher(str).matches();
+		return doublePattern.matcher(str).matches();
 	}
 
 	/**
@@ -93,8 +133,7 @@ public class BaseValidateUtils {
 	 * @return 是浮点数返回true,否则返回false
 	 */
 	public static boolean isDoubleAnd2decimals(String str) {
-		Pattern pattern = Pattern.compile("^(([1-9]{1}\\d*)|([0]{1}))([.](\\d){1,2})?$");
-		return pattern.matcher(str).matches();
+		return doubleAnd2decimalsPattern.matcher(str).matches();
 	}
 
 	/**
@@ -120,8 +159,7 @@ public class BaseValidateUtils {
 	 * @return 是Email样式返回true,否则返回false
 	 */
 	public static boolean isEmail(String str) {
-		Pattern pattern = Pattern.compile("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$");
-		return pattern.matcher(str).matches();
+		return emailPattern.matcher(str).matches();
 	}
 
 	/**
@@ -132,8 +170,7 @@ public class BaseValidateUtils {
 	 * @return 如果是纯汉字返回true,否则返回false
 	 */
 	public static boolean isChinese(String str) {
-		Pattern pattern = Pattern.compile("[\u0391-\uFFE5]+$");
-		return pattern.matcher(str).matches();
+		return chinesePattern.matcher(str).matches();
 	}
 
 	/**
@@ -204,31 +241,28 @@ public class BaseValidateUtils {
 	 * @return
 	 */
 	public static boolean isMobile(String mobile) {
-		Pattern pattern = Pattern.compile("^1[3|4|5|7|8][0-9]{9}$");
-		return pattern.matcher(mobile).matches();
+		return mobilePattern.matcher(mobile).matches();
 
 	}
 
 	/**
 	 * 是否为座机 (010-66571346)
 	 * 
-	 * @param phone
+	 * @param tel
 	 * @return
 	 */
-	public static boolean isPhone(String phone) {
-		Pattern pattern = Pattern.compile("^0[0-9]{2,3}[-|－][0-9]{7,8}([-|－][0-9]{1,4})?$");
-		return pattern.matcher(phone).matches();
+	public static boolean isTel(String tel) {
+		return telPattern.matcher(tel).matches();
 	}
 
 	/**
 	 * 是否为邮编
 	 * 
-	 * @param phone
+	 * @param post
 	 * @return
 	 */
 	public static boolean isPostCode(String post) {
-		Pattern pattern = Pattern.compile("^[0-9]{6}$");
-		return pattern.matcher(post).matches();
+		return postCodePattern.matcher(post).matches();
 	}
 
 	/**
@@ -292,15 +326,6 @@ public class BaseValidateUtils {
 		return date == null;
 	}
 
-	public static void main(String[] args) {
-		String url = "http://192.168.88.106:8082/web-gateway/bankPaySuccess_paySuccess.action";
-
-		Pattern pattern = Pattern
-		// .compile("");
-				.compile("^(https?|ftp):\\/\\/(((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:)*@)?(((\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5]))|((([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.)+(([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.?)(:\\d*)?)(\\/((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)+(\\/(([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)*)*)?)?(\\?((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)|[\\uE000-\\uF8FF]|\\/|\\?)*)?(\\#((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)|\\/|\\?)*)?$");
-		Boolean bool = pattern.matcher(url).matches();
-		System.out.println(bool);
-	}
 
 	/**
 	 * 是否为url
@@ -309,9 +334,7 @@ public class BaseValidateUtils {
 	 * @return
 	 */
 	public static boolean isURL(String url) {
-		Pattern pattern = Pattern
-				.compile("^(https?|ftp):\\/\\/(((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:)*@)?(((\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5]))|((([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[A-Z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.)+(([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[A-Z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.?)(:\\d*)?)(\\/((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)+(\\/(([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)*)*)?)?(\\?((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)|[\\uE000-\\uF8FF]|\\/|\\?)*)?(\\#((([a-z]|[A-Z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(%[\\da-f]{2})|[!\\$&'\\(\\)\\*\\+,;=]|:|@)|\\/|\\?)*)?$");
-		return pattern.matcher(url).matches();
+		return urlPattern.matcher(url).matches();
 	}
 
 	/**
@@ -321,8 +344,7 @@ public class BaseValidateUtils {
 	 * @return
 	 */
 	public static boolean isCapitalBar(String frpCode) {
-		Pattern pattern = Pattern.compile("^[A-Z]+[-－][A-Z[22]]+(\\$[A-Z]+[-－][A-Z[22]]+)*");
-		return pattern.matcher(frpCode).matches();
+		return capitalBarPattern.matcher(frpCode).matches();
 	}
 
 	/**
@@ -332,8 +354,7 @@ public class BaseValidateUtils {
 	 * @return
 	 */
 	public static boolean isIP(String ip) {
-		Pattern pattern = Pattern.compile("^(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])$");
-		return pattern.matcher(ip).matches();
+		return iPpattern.matcher(ip).matches();
 	}
 
 	/**
@@ -343,8 +364,7 @@ public class BaseValidateUtils {
 	 * @return
 	 */
 	public static boolean isMac(String mac) {
-		Pattern pattern = Pattern.compile("^([0-9a-fA-F]{2})(([\\s:-][0-9a-fA-F]{2}){5})$");
-		return pattern.matcher(mac).matches();
+		return macPattern.matcher(mac).matches();
 	}
 
 	/**
@@ -358,8 +378,7 @@ public class BaseValidateUtils {
 	 * @return true/false .
 	 */
 	public static boolean isQQ(String qq) {
-		Pattern pattern = Pattern.compile("^[1-9][0-9]{4,14}$");
-		return pattern.matcher(qq).matches();
+		return qqPattern.matcher(qq).matches();
 	}
 
 	/**
@@ -391,7 +410,7 @@ public class BaseValidateUtils {
 	}
 
 	private static List<String> generateBankCard(int count) {
-		long l = 100000000000000000l;
+		long l = 100000000000000000L;
 		List<String> list = new ArrayList<String>();
 		for (int a = 1; a <= count; a++) {
 			String s = String.valueOf(l + a);
@@ -561,8 +580,7 @@ public class BaseValidateUtils {
 	}
 
 	public static boolean isIdCard(String idCard) {
-		Pattern pattern = Pattern.compile("^(^\\d{15}$|^\\d{18}$|^\\d{17}(\\d|X|x))$");
-		return pattern.matcher(idCard).matches();
+		return idCardPattern.matcher(idCard).matches();
 	}
 
 	/**
@@ -574,8 +592,8 @@ public class BaseValidateUtils {
 	public static final boolean isOrgCode(String orgCode) {
 		String[] codeNo = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 		String[] staVal = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35" };
-		Pattern pat = Pattern.compile("^[0-9A-Z]{8}-[0-9X]$");
-		Matcher matcher = pat.matcher(orgCode);
+
+		Matcher matcher = orgodePattern.matcher(orgCode);
 		if (!matcher.matches()) {
 			return false;
 		}
