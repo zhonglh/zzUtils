@@ -16,6 +16,7 @@
     <modules>
         <module>springUtils</module>
         <module>springWebUtils</module>
+        <module>springEmail</module>
     </modules>
 
 

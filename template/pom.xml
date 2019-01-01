@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <version>1.0.1</version>
     <modules>
-        <module>freemarker</module>
+        <module>freemarkerUtils</module>
     </modules>
 
 
