@@ -13,11 +13,11 @@
         <module>baseUtil</module>
         <module>webUtil</module>
         <module>spring</module>
-        <module>annotaions</module>
         <module>fileUtils</module>
         <module>template</module>
         <module>expression</module>
         <module>remoteUtil</module>
+        <module>chartUtil</module>
     </modules>
 
 

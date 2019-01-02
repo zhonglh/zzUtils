@@ -8,6 +8,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Administrator
+ */
 public class Jsonkit {
 
     private static final SerializeConfig config;

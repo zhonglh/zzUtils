@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * @author Administrator
+ */
 public class DownloadBaseUtil {
 
     /**
@@ -39,14 +42,10 @@ public class DownloadBaseUtil {
     }
 
     /**
-     * @param file
-     *            要下载的文件
-     * @param returnName
-     *            返回的文件名
-     * @param response
-     *            HttpServletResponse
-     * @param delFlag
-     *            是否删除文件
+     * @param file          要下载的文件
+     * @param returnName    返回的文件名
+     * @param response      HttpServletResponse
+     * @param delFlag       是否删除文件
      */
     public static void prototypeDownload(File file, String returnName, HttpServletResponse response, boolean delFlag){
         // 下载文件

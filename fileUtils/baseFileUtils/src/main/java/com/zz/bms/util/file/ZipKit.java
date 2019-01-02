@@ -11,8 +11,6 @@ import java.util.Enumeration;
  * @ClassName: ZipKit
  * @Title:
  * @Description:解压缩工具
- * @Author:Hongli
- * @Since:2014年3月20日上午9:35:37
  * @Version:1.0
  */
 public class ZipKit {
@@ -24,8 +22,6 @@ public class ZipKit {
     /**
      * @Title: doZip
      * @Description: 压缩文件
-     * @Author: Hongli
-     * @Since: 2014年3月19日下午5:00:37
      * @param compressedFilePath
      *            待压缩文件夹
      * @param zipFileRootPath
@@ -40,8 +36,6 @@ public class ZipKit {
     /**
      * @Title: doZip
      * @Description: 压缩文件
-     * @Author: Hongli
-     * @Since: 2014年3月19日下午5:00:27
      * @param compressedFilePath
      *            待压缩文件夹
      * @param zipFileRootPath
@@ -115,8 +109,6 @@ public class ZipKit {
     /**
      * @Title: unZip
      * @Description: 解压
-     * @Author: Hongli
-     * @Since: 2014年3月19日下午6:27:43
      * @param zipfile
      * @param destDir
      */
@@ -164,8 +156,6 @@ public class ZipKit {
     /**
      * @Title: isExistFile
      * @Description: 检查zip中某个文件是否存在并返回路径
-     * @Author: Hongli
-     * @Since: 2014年3月19日下午6:51:55
      * @param zipfile
      * @param fileName
      * @return
@@ -200,8 +190,6 @@ public class ZipKit {
     /**
      * @Title: readFile
      * @Description: 读取压缩包某个文件
-     * @Author: Hongli
-     * @Since: 2014年4月8日下午4:44:44
      * @param zipfile
      * @param fileName
      *            默认profile.xml

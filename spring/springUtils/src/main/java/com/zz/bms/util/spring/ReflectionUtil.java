@@ -1,8 +1,8 @@
 package com.zz.bms.util.spring;
 
-import com.zz.bms.util.annotaions.EntityAttrPageAnnotation;
 import org.springframework.util.ReflectionUtils;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +17,10 @@ public class ReflectionUtil extends ReflectionUtils {
     /**
      * 获取所有的业务属性(字段)
      * @param clazz
+     * @param businessAnnotation 例EntityAttrPageAnnotation
      * @return
      */
-    public static List<Field> getBusinessFields(Class<?> clazz) {
+    public static List<Field> getBusinessFields(Class<?> clazz , Class businessAnnotation) {
         final List<Field> fieldList = new ArrayList<Field>();
         FieldCallback fc = new FieldCallback() {
             @Override
@@ -31,9 +32,9 @@ public class ReflectionUtil extends ReflectionUtils {
         FieldFilter ff = new FieldFilter(){
             @Override
             public boolean matches(Field field) {
-                if(field.isAnnotationPresent(EntityAttrPageAnnotation.class)) {
-                    EntityAttrPageAnnotation pa = field.getAnnotation(EntityAttrPageAnnotation.class);
-                    return (pa != null);
+                if(field.isAnnotationPresent(businessAnnotation)) {
+                    Annotation annotation = field.getAnnotation(businessAnnotation);
+                    return (annotation != null);
                 }else {
                     return false;
                 }

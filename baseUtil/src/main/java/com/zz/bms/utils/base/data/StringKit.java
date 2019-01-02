@@ -41,7 +41,9 @@ public class StringKit {
                 conditions += "&" + entry.getKey() + "=" + entry.getValue();
             }
         }
-        if (conditions.length()>0)conditions = conditions.substring(1);
+        if (conditions.length()>0) {
+            conditions = conditions.substring(1);
+        }
         if (url.indexOf("?") == -1) {
             temp = "?";
         } else {

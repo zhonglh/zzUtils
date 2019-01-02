@@ -10,10 +10,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.zz.bms.util</groupId>
-    <artifactId>annotaions</artifactId>
-    <version>1.0.1</version>
+    <artifactId>chartUtil</artifactId>
     <packaging>jar</packaging>
-    <name>annotaions</name>
+    <version>1.0.1</version>
+    <name>chartUtil</name>
     <url>http://www.example.com</url>
 
     <properties>
@@ -26,8 +26,14 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>baseUtil</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 

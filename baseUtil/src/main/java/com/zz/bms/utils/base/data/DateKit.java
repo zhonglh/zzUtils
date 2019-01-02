@@ -786,8 +786,6 @@ public class DateKit extends DateUtils {
     /**
      * @Title: areSameDay
      * @Description: 两个日期是否为同一天
-     * @Author: Hongli
-     * @Since: 2015年1月21日上午10:49:08
      * @param dateA
      * @param dateB
      * @return

@@ -18,8 +18,6 @@ public class HMACKit {
     /**
      * @Title: calculateRFC2104HMAC
      * @Description: HMAC加密
-     * @Author: Hongli
-     * @Since: 2013-6-15上午10:53:26
      * @param data
      * @return
      */

@@ -16,8 +16,6 @@ import java.util.List;
  * @ClassName: FileKit
  * @Title:
  * @Description:文件操作工具
- * @Author:Hongli
- * @Since:2014年3月20日上午9:35:06
  * @Version:1.0
  */
 public class FileKit {
@@ -482,8 +480,6 @@ public class FileKit {
     /**
      * @Title: formetFileSize
      * @Description: T转换文件大小
-     * @Author: Hongli
-     * @Since: 2014年5月19日下午4:15:07
      * @param fileS
      * @return
      */
@@ -599,8 +595,6 @@ public class FileKit {
     /**
      * @Title: isExist
      * @Description: 判断文件夹是否存在)
-     * @Author: Hongli
-     * @Since: 2014年4月1日上午9:50:36
      * @param path
      * @param create
      *            true 如果不存在创建，false不存在不创建
@@ -731,8 +725,6 @@ public class FileKit {
     /**
      * @Title: getString4File
      * @Description: 读取文件内容
-     * @Author: Hongli
-     * @Since: 2014年3月24日下午3:06:38
      * @param filePath
      * @param charset
      * @return
@@ -847,8 +839,6 @@ public class FileKit {
     /**
      * @Title: getLastFolderOrSuffix
      * @Description: 取路径最后文件夹或后缀
-     * @Author: Hongli
-     * @Since: 2014年5月15日下午5:51:43
      * @param path
      * @return
      */
