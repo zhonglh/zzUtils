@@ -18,7 +18,24 @@
         <module>expression</module>
         <module>remoteUtil</module>
         <module>chartUtil</module>
+        <module>poiUtil</module>
     </modules>
+
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- servlet jsp -->
+        <jstl.version>1.2</jstl.version>
+        <servlet.version>3.1.0</servlet.version>
+        <servlet-api.version>2.4</servlet-api.version>
+        <jsp.version>2.0</jsp.version>
+        <!-- servlet jsp -->
+    </properties>
+
 
 
 </project>
