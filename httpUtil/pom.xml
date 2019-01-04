@@ -10,18 +10,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zz.bms.util</groupId>
-    <artifactId>webUtil</artifactId>
-    <version>1.0.1</version>
-    <name>webUtil</name>
+    <artifactId>httpUtil</artifactId>
     <packaging>jar</packaging>
+    <version>1.0.1</version>
+    <name>httpUtil</name>
     <url>http://www.example.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-
-
     </properties>
 
     <dependencies>
@@ -38,20 +36,34 @@
             <version>1.0.1</version>
         </dependency>
 
-
-        <!-- JSTL标签类 -->
         <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${jstl.version}</version>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>webUtil</artifactId>
+            <version>1.0.1</version>
         </dependency>
 
-        <!-- 导入java ee jar 包 -->
-        <!--<dependency>
-          <groupId>javax</groupId>
-          <artifactId>javaee-api</artifactId>
-          <version>${javaee.api.version}</version>
-        </dependency>-->
+
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.5</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5</version>
+        </dependency>
+
+
+
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -74,7 +86,6 @@
             <version>${servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
-
 
     </dependencies>
 

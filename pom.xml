@@ -19,6 +19,8 @@
         <module>remoteUtil</module>
         <module>chartUtil</module>
         <module>poiUtil</module>
+        <module>other</module>
+        <module>httpUtil</module>
     </modules>
 
 
