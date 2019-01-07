@@ -13,8 +13,8 @@
     <artifactId>expression</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
+
     <modules>
-        <module>expressionUtil</module>
         <module>cronUtil</module>
     </modules>
 
