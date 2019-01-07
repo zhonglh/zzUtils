@@ -9,9 +9,18 @@
     <artifactId>zzUtils</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
-
-
-
+    <modules>
+        <module>base</module>
+        <module>charts</module>
+        <module>expression</module>
+        <module>files</module>
+        <module>http</module>
+        <module>other</module>
+        <module>poi</module>
+        <module>spring</module>
+        <module>template</module>
+        <module>web</module>
+    </modules>
 
 
     <properties>
