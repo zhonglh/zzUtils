@@ -58,7 +58,7 @@
         <commons-chain.version>1.2</commons-chain.version>
         <commons-codec.version>1.10</commons-codec.version>
         <commons-digester.version>2.0</commons-digester.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.5</commons-io.version>
         <commons-fileupload.version>1.2.2</commons-fileupload.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>

@@ -13,6 +13,10 @@
     <artifactId>http</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
+    <modules>
+        <module>baseHttpUtil</module>
+        <module>httpPoolUtil</module>
+    </modules>
 
 
 </project>

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.List;
 
 /**
@@ -211,6 +212,35 @@ public class FileUtils {
 		}
 		bis.close();
 		bos.close();
+	}
+
+
+
+	/**
+	 * 创建临时文件.
+	 *
+	 * @param inputStream 输入文件流
+	 * @param name        文件名
+	 * @param ext         扩展名
+	 * @param tmpDirFile  临时文件夹目录
+	 */
+	public static File createTmpFile(InputStream inputStream, String name, String ext, File tmpDirFile) throws IOException {
+		File resultFile = File.createTempFile(name, '.' + ext, tmpDirFile);
+
+		resultFile.deleteOnExit();
+		org.apache.commons.io.FileUtils.copyToFile(inputStream, resultFile);
+		return resultFile;
+	}
+
+	/**
+	 * 创建临时文件.
+	 *
+	 * @param inputStream 输入文件流
+	 * @param name        文件名
+	 * @param ext         扩展名
+	 */
+	public static File createTmpFile(InputStream inputStream, String name, String ext) throws IOException {
+		return createTmpFile(inputStream, name, ext, Files.createTempDirectory("weixin-java-tools-temp").toFile());
 	}
 
 }
