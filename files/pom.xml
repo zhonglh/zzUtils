@@ -13,6 +13,9 @@
     <artifactId>files</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
+    <modules>
+        <module>baseFileUtils</module>
+    </modules>
 
 
 </project>
