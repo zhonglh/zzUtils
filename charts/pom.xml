@@ -13,6 +13,9 @@
     <artifactId>charts</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
+    <modules>
+        <module>chartUtil</module>
+    </modules>
 
 
 </project>
