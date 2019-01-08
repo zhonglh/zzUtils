@@ -19,8 +19,8 @@
         <module>poi</module>
         <module>spring</module>
         <module>template</module>
-        <module>web</module>
         <module>remote</module>
+        <module>web</module>
     </modules>
 
 
