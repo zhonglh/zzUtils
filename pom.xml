@@ -20,6 +20,7 @@
         <module>spring</module>
         <module>template</module>
         <module>web</module>
+        <module>remote</module>
     </modules>
 
 
@@ -72,7 +73,11 @@
 
         <guava.version>20.0</guava.version>
 
+        <pdf.version>5.5.7</pdf.version>
+
         <pinyin4j.version>2.5.0</pinyin4j.version>
+
+        <freemarker.version>2.3.20</freemarker.version>
     </properties>
 
 

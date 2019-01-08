@@ -13,6 +13,13 @@
     <artifactId>poi</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
+    <description>拷贝自jeecg开源项目</description>
+
+
+    <modules>
+        <module>basePoiUtil</module>
+        <module>springPoiUtil</module>
+    </modules>
 
 
 </project>

@@ -13,6 +13,10 @@
     <artifactId>other</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1</version>
+    <modules>
+        <module>imageUtil</module>
+        <module>qrcode</module>
+    </modules>
 
 
 </project>

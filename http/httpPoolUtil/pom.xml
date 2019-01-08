@@ -11,11 +11,11 @@
 
     <groupId>com.zz.bms.util</groupId>
     <artifactId>httpPoolUtil</artifactId>
+    <packaging>jar</packaging>
     <version>1.0.1</version>
-
     <name>httpPoolUtil</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
+    <description>拷贝自wxJava(com.github.binarywang  weixin-java-common)  </description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
