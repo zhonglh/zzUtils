@@ -2,7 +2,7 @@ package com.zz.bms.util.web;
 
 
 
-import com.zz.bms.utils.base.data.StringUtil;
+import com.zz.bms.util.base.data.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;

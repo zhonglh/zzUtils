@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import static com.zz.bms.utils.base.data.StringKit.decode;
+import static com.zz.bms.util.base.data.StringKit.decode;
 
 /**
  * @author Administrator
