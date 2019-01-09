@@ -34,7 +34,7 @@
 
         <dependency>
             <groupId>com.zz.bms.util</groupId>
-            <artifactId>springUtils</artifactId>
+            <artifactId>springUtil</artifactId>
             <version>1.0.1</version>
         </dependency>
 
