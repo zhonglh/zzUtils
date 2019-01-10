@@ -25,19 +25,6 @@ public class RedissonManager {
     private Redisson redisson = null;
     private Map<String,RLock> map = new HashMap<String,RLock>();
 
-    public static void main(String[] args) {
-        RedissonManager redissonManager = new RedissonManager();
-        redissonManager.init();
-        String key = new String("");
-
-        try {
-            redissonManager.lock(key);
-            //do business
-
-        }finally {
-            redissonManager.unlock(key);
-        }
-    }
 
     public  void init(){
         try {
@@ -79,5 +66,22 @@ public class RedissonManager {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+
+
+    public static void main(String[] args) {
+        RedissonManager redissonManager = new RedissonManager();
+        redissonManager.init();
+        String key = new String("");
+
+        try {
+            redissonManager.lock(key);
+            //do business
+
+        }finally {
+            redissonManager.unlock(key);
+        }
     }
 }
