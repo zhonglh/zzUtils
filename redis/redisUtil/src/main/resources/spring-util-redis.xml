@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <context:property-placeholder location="classpath:redis.properties"  ignore-unresolvable="true"  />
+    <context:property-placeholder location="classpath:redis-util.properties"  ignore-unresolvable="true"  />
 
 
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
