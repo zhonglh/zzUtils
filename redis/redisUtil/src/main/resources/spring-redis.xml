@@ -1,0 +1,137 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:property-placeholder location="classpath:redis.properties"  ignore-unresolvable="true"  />
+
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="300" />
+        <property name="maxTotal" value="60000" />
+        <property name="testOnBorrow" value="true" />
+    </bean>
+
+    <bean id="jedisPool0" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <constructor-arg name="database" value="0" type="int" />
+    </bean>
+
+
+    <bean id="jedisPool4" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <constructor-arg name="database" value="4" type="int" />
+    </bean>
+
+    <bean id="jedisPool5" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <constructor-arg name="database" value="5" type="int" />
+    </bean>
+
+
+    <bean id="jedisPool6" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <constructor-arg name="database" value="6" type="int" />
+    </bean>
+
+
+    <bean id="jedisPool7" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <constructor-arg name="database" value="7" type="int" />
+    </bean>
+
+
+
+    <bean id="jedisPool8" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <constructor-arg name="database" value="8" type="int" />
+    </bean>
+
+
+    <bean id="jedisPool9" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <constructor-arg name="database" value="9" type="int" />
+    </bean>
+
+
+    <bean id="jedisPool10" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+        <constructor-arg name="password" value="#{'${redis.password}'!=''?'${redis.password}':null}" />
+        <constructor-arg name="database" value="10" type="int" />
+    </bean>
+
+    <bean id="redisUtils" class="com.zz.bms.util.redis.RedisUtil">
+        <property name="jedisPool" ref="jedisPool0"/>
+    </bean>
+
+
+    <bean id="redisUtils4User" class="com.zz.bms.util.redis.RedisUtil">
+        <property name="jedisPool" ref="jedisPool10"/>
+    </bean>
+
+
+    <bean id="redisUtils4UserMenu" class="com.zz.bms.util.redis.RedisUtil">
+        <property name="jedisPool" ref="jedisPool9"/>
+    </bean>
+
+
+    <bean id="redisUtils4UserFunction" class="com.zz.bms.util.redis.RedisUtil">
+        <property name="jedisPool" ref="jedisPool8"/>
+    </bean>
+
+
+    <bean id="redisUtils4UserData" class="com.zz.bms.util.redis.RedisUtil">
+        <property name="jedisPool" ref="jedisPool7"/>
+    </bean>
+
+
+    <bean id="redisUtils4UserOrgaDep" class="com.zz.bms.util.redis.RedisUtil">
+        <property name="jedisPool" ref="jedisPool6"/>
+    </bean>
+
+
+    <bean id="redisUtils4UserDep" class="com.zz.bms.util.redis.RedisUtil">
+        <property name="jedisPool" ref="jedisPool5"/>
+    </bean>
+
+
+    <bean id="redisUtils4UserSessoin" class="com.zz.bms.util.redis.RedisUtil">
+        <property name="jedisPool" ref="jedisPool4"/>
+    </bean>
+
+</beans>

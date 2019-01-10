@@ -21,6 +21,7 @@
         <module>template</module>
         <module>remote</module>
         <module>web</module>
+        <module>redis</module>
     </modules>
 
 

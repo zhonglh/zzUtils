@@ -17,7 +17,7 @@ public class ReflectionUtil extends ReflectionUtils {
     /**
      * 获取所有的业务属性(字段)
      * @param clazz
-     * @param businessAnnotation 例EntityAttrPageAnnotation
+     * @param businessAnnotation 例 EntityAttrPageAnnotation
      * @return
      */
     public static List<Field> getBusinessFields(Class<?> clazz , Class businessAnnotation) {

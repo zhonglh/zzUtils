@@ -44,11 +44,15 @@ public class SpringUtil {
 
 	/**
 	 * 获取国际化信息
-	 * @param locale
 	 * @param key
 	 * @param args
      * @return
      */
+
+	public static String getMessage(String key, Object... args){
+		return getMessage(key ,args);
+	}
+
 	public static String getMessage(Locale locale, String key, Object... args){
 		if (null == locale) {
 			locale = Locale.CHINA;
