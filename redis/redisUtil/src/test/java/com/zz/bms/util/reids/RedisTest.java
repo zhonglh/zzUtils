@@ -17,13 +17,15 @@ public class RedisTest extends BaseTest {
 
 
     @Test
-    public void testRedisConfig() {
+    public void testRedisCurd() {
         String key = "zz";
         String val = "i love you";
         try {
             redisUtil.setString(key , val);
             String redisVal = redisUtil.getString(key);
             Assert.assertEquals(val ,redisVal);
+
+            redisUtil.del(key);
         } catch (Exception e) {
             e.printStackTrace();
         }

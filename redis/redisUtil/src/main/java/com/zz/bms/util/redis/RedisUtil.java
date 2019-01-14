@@ -34,9 +34,7 @@ public class RedisUtil {
     private  Jedis getJedis()  {
         Jedis jedis = null;
         try {
-            //jedis = sentinelPool.getResource();
             jedis = jedisPool.getResource();
-            System.out.println("get jedis ");
             return  jedis;
         } catch (JedisConnectionException e) {
             log.error("获取Redis 异常", e);

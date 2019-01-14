@@ -73,6 +73,8 @@ public class RedissonManager {
 
     public static void main(String[] args) {
         RedissonManager redissonManager = new RedissonManager();
+        redissonManager.setHost("127.0.0.1");
+        redissonManager.setPort("6379");
         redissonManager.init();
         String key = new String("");
 
