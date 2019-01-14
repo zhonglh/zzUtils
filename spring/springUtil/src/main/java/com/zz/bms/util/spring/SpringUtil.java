@@ -50,7 +50,7 @@ public class SpringUtil {
      */
 
 	public static String getMessage(String key, Object... args){
-		return getMessage(key ,args);
+		return getMessage(null ,key ,args);
 	}
 
 	public static String getMessage(Locale locale, String key, Object... args){
