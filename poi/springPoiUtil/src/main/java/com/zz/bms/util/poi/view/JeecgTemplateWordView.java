@@ -29,6 +29,7 @@ import org.springframework.web.servlet.view.AbstractView;
 
 /**
  * Word模板视图
+ * @author Administrator
  */
 @SuppressWarnings("unchecked")
 @Controller(TemplateWordConstants.JEECG_TEMPLATE_WORD_VIEW)

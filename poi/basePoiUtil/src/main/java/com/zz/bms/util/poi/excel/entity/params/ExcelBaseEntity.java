@@ -20,8 +20,7 @@ import java.util.List;
 
 /**
  * Excel 导入导出基础对象类
-
- * @date 2014年6月20日 下午2:26:09
+ * @author Administrator
  */
 public class ExcelBaseEntity {
     /**

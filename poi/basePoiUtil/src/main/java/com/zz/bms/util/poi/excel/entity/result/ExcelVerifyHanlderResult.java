@@ -17,9 +17,7 @@ package com.zz.bms.util.poi.excel.entity.result;
 
 /**
  * Excel导入处理返回结果
- * 
-
- * @date 2014年6月23日 下午11:03:29
+ * @author Administrator
  */
 public class ExcelVerifyHanlderResult {
     /**

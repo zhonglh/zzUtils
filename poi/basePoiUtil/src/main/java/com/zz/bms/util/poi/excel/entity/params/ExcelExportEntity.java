@@ -19,9 +19,7 @@ import java.util.List;
 
 /**
  * excel 导出工具类,对cell类型做映射
- * 
-
- * @version 1.0 2013年8月24日
+ * @author Administrator
  */
 public class ExcelExportEntity extends ExcelBaseEntity implements Comparable<ExcelExportEntity> {
 

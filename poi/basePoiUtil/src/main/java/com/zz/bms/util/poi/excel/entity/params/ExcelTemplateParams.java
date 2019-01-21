@@ -5,9 +5,8 @@ import java.io.Serializable;
 import org.apache.poi.ss.usermodel.CellStyle;
 
 /**
- * 模板便利是的参数
-
- * @date 2015年4月29日 下午9:22:48
+ * 模板遍历时的参数
+ * @author Administrator
  */
 public class ExcelTemplateParams implements Serializable {
 

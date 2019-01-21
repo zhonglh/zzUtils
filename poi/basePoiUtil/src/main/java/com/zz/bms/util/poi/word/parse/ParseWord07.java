@@ -41,24 +41,14 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 解析07版的Word,替换文字,生成表格,生成图片
- * 
-
- * @date 2013-11-16
- * @version 1.0
+ * @author Administrator
  */
-@SuppressWarnings({ "unchecked", "rawtypes" })
 public class ParseWord07 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ParseWord07.class);
 
     /**
      * 添加图片
-     * 
-
-     * @date 2013-11-20
-     * @param obj
-     * @param currentRun
-     * @throws Exception
      */
     private void addAnImage(WordImageEntity obj, XWPFRun currentRun) throws Exception {
         Object[] isAndType = PoiPublicUtil.getIsAndType(obj);
@@ -79,10 +69,6 @@ public class ParseWord07 {
 
     /**
      * 根据条件改变值
-     * 
-     * @param map
-
-     * @date 2013-11-16
      */
     private void changeValues(XWPFParagraph paragraph, XWPFRun currentRun, String currentText,
                               List<Integer> runIndex, Map<String, Object> map) throws Exception {
@@ -102,11 +88,6 @@ public class ParseWord07 {
 
     /**
      * 判断是不是迭代输出
-     * 
-
-     * @date 2013-11-18
-     * @return
-     * @throws Exception
      */
     private Object checkThisTableIsNeedIterator(XWPFTableCell cell, Map<String, Object> map)
                                                                                             throws Exception {
@@ -120,11 +101,6 @@ public class ParseWord07 {
 
     /**
      * 解析所有的文本
-     * 
-
-     * @date 2013-11-17
-     * @param paragraphs
-     * @param map
      */
     private void parseAllParagraphic(List<XWPFParagraph> paragraphs, Map<String, Object> map)
                                                                                              throws Exception {
@@ -141,11 +117,6 @@ public class ParseWord07 {
 
     /**
      * 解析这个段落
-     * 
-
-     * @date 2013-11-16
-     * @param paragraph
-     * @param map
      */
     private void parseThisParagraph(XWPFParagraph paragraph, Map<String, Object> map)
                                                                                      throws Exception {
@@ -197,11 +168,6 @@ public class ParseWord07 {
 
     /**
      * 解析这个表格
-     * 
-
-     * @date 2013-11-17
-     * @param table
-     * @param map
      */
     private void parseThisTable(XWPFTable table, Map<String, Object> map) throws Exception {
         XWPFTableRow row;
@@ -230,11 +196,6 @@ public class ParseWord07 {
 
     /**
      * 解析07版的Word并且进行赋值
-     * 
-
-     * @date 2013-11-16
-     * @return
-     * @throws Exception
      */
     public XWPFDocument parseWord(String url, Map<String, Object> map) throws Exception {
         MyXWPFDocument doc = WordCache.getXWPFDocumen(url);
@@ -244,11 +205,6 @@ public class ParseWord07 {
 
     /**
      * 解析07版的Word并且进行赋值
-     * 
-
-     * @date 2013-11-16
-     * @return
-     * @throws Exception
      */
     public void parseWord(XWPFDocument document, Map<String, Object> map) throws Exception {
         parseWordSetValue((MyXWPFDocument) document, map);
@@ -273,9 +229,6 @@ public class ParseWord07 {
 
     /**
      * 解析页眉和页脚
-     * @param doc
-     * @param map
-     * @throws Exception
      */
     private void parseHeaderAndFoot(MyXWPFDocument doc, Map<String, Object> map) throws Exception {
         List<XWPFHeader> headerList = doc.getHeaderList();

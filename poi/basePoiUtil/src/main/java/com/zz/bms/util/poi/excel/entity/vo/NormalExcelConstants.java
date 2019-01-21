@@ -17,8 +17,8 @@ package com.zz.bms.util.poi.excel.entity.vo;
 
 /**
  * 正常导出Excel
- on 14-3-8.
  * 静态常量
+ * @author Administrator
  */
 public interface NormalExcelConstants extends BasePOIConstants {
     /**

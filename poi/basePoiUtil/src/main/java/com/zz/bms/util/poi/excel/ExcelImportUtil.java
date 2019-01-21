@@ -32,12 +32,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Excel 导入工具
- * 
-
- * @date 2013-9-24
- * @version 1.0
+ * @author Administrator
  */
-@SuppressWarnings({ "unchecked" })
 public final class ExcelImportUtil {
 
     private ExcelImportUtil() {

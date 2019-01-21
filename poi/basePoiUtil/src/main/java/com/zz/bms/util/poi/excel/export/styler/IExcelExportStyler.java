@@ -20,8 +20,7 @@ import com.zz.bms.util.poi.excel.entity.params.ExcelExportEntity;
 
 /**
  * Excel导出样式接口
-
- * @date 2015年1月9日 下午5:32:30
+ * @author Administrator
  */
 public interface IExcelExportStyler {
 

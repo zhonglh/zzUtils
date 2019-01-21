@@ -17,8 +17,7 @@ package com.zz.bms.util.poi.excel.entity.enmus;
 
 /**
  * Cell 值得类型
-
- * @date 2014年12月29日 下午10:20:49
+ * @author Administrator
  */
 public enum CellValueType {
 

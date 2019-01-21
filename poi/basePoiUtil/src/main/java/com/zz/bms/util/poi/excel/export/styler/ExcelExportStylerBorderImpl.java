@@ -21,8 +21,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  * 带有边框的Excel样式
-
- * @date 2015年1月9日 下午5:55:29
+ * @author Administrator
  */
 public class ExcelExportStylerBorderImpl extends AbstractExcelExportStyler implements
                                                                          IExcelExportStyler {

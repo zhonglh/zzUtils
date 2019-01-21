@@ -53,10 +53,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Excel 导出根据模板导出
- * 
-
- * @date 2013-10-17
- * @version 1.0
+ * @author Administrator
  */
 public final class ExcelExportOfTemplateUtil extends ExcelExportBase {
 
@@ -74,10 +71,10 @@ public final class ExcelExportOfTemplateUtil extends ExcelExportBase {
 
     /**
      * 往Sheet 填充正常数据,根据表头信息 使用导入的部分逻辑,坐对象映射
-     * 
-     * @param teplateParams
+     *
      * @param pojoClass
      * @param dataSet
+     * @param sheet
      * @param workbook
      */
     private void addDataToSheet(Class<?> pojoClass, Collection<?> dataSet, Sheet sheet,

@@ -19,10 +19,7 @@ import com.zz.bms.util.poi.excel.export.styler.ExcelExportStylerColorImpl;
 
 /**
  * 模板导出参数设置
- * 
-
- * @date 2013-10-17
- * @version 1.0
+ * @author Administrator
  */
 public class TemplateExportParams extends ExcelBaseParams {
 

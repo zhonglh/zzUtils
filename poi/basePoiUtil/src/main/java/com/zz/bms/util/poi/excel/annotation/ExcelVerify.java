@@ -22,9 +22,7 @@ import java.lang.annotation.Target;
 
 /**
  * Excel 导入校验
- * 
-
- * @date 2014年6月23日 下午10:46:26
+ * @author Administrator
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

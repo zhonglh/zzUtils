@@ -39,9 +39,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 解析实体类对象 复用注解
- * 
-
- * @date 2014年8月9日 下午10:30:57
+ * @author Administrator
  */
 public class ExcelEntityParse extends ExportBase {
 
@@ -96,8 +94,6 @@ public class ExcelEntityParse extends ExportBase {
 
     /**
      * 创建List之后的各个Cells
-     * 
-     * @param styles
      */
     public void createListCells(int index, int cellNum, Object obj,
                                 List<ExcelExportEntity> excelParams, XWPFTable table)
@@ -121,10 +117,6 @@ public class ExcelEntityParse extends ExportBase {
 
     /**
      * 获取表头数据
-     * 
-     * @param table
-     * @param index
-     * @return
      */
     private Map<String, Integer> getTitleMap(XWPFTable table, int index, int headRows) {
         if (index < headRows) {
@@ -147,10 +139,6 @@ public class ExcelEntityParse extends ExportBase {
 
     /**
      * 解析上一行并生成更多行
-     * 
-     * @param table
-     * @param i
-     * @param listobj
      */
     public void parseNextRowAndAddRow(XWPFTable table, int index, ExcelListEntity entity) {
         checkExcelParams(entity);
@@ -190,10 +178,6 @@ public class ExcelEntityParse extends ExportBase {
 
     /**
      * 对导出序列进行排序和塞选
-     * 
-     * @param excelParams
-     * @param titlemap
-     * @return
      */
     private void sortAndFilterExportField(List<ExcelExportEntity> excelParams,
                                           Map<String, Integer> titlemap) {

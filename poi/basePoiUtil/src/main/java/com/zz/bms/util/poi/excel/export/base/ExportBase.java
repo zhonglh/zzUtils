@@ -38,9 +38,7 @@ import com.zz.bms.util.poi.util.ThreadLocalHolder;
 
 /**
  * 导出基础处理,不设计POI,只设计对象,保证复用性
- * 
-
- * @date 2014年8月9日 下午11:01:32
+ * @author Administrator
  */
 public class ExportBase {
 

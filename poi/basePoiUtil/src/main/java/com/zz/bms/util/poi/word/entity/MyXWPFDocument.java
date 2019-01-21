@@ -30,10 +30,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 扩充document,修复图片插入失败问题问题
- * 
-
- * @date 2013-11-20
- * @version 1.0
+ * @author Administrator
  */
 public class MyXWPFDocument extends XWPFDocument {
 

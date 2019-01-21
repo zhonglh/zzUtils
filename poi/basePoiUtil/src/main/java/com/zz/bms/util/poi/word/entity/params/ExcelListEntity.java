@@ -22,9 +22,7 @@ import com.zz.bms.util.poi.handler.inter.IExcelDataHandler;
 
 /**
  * Excel 导出对象
- * 
-
- * @date 2014年8月9日 下午10:21:13
+ * @author Administrator
  */
 public class ExcelListEntity extends ExcelBaseParams {
 

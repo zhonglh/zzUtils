@@ -17,9 +17,7 @@ package com.zz.bms.util.poi.handler.inter;
 
 /**
  * 接口自定义处理类
-
- * @date 2015年1月16日 下午8:06:26
- * @param <T>
+ * @author Administrator
  */
 public interface IExcelReadRowHanlder<T> {
     /**

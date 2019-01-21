@@ -17,7 +17,7 @@ package com.zz.bms.util.poi.excel.entity.vo;
 
 /**
  * 基础常量
- * Created by jue on 14-4-21.
+ * @author Administrator
  */
 public interface PoiBaseConstants {
     /**

@@ -22,9 +22,7 @@ import java.lang.annotation.Target;
 
 /**
  * excel 导出是用于标记id的
- * 
-
- * 
+ * @author Administrator
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE })

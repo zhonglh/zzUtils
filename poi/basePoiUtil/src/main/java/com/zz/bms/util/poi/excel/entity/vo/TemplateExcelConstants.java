@@ -17,8 +17,7 @@ package com.zz.bms.util.poi.excel.entity.vo;
 
 /**
  * 模板Excel导出常量
-
- * @date 2014年6月30日 下午9:26:52
+ * @author Administrator
  */
 public interface TemplateExcelConstants extends BasePOIConstants {
     /**

@@ -32,10 +32,7 @@ import com.zz.bms.util.poi.excel.export.template.ExcelExportOfTemplateUtil;
 
 /**
  * excel 导出工具类
- * 
-
- * @version 1.0
- * @date 2013-10-17
+ * @author Administrator
  */
 public final class ExcelExportUtil {
 

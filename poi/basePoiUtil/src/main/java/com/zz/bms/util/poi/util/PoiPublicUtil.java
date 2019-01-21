@@ -58,8 +58,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * EASYPOI 的公共基础类
-
- * @date 2015年4月5日 上午12:59:22
+ * @author Administrator
  */
 public final class PoiPublicUtil {
 
@@ -69,7 +68,6 @@ public final class PoiPublicUtil {
 
     }
 
-    @SuppressWarnings({ "unchecked" })
     public static <K, V> Map<K, V> mapFor(Object... mapping) {
         Map<K, V> map = new HashMap<K, V>();
         for (int i = 0; i < mapping.length; i += 2) {

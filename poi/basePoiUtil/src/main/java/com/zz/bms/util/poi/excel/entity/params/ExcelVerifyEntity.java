@@ -17,9 +17,7 @@ package com.zz.bms.util.poi.excel.entity.params;
 
 /**
  * Excel 校验对象
- * 
-
- * @date 2014年6月29日 下午4:24:59
+ * @author Administrator
  */
 public class ExcelVerifyEntity {
 

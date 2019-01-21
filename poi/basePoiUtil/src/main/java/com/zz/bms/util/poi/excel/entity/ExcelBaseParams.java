@@ -19,8 +19,7 @@ import com.zz.bms.util.poi.handler.inter.IExcelDataHandler;
 
 /**
  * 基础参数
-
- * @date 2014年6月20日 下午1:56:52
+ * @author Administrator
  */
 public class ExcelBaseParams {
 

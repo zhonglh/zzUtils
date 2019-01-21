@@ -55,9 +55,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 提供POI基础操作服务
- * 
-
- * @date 2014年6月17日 下午6:15:13
  */
 public abstract class ExcelExportBase extends ExportBase {
 
@@ -77,7 +74,7 @@ public abstract class ExcelExportBase extends ExportBase {
     /**
      * 创建 最主要的 Cells
      * 
-     * @param styles
+     * @param patriarch
      * @param rowHeight
      * @throws Exception
      */

@@ -24,9 +24,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * word 缓存中心
- * 
-
- * @date 2014年7月24日 下午10:54:31
+ * @author Administrator
  */
 public class WordCache {
 

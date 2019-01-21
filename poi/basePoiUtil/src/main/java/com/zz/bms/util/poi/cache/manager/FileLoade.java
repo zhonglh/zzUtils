@@ -26,11 +26,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 文件加载类,根据路径加载指定文件
-
- * @date 2014年2月10日
- * @version 1.0
+ * @author Administrator
  */
-class FileLoade {
+public class FileLoade {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FileLoade.class);
 

@@ -19,8 +19,7 @@ import java.util.List;
 
 /**
  * 合并单元格使用对象
- *
- * Created by jue on 14-6-11.
+ * @author Administrator
  */
 public class MergeEntity {
     /**

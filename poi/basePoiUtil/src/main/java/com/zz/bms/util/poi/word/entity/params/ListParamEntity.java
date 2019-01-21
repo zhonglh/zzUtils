@@ -17,27 +17,31 @@ package com.zz.bms.util.poi.word.entity.params;
 
 /**
  * Excel 对象导出结构
- * 
-
- * @date 2014年7月26日 下午11:14:48
+ * @author Administrator
  */
 public class ListParamEntity {
+
     // 唯一值,在遍历中重复使用
     public static final String SINGLE = "single";
+
     // 属于数组类型
     public static final String LIST   = "list";
+
     /**
      * 属性名称
      */
     private String             name;
+
     /**
      * 目标
      */
     private String             target;
+
     /**
      * 当是唯一值的时候直接求出值
      */
     private Object             value;
+
     /**
      * 数据类型,SINGLE || LIST
      */

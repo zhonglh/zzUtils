@@ -38,8 +38,7 @@ import com.zz.bms.util.poi.util.PoiPublicUtil;
 
 /**
  * 样式帮助类
-
- * @date 2015年5月9日 下午4:04:24
+ * @author Administrator
  */
 public class StylerHelper {
 

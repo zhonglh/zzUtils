@@ -21,8 +21,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  * 带有样式的导出服务
-
- * @date 2015年1月9日 下午4:54:15
+ * @author Administrator
  */
 public class ExcelExportStylerColorImpl extends AbstractExcelExportStyler implements
                                                                         IExcelExportStyler {

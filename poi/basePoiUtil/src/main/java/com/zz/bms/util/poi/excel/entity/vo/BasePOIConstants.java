@@ -17,8 +17,7 @@ package com.zz.bms.util.poi.excel.entity.vo;
 
 /**
  * 基础POI常量
-
- * @date 2014年6月30日 下午9:23:37
+ * @author Administrator
  */
 interface BasePOIConstants {
 

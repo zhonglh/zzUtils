@@ -30,10 +30,7 @@ import com.google.common.cache.LoadingCache;
 
 /**
  * 缓存管理
- * 
-
- * @date 2014年2月10日
- * @version 1.0
+ * @author Administrator
  */
 public final class POICacheManager {
 

@@ -21,8 +21,7 @@ import com.zz.bms.util.poi.excel.export.styler.ExcelExportStylerDefaultImpl;
 
 /**
  * 插件提供的几个默认样式
-
- * @date 2015年1月9日 下午9:02:24
+ * @author Administrator
  */
 public enum ExcelStyleType {
 

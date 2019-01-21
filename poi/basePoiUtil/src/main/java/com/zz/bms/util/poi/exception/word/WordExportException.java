@@ -19,9 +19,7 @@ import com.zz.bms.util.poi.exception.word.enmus.WordExportEnum;
 
 /**
  * word导出异常
- * 
-
- * @date 2014年8月9日 下午10:32:51
+ * @author Administrator
  */
 public class WordExportException extends RuntimeException {
 

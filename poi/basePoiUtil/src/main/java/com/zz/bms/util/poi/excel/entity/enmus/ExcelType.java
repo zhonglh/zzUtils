@@ -17,8 +17,7 @@ package com.zz.bms.util.poi.excel.entity.enmus;
 
 /**
  * Excel Type
-
- * @date 2014年12月29日 下午9:08:21
+ * @author Administrator
  */
 public enum ExcelType {
     

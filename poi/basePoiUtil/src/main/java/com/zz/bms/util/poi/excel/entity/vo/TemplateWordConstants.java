@@ -17,8 +17,7 @@ package com.zz.bms.util.poi.excel.entity.vo;
 
 /**
  * Word 导出模板常量
-
- * @date 2014年7月24日 下午11:26:46
+ * @author Administrator
  */
 public interface TemplateWordConstants extends BasePOIConstants {
     /**

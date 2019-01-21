@@ -16,8 +16,7 @@ import com.zz.bms.util.poi.exception.excel.ExcelExportException;
 
 /**
  * 纵向合并单元格工具类
-
- * @date 2015年6月21日 上午11:21:40
+ * @author Administrator
  */
 public final class PoiMergeCellUtil {
 

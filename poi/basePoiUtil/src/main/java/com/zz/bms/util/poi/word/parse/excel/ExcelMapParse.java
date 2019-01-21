@@ -31,11 +31,6 @@ public final class ExcelMapParse {
 
     /**
      * 解析参数行,获取参数列表
-     * 
-
-     * @date 2013-11-18
-     * @param currentRow
-     * @return
      */
     private static String[] parseCurrentRowGetParams(XWPFTableRow currentRow) {
         List<XWPFTableCell> cells = currentRow.getTableCells();
@@ -50,11 +45,6 @@ public final class ExcelMapParse {
 
     /**
      * 解析下一行,并且生成更多的行
-     * 
-
-     * @date 2013-11-18
-     * @param table
-     * @param listobj2
      */
     public static void parseNextRowAndAddRow(XWPFTable table, int index, List<Object> list)
                                                                                            throws Exception {

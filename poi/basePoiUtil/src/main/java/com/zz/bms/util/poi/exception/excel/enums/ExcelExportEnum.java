@@ -17,8 +17,7 @@ package com.zz.bms.util.poi.exception.excel.enums;
 
 /**
  * 导出异常类型枚举
-
- * @date 2014年6月19日 下午10:59:51
+ * @author Administrator
  */
 public enum ExcelExportEnum {
 

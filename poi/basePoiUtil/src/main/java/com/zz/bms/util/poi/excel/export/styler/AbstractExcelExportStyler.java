@@ -22,8 +22,7 @@ import com.zz.bms.util.poi.excel.entity.params.ExcelExportEntity;
 
 /**
  * 抽象接口提供两个公共方法
-
- * @date 2015年1月9日 下午5:48:55
+ * @author Administrator
  */
 public abstract class AbstractExcelExportStyler implements IExcelExportStyler {
     //单行

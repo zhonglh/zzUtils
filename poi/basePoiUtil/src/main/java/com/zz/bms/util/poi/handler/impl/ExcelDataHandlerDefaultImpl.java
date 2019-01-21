@@ -21,9 +21,7 @@ import com.zz.bms.util.poi.handler.inter.IExcelDataHandler;
 
 /**
  * 数据处理默认实现,返回空
- * 
-
- * @date 2014年6月20日 上午12:11:52
+ * @author Administrator
  */
 public abstract class ExcelDataHandlerDefaultImpl implements IExcelDataHandler {
     /**

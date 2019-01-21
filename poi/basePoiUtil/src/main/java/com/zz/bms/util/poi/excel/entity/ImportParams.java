@@ -21,10 +21,7 @@ import com.zz.bms.util.poi.handler.inter.IExcelVerifyHandler;
 
 /**
  * 导入参数设置
- * 
-
- * @date 2013-9-24
- * @version 1.0
+ * @author Administrator
  */
 public class ImportParams extends ExcelBaseParams {
     /**

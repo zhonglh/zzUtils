@@ -17,9 +17,7 @@ package com.zz.bms.util.poi.exception.word.enmus;
 
 /**
  * 导出异常枚举
- * 
-
- * @date 2014年8月9日 下午10:34:58
+ * @author Administrator
  */
 public enum WordExportEnum {
 

@@ -62,7 +62,7 @@ public final class PoiElUtil {
 
     /**
      * 解析字符串,支持 le,fd,fn,!if,三目
-     * @param obj
+     * @param text
      * @param map
      * @return
      * @throws Exception 
@@ -129,7 +129,7 @@ public final class PoiElUtil {
 
     /**
      * 判断是不是常量
-     * @param string
+     * @param param
      * @return
      */
     private static String isConstant(String param) {
@@ -174,7 +174,7 @@ public final class PoiElUtil {
      * 计算这个的长度
      * @param text
      * @param map
-     * @throws Exception 
+     * @throws Exception
      */
     private static Object length(String text, Map<String, Object> map) throws Exception {
         String key = getKey(LENGTH, text);

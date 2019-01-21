@@ -19,8 +19,7 @@ import com.zz.bms.util.poi.exception.excel.enums.ExcelImportEnum;
 
 /**
  * 导入异常
-
- * @date 2014年6月29日 下午2:23:43
+ * @author Administrator
  */
 public class ExcelImportException extends RuntimeException {
 

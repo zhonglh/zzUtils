@@ -23,8 +23,7 @@ import java.util.ArrayList;
 
 /**
  * 导出的集合
- * 
- 2013年8月24日
+ * @author Administrator
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

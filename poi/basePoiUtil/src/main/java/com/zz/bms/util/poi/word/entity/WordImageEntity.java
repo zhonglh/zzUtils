@@ -17,10 +17,7 @@ package com.zz.bms.util.poi.word.entity;
 
 /**
  * word导出,图片设置和图片信息
- * 
-
- * @date 2013-11-17
- * @version 1.0
+ * @author Administrator
  */
 public class WordImageEntity {
 

@@ -19,9 +19,7 @@ import com.zz.bms.util.poi.excel.entity.result.ExcelVerifyHanlderResult;
 
 /**
  * 导入校验接口
- * 
-
- * @date 2014年6月23日 下午11:08:21
+ * @author Administrator
  */
 public interface IExcelVerifyHandler {
 

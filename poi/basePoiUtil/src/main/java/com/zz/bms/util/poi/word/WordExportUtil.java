@@ -22,10 +22,7 @@ import com.zz.bms.util.poi.word.parse.ParseWord07;
 
 /**
  * Word使用模板导出工具类
- * 
-
- * @date 2013-11-16
- * @version 1.0
+ * @author Administrator
  */
 public final class WordExportUtil {
 
@@ -49,14 +46,11 @@ public final class WordExportUtil {
     /**
      * 解析Word2007版本
      * 
-     * @param XWPFDocument
-     *            模板
-     * @param map
-     *            解析数据源
+     * @param document      模板
+     * @param map           解析数据源
      * @return
      */
-    public static void exportWord07(XWPFDocument document, Map<String, Object> map)
-                                                                                   throws Exception {
+    public static void exportWord07(XWPFDocument document, Map<String, Object> map) throws Exception {
         new ParseWord07().parseWord(document, map);
     }
 
