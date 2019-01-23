@@ -16,7 +16,7 @@ public interface IExport<T> {
      * @param t
      * @param isAddNumber
      */
-    public void exportTitles(int headers , T t , boolean isAddNumber);
+    public void exportTitles(int headers , T t  , boolean isAddNumber);
 
     /**
      * 导出头信息

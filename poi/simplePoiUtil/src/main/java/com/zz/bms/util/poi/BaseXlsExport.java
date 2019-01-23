@@ -1,9 +1,9 @@
 package com.zz.bms.util.poi;
 
+import com.zz.bms.util.poi.util.ColumnUtil;
 import com.zz.bms.util.poi.vo.Column;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +25,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T>
 	 * @param isAddNumber	是否增加序号
 	 */
 	@Override
-	public void exportTitles(int headers , T t , boolean isAddNumber)  {
+	public void exportTitles(int headers ,  T t,boolean isAddNumber)  {
 		
 
 		int rowIndex = 0;
@@ -51,8 +51,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T>
 				this.setTitleCell(0, getNumberName());
 			}
 
-			//todo
-			columns = null;//getColume(clz);
+			columns = ColumnUtil.getColumn(t.getClass() , false);
 			for (Column column : columns) {
 				this.setTitleCell(column.getNumber() + position , column.getName());
 			}
@@ -75,6 +74,44 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T>
 	@Override
 	public void exportHeaders(List<String> headers) {
 
+		if(headers == null || headers.isEmpty() ) {
+			return ;
+		}
+
+		CellStyle cellStyle1 = getHeaderCellStyle1();
+		CellStyle cellStyle2 = getHeaderCellStyle2();
+		Row row = this.getCurrSheet().getRow(this.getCurrSheet().getLastRowNum());
+		int cellLength = 13 ;
+		if(row != null) {
+			cellLength = row.getLastCellNum();
+		}
+		if(cellLength > 13) {
+			cellLength = 13;
+		}
+
+
+		for(int i=0;i<headers.size();i++){
+			this.createRow(this.getCurrSheet(),i);
+			Cell cell = this.getCurrRow().createCell(0);
+			if(i == 0) {
+				cell.setCellStyle(cellStyle1);
+				this.getCurrRow().setHeightInPoints(20);
+				this.getCurrRow().setHeight((short)700);
+			} else {
+				cell.setCellStyle(cellStyle2);
+			}
+			cell.setCellType(Cell.CELL_TYPE_STRING);
+			cell.setCellValue(headers.get(i));
+
+			for(int index = 1 ; index<cellLength;index ++){
+				cell = this.getCurrRow().createCell(index);
+				cell.setCellStyle(cellStyle2);
+			}
+
+			CellRangeAddress cellRangeAddress = new CellRangeAddress(i,i,0,(short)(cellLength-1));
+			this.getCurrSheet().addMergedRegion(cellRangeAddress);
+
+		}
 	}
 
 	@Override

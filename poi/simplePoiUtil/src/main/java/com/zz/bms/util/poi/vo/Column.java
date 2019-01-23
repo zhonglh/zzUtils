@@ -1,17 +1,19 @@
 package com.zz.bms.util.poi.vo;
 
+import com.zz.bms.util.base.sorts.ISort;
+
 import java.lang.reflect.Field;
 
 /**
  * 列实体类型
  * @author Administrator
  */
-public class Column {
+public class Column implements ISort{
 
 
 	/**
 	 * 列序号 列所处的顺序号
-	 * 对应Excel的列
+	 * 对应Excel的列(从0开始)
 	 * 比如12
 	 */
 	private int number;
@@ -87,4 +89,8 @@ public class Column {
 	}
 
 
+	@Override
+	public int getSort() {
+		return number;
+	}
 }

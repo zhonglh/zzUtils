@@ -3,7 +3,6 @@ package com.zz.bms.util.poi;
 import com.zz.bms.util.poi.enums.EnumXlsFormat;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFFont;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,6 +18,87 @@ public abstract class AbstractXlsStyle {
     private static Font font = null;
 
 
+    private static CellStyle headerCellStyle1 = null;
+    private static CellStyle headerCellStyle2 = null;
+
+
+    public CellStyle getHeaderCellStyle1(){
+
+        if(headerCellStyle1 == null) {
+
+            CellStyle cellStyle = getWorkbook().createCellStyle();
+
+            // 设置背景色
+            short index = 0x9;
+            cellStyle.setFillForegroundColor(index);
+
+            cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+            //下边框
+            cellStyle.setBorderBottom(CellStyle.BORDER_THIN);
+            //左边框
+            cellStyle.setBorderLeft(CellStyle.BORDER_THIN);
+            //上边框
+            cellStyle.setBorderTop(CellStyle.BORDER_THIN);
+            //右边框
+            cellStyle.setBorderRight(CellStyle.BORDER_THIN);
+
+            //居中
+            cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+
+            //居中
+            cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+
+            Font font = getHeaderFont1();
+            cellStyle.setFont(font);
+
+
+            cellStyle.setFillForegroundColor(IndexedColors.YELLOW.index);
+
+            headerCellStyle1 = cellStyle;
+            return cellStyle;
+        }else {
+            return headerCellStyle1;
+        }
+    }
+
+
+
+    public CellStyle getHeaderCellStyle2(){
+
+        if(headerCellStyle2 == null) {
+
+
+            CellStyle cellStyle = getWorkbook().createCellStyle();
+
+            //设置背景色
+            short index = 0x9;
+            cellStyle.setFillForegroundColor(index);
+
+
+            cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+
+
+            //下边框
+            cellStyle.setBorderBottom(CellStyle.BORDER_THIN);
+            //左边框
+            cellStyle.setBorderLeft(CellStyle.BORDER_THIN);
+            //上边框
+            cellStyle.setBorderTop(CellStyle.BORDER_THIN);
+            //右边框
+            cellStyle.setBorderRight(CellStyle.BORDER_THIN);
+            // 居中
+            cellStyle.setAlignment(CellStyle.ALIGN_LEFT);
+
+
+            Font font = getHeaderFont2();
+            cellStyle.setFont(font);
+
+            headerCellStyle2 = cellStyle;
+            return cellStyle;
+        }else {
+            return headerCellStyle2;
+        }
+    }
 
 
     protected CellStyle getCellStyle(short alignment, boolean boldweight) {
@@ -158,11 +238,33 @@ public abstract class AbstractXlsStyle {
         }else {
             Font newFont = getWorkbook().createFont();
             //粗体显示
-            newFont.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
+            newFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
             font = newFont ;
             return newFont;
         }
     }
+
+
+    private Font getHeaderFont1() {
+        Font font = getWorkbook().createFont();
+        font.setFontName("黑体");
+        //设置字体大小
+        font.setFontHeightInPoints((short) 16);
+        font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        return font;
+
+
+    }
+
+
+    private Font getHeaderFont2() {
+        Font font = getWorkbook().createFont();
+        font.setFontName("黑体");
+        //设置字体大小
+        font.setFontHeightInPoints((short) 10);
+        return font;
+    }
+
 
 
     public abstract Workbook getWorkbook();
