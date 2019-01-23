@@ -1,9 +1,13 @@
 package com.zz.bms.util.poi;
 
+import com.zz.bms.util.poi.cell.CellOperation;
 import com.zz.bms.util.poi.enums.EnumXlsFormat;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,6 +24,75 @@ public abstract class AbstractXlsStyle {
 
     private static CellStyle headerCellStyle1 = null;
     private static CellStyle headerCellStyle2 = null;
+
+
+
+
+    /**
+     * 用于处理特殊的样式处理 (处理工资表， 表头是从Excel文件读取出来的)
+     * 内容和标题的样式一样 , 颜色 背景色等和标题一样， 对齐方式和格式化不一样
+     * @param cellStyle
+     * @param index
+     * @param clz
+     * @param val
+     * @param operationModel
+     * @param <T>
+     * @return
+     */
+    public <T> CellStyle firstCommonStyle(CellStyle cellStyle ,int index, Class<T> clz ,  Object val , String operationModel){
+
+        String key = "firstStyle=" + clz.getName() + "=" + index;
+
+        CellStyle firstCommonStyle = styleMap.get(key);
+
+        if(firstCommonStyle != null) {
+
+            EnumXlsFormat formatEm = null;
+            short alignment = 0;
+            if (operationModel.equals(CellOperation.OPERATION_MODEL_DEFAULT)) {
+                if (val instanceof Date || val instanceof Timestamp) {
+                    formatEm = EnumXlsFormat.DATE;
+                    alignment = CellStyle.ALIGN_CENTER;
+                } else if (val instanceof Integer || val instanceof Long) {
+                    formatEm = EnumXlsFormat.DIGITS;
+                    alignment = CellStyle.ALIGN_RIGHT;
+                } else if (val instanceof Float || val instanceof Double || val instanceof BigDecimal) {
+                    formatEm = EnumXlsFormat.CURRENCY;
+                    alignment = CellStyle.ALIGN_RIGHT;
+                } else {
+                    formatEm = null;
+                    alignment = CellStyle.ALIGN_LEFT;
+                }
+            } else {
+                if (val instanceof Date || val instanceof Timestamp) {
+                    formatEm = null;
+                    alignment = CellStyle.ALIGN_CENTER;
+                } else if (val instanceof Integer || val instanceof Long) {
+                    formatEm = null;
+                    alignment = CellStyle.ALIGN_RIGHT;
+                } else if (val instanceof Float || val instanceof Double || val instanceof BigDecimal) {
+                    formatEm = EnumXlsFormat.NUMBER;
+                    alignment = CellStyle.ALIGN_RIGHT;
+                } else {
+                    formatEm = null;
+                    alignment = CellStyle.ALIGN_LEFT;
+                }
+            }
+
+            //todo , 如果有问题，  需要做深拷贝
+            CellStyle newCellStyle = cellStyle;
+            if (formatEm != null) {
+                DataFormat format = getWorkbook().createDataFormat();
+                newCellStyle.setDataFormat(format.getFormat(formatEm.getPattern()));
+                newCellStyle.setAlignment(alignment);
+            }
+
+            firstCommonStyle = newCellStyle;
+            return newCellStyle;
+        }else {
+            return firstCommonStyle;
+        }
+    }
 
 
     public CellStyle getHeaderCellStyle1(){
@@ -101,6 +174,33 @@ public abstract class AbstractXlsStyle {
     }
 
 
+
+    protected CellStyle commonTitleStyle() {
+        if(commonTitleStyle == null) {
+            CellStyle cellStyle = getWorkbook().createCellStyle();
+            cellStyle.setBorderBottom((short) 1);
+            cellStyle.setBorderTop((short) 1);
+            cellStyle.setBorderLeft((short) 1);
+            cellStyle.setBorderRight((short) 1);
+
+            cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+            cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+            cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
+            cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+            setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
+
+            cellStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.index);
+            cellStyle.setFont(getFont());
+            commonTitleStyle = cellStyle;
+            return cellStyle;
+        }else {
+            return commonTitleStyle;
+        }
+
+    }
+
+
+
     protected CellStyle getCellStyle(short alignment, boolean boldweight) {
 
         String key = String.valueOf(alignment) + "=" + String.valueOf(boldweight);
@@ -133,7 +233,7 @@ public abstract class AbstractXlsStyle {
     protected CellStyle getCellStyle(short alignment, boolean boldweight, EnumXlsFormat formatEm) {
 
 
-        String key = String.valueOf(alignment) + "=" + String.valueOf(boldweight) + "=" + formatEm.name();
+        String key = String.valueOf(alignment) + "=" + String.valueOf(boldweight) + "=" + (formatEm==null?"":formatEm.name());
 
 
         CellStyle style = styleMap.get(key);
@@ -156,9 +256,11 @@ public abstract class AbstractXlsStyle {
             cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
             cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
 
+            if(formatEm != null) {
+                DataFormat format = getWorkbook().createDataFormat();
+                cellStyle.setDataFormat(format.getFormat(formatEm.getPattern()));
+            }
 
-            DataFormat format = getWorkbook().createDataFormat();
-            cellStyle.setDataFormat(format.getFormat(formatEm.getPattern()));
 
             setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
 
@@ -171,8 +273,57 @@ public abstract class AbstractXlsStyle {
 
 
 
-    protected CellStyle commonTitleStyle() {
-        if(commonTitleStyle == null) {
+    protected CellStyle commonStyle(Object val , String operationModel){
+
+        if(val == null){
+            return getCellStyle(CellStyle.ALIGN_LEFT, false, null);
+        }
+
+
+        EnumXlsFormat formatEm = null;
+        short alignment = 0;
+        if(operationModel.equals(CellOperation.OPERATION_MODEL_DEFAULT)){
+            if(val instanceof Date || val instanceof Timestamp){
+                formatEm = EnumXlsFormat.DATE;
+                alignment = CellStyle.ALIGN_CENTER;
+            }else if(val instanceof Integer || val instanceof Long){
+                formatEm = EnumXlsFormat.DIGITS;
+                alignment = CellStyle.ALIGN_RIGHT;
+            }else if(val instanceof Float || val instanceof Double || val instanceof BigDecimal){
+                formatEm = EnumXlsFormat.CURRENCY;
+                alignment = CellStyle.ALIGN_RIGHT;
+            }else{
+                formatEm = null;
+                alignment = CellStyle.ALIGN_LEFT;
+            }
+        }else {
+            if(val instanceof Date || val instanceof Timestamp){
+                formatEm = null;
+                alignment = CellStyle.ALIGN_CENTER;
+            }else if(val instanceof Integer || val instanceof Long){
+                formatEm = null;
+                alignment = CellStyle.ALIGN_RIGHT;
+            }else if(val instanceof Float || val instanceof Double || val instanceof BigDecimal){
+                formatEm = EnumXlsFormat.NUMBER;
+                alignment = CellStyle.ALIGN_RIGHT;
+            }else{
+                formatEm = null;
+                alignment = CellStyle.ALIGN_LEFT;
+            }
+        }
+
+        return getCellStyle(alignment, false, formatEm);
+
+    }
+
+
+
+
+    protected CellStyle commonStyle(EnumXlsFormat formatEm) {
+
+        String key = "cs="+ (formatEm == null ? "" : formatEm.name());
+        CellStyle cs = styleMap.get(key);
+        if(cs == null) {
             CellStyle cellStyle = getWorkbook().createCellStyle();
             cellStyle.setBorderBottom((short) 1);
             cellStyle.setBorderTop((short) 1);
@@ -181,16 +332,16 @@ public abstract class AbstractXlsStyle {
 
             cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
             cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+            if(formatEm != null && formatEm != EnumXlsFormat.DATE){
+                cellStyle.setAlignment(CellStyle.ALIGN_RIGHT);
+            }
             cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
             cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
             setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
-
-            cellStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.index);
-            cellStyle.setFont(getFont());
-            commonTitleStyle = cellStyle;
+            cs = cellStyle;
             return cellStyle;
         }else {
-            return commonTitleStyle;
+            return cs;
         }
 
     }
@@ -218,6 +369,8 @@ public abstract class AbstractXlsStyle {
         }
 
     }
+
+
 
     protected void setBorder(CellStyle style, short color, short borderType) {
 

@@ -7,6 +7,7 @@ package com.zz.bms.util.poi.enums;
 public enum EnumXlsFormat {
 
 
+    DIGITS("#,##0"),
     DATE("yyyy/MM/dd"),
     NUMBER("0.00"),
     DOUBLE("##0.00"),

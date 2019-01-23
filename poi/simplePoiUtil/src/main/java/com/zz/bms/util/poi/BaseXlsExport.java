@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T> {
+public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExport<T> {
 
 
 	/**
@@ -36,7 +36,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T>
 		this.createSheet(t , 0 , headLength+1);
 		List<Column> columns = null;
 
-		int position = isAddNumber ? 0 : 1;
+		int position = isAddNumber ? 1 : 0;
 
 
 		Row[] titleRows = null;
@@ -71,6 +71,11 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T>
 
 	}
 
+
+	/**
+	 * 导出头信息
+	 * @param headers
+	 */
 	@Override
 	public void exportHeaders(List<String> headers) {
 
@@ -114,17 +119,68 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T>
 		}
 	}
 
+
+	/**
+	 * 导出内容
+	 * @param contents      内容
+	 * @param rowIndex      行索引
+	 * @param columns       列设置
+	 * @param isAddNumber   是否增加序号
+	 */
 	@Override
 	public void exportContent(List<T> contents, int rowIndex, List<Column> columns, boolean isAddNumber) {
 
+
+		if(contents == null || contents.isEmpty()) {
+			return ;
+		}
+
+		int position = isAddNumber ? 1 : 0;
+
+
+		if(columns == null) {
+			columns = ColumnUtil.getColumn(contents.get(0).getClass() , false);
+		}
+
+		int dataIndex = 0;
+
+		for(T t : contents){
+			if(t == null) {
+				continue;
+			}
+
+			dataIndex ++;
+
+			this.createRow(rowIndex++);
+
+			if(this.specialHand(t, columns, isAddNumber , dataIndex)) {
+				continue;
+			}
+
+			if(isAddNumber) {
+				this.setCell(0 , dataIndex);
+			}
+
+			for (Column column : columns) {
+				column.getField().setAccessible(true);
+				try {
+					Object value = column.getField().get(t);
+					if(value == null) {
+						this.setCell(column.getNumber() + position , "");
+					}else {
+						this.setCell(column.getNumber() + position, value);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+
 	}
 
 
 
-	@Override
-	public CellStyle commonStyle(int cellIndex) {
-		return commonStyle();
-	}
 
 
 	/**
@@ -132,6 +188,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T>
 	 *
 	 * @throws RuntimeException
 	 */
+	@Override
 	public void exportXls(String xlsFileName) throws RuntimeException {
 		exportXls(xlsFileName,workbook);
 	}
@@ -164,6 +221,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements IExport<T>
 	 * @param response
 	 * @throws RuntimeException
 	 */
+	@Override
 	public void exportXls(HttpServletResponse response) throws RuntimeException {
 		exportXls(response,workbook);
 	}

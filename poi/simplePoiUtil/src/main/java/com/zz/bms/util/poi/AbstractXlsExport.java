@@ -1,10 +1,14 @@
 package com.zz.bms.util.poi;
 
 import com.zz.bms.util.base.data.DateKit;
+import com.zz.bms.util.poi.cell.CellBuild;
+import com.zz.bms.util.poi.cell.CellExport;
 import com.zz.bms.util.poi.enums.EnumXlsFormat;
 import com.zz.bms.util.poi.vo.Column;
 import org.apache.poi.ss.usermodel.*;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +18,10 @@ import java.util.List;
 public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 
 	public static int defaultColumnWidth = 15;
-
-	public static int defaultColumnHeight = 400;
 	public static int titleColumnHeight = 400;
+
+
+	CellExport cellExport = CellBuild.buildCellExport();
 
 	protected Workbook workbook;
 
@@ -44,7 +49,7 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 	 * 是否自定义标题信息
 	 * 例如  标题的信息是从其它excel获取的
 	 */
-	private boolean isCustomTitleInfo = false ;
+	public boolean isCustomTitleInfo = false ;
 
 	public boolean isWriteTitle(){
 		return true;
@@ -85,15 +90,14 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 	 * 增加一行
 	 * @param index 行号
 	 */
+	public void createRow( int index) {
+		createRow(this.getCurrSheet(),index);
+	}
+
+
 	public void createRow(Sheet sheet, int index) {
 		setCurrRow(sheet.createRow(index));
 	}
-	
-	
-	
-	
-	
-	
 
 
 	public void setTitleCell(int index, String value) {
@@ -102,94 +106,70 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 		CellStyle cellStyle = commonTitleStyle();
 		cell.setCellStyle(cellStyle);
 		cell.setCellValue(value);
-	}	
-	
+	}
 
-	/**
-	 * 设置单元格
-	 * 
-	 * @param index 列号
-	 * @param value 单元格填充值
-	 */
 	public void setCell(int index, String value) {
-		Cell cell = getCurrRow().createCell(index);
-		cell.setCellType(Cell.CELL_TYPE_STRING);
-		cell.setCellStyle(commonStyle(index));
-		cell.setCellValue(value);
-	}
-	
-
-	public void setCell(int index, Date value) {
-		Cell cell = getCurrRow().createCell(index);
-		cell.setCellType(Cell.CELL_TYPE_STRING);
-		cell.setCellStyle(commonStyle(index));
-		if (value != null) {
-			cell.setCellValue(DateKit.fmtDateToYMD(value));
-		}
-	}
-
-	public void setCell(int index, java.sql.Timestamp value) {
-		Cell cell = getCurrRow().createCell(index);
-		cell.setCellType(Cell.CELL_TYPE_STRING);
-		cell.setCellStyle(commonStyle(index));
-		if (value != null) {
-			cell.setCellValue(DateKit.fmtDateToYMD(value));
-		}
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
 	}
 
 	public void setCell(int index, int value) {
-		Cell cell = getCurrRow().createCell(index);
-		cell.setCellType(Cell.CELL_TYPE_NUMERIC);
-		cell.setCellStyle(commonStyle(index));
-		cell.setCellValue(value);
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
 	}
 
-	private void setCell(int index, double value, EnumXlsFormat formatEm) {
-		Cell cell = getCurrRow().createCell(index);
-		cell.setCellType(Cell.CELL_TYPE_NUMERIC);
-		cell.setCellValue(value);
-		
-		// 建立新的cell样式
-		CellStyle cellStyle = commonStyle(index); 
-		DataFormat format = getWorkbook().createDataFormat();
-		
-		// 设置cell样式为定制的浮点数格式
-		cellStyle.setDataFormat(format.getFormat(formatEm.getPattern())); 
-
-		// 设置该cell浮点数的显示格式
-		cell.setCellStyle(cellStyle); 
+	public void setCell(int index, long value) {
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
 	}
 
 	public void setCell(int index, double value) {
-		setCell(index, value, EnumXlsFormat.NUMBER);
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
 	}
 
-	public void setCurrency(int index, double value) {
-		setCell(index, value, EnumXlsFormat.CURRENCY);
+	public void setCell(int index, float value) {
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
 	}
 
-	public void setPercent(int index, double value) {
-		setCell(index, value, EnumXlsFormat.PERCENT);
+	public void setCell(int index, BigDecimal value) {
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
 	}
-	
+
+	public void setCell(int index, Date value) {
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
+	}
+
+	public void setCell(int index, Timestamp value) {
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
+	}
+
+
+	public void setCell(int index, Object value) {
+		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
+		cellExport.setCell(index , getCurrRow() , cellStyle , value);
+	}
 
 	
 
-	
-	public CellStyle firstCommonStyle(int cellIndex) {
-		
+
+	public CellStyle firstCommonStyle(int cellIndex , Class<T> clz, Object val) {
 		try{
 			if(titleRow != null && isCustomTitleInfo()){
-				return this.titleRow[titleRow.length-1].getCell(cellIndex).getCellStyle();
+				CellStyle cellStyle =  this.titleRow[titleRow.length-1].getCell(cellIndex).getCellStyle();
+				return firstCommonStyle(cellStyle  ,cellIndex ,  clz ,  val , cellExport.getOperationModel());
 			}
 		}catch(Exception e){
 			;
-		}		
+		}
 		return commonStyle();
-	}	
-	
-	
-	public abstract CellStyle commonStyle(int cellIndex) ;
+	}
+
+
 
 	
 	
@@ -243,9 +223,17 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 		this.setCell(index, value, alignment,boldweight , EnumXlsFormat.PERCENT);
 	}
 
-	
-	
-	public <T> boolean specialHand(T t, List<Column> columns, boolean addNumber){
+
+	/**
+	 * 处理特殊行
+	 * @param t
+	 * @param columns
+	 * @param addNumber
+	 * @param index			数据记录号 , 从1开始
+	 * @param <T>
+	 * @return
+	 */
+	public <T> boolean specialHand(T t, List<Column> columns, boolean addNumber , int index){
 		return false;
 	}
 

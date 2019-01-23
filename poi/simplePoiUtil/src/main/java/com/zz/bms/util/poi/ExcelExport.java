@@ -2,12 +2,13 @@ package com.zz.bms.util.poi;
 
 import com.zz.bms.util.poi.vo.Column;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
  * @author Administrator
  */
-public interface IExport<T> {
+public interface ExcelExport<T> {
 
 
     /**
@@ -33,6 +34,22 @@ public interface IExport<T> {
      * @param isAddNumber   是否增加序号
      */
     public void exportContent(List<T> contents, int rowIndex, List<Column> columns, boolean isAddNumber ) ;
+
+
+    /**
+     * 下载
+     * @param response
+     * @throws RuntimeException
+     */
+    public void exportXls(HttpServletResponse response) throws RuntimeException  ;
+
+
+    /**
+     * 导出 Excel 文件
+     * @param xlsFileName
+     * @throws RuntimeException
+     */
+    public void exportXls(String xlsFileName) throws RuntimeException  ;
 
 
 
