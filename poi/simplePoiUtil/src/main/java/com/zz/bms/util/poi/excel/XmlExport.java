@@ -1,31 +1,38 @@
 package com.zz.bms.util.poi.excel;
 
 import com.zz.bms.util.poi.ExcelExport;
+import com.zz.bms.util.poi.vo.Column;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class XmlExport implements ExcelExport {
-
-    @Override
-    public void exportTitles(int headers, Object o, boolean isAddNumber) {
-
-    }
+public class XmlExport<T> implements ExcelExport<T> {
 
 
     @Override
-    public void exportContent(List contents, int rowIndex, List list, boolean isAddNumber) {
+    public void exportTitles(int headers, T t, boolean isAddNumber) {
 
     }
 
     @Override
-    public void exportHeaders(List headers) {
+    public void exportTitles(int headers, T t, List<Column> columns, boolean isAddNumber) {
 
     }
 
+    @Override
+    public void exportHeaders(List<String> headers) {
 
+    }
 
+    @Override
+    public void exportContent(List<T> contents, int rowIndex, boolean isAddNumber) {
 
+    }
+
+    @Override
+    public void exportContent(List<T> contents, int rowIndex, List<Column> columns, boolean isAddNumber) {
+
+    }
 
     @Override
     public void exportXls(HttpServletResponse response) throws RuntimeException {
@@ -36,6 +43,4 @@ public class XmlExport implements ExcelExport {
     public void exportXls(String xlsFileName) throws RuntimeException {
 
     }
-
-
 }

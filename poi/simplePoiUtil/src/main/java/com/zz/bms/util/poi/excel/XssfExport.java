@@ -8,7 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * 不适用大数据量
  * @author Administrator
  */
-public class XssfExport extends BaseXlsExport {
+public class XssfExport<T> extends BaseXlsExport<T> {
 
 
     public XssfExport() {

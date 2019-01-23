@@ -34,7 +34,9 @@ public class ColumnUtil {
         List<Column> list = columnsMap.get(key);
         if(list == null){
             list = getColumn0(clz, isImport);
-            columnsMap.put(key,list);
+            if(list != null) {
+                columnsMap.put(key, list);
+            }
         }
         return list;
     }

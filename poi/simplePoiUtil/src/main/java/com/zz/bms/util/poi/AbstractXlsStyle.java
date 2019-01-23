@@ -17,13 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public abstract class AbstractXlsStyle {
 
     private static Map<String,CellStyle> styleMap = new ConcurrentHashMap<String,CellStyle>();
-    private static CellStyle commonTitleStyle = null;
-    private static CellStyle commonStyle = null;
-    private static Font font = null;
-
-
-    private static CellStyle headerCellStyle1 = null;
-    private static CellStyle headerCellStyle2 = null;
+    private static Map<String,Font> fontMap = new ConcurrentHashMap<String,Font>();
 
 
 
@@ -41,7 +35,7 @@ public abstract class AbstractXlsStyle {
      */
     public <T> CellStyle firstCommonStyle(CellStyle cellStyle ,int index, Class<T> clz ,  Object val , String operationModel){
 
-        String key = "firstStyle=" + clz.getName() + "=" + index;
+        String key = "firstCommonStyle="+ this.getWorkbook().getClass().getName() + clz.getName() + "=" + index;
 
         CellStyle firstCommonStyle = styleMap.get(key);
 
@@ -97,6 +91,10 @@ public abstract class AbstractXlsStyle {
 
     public CellStyle getHeaderCellStyle1(){
 
+        String key = "getHeaderCellStyle1="+ this.getWorkbook().getClass().getName() ;
+
+        CellStyle headerCellStyle1 = styleMap.get(key);
+
         if(headerCellStyle1 == null) {
 
             CellStyle cellStyle = getWorkbook().createCellStyle();
@@ -127,7 +125,7 @@ public abstract class AbstractXlsStyle {
 
             cellStyle.setFillForegroundColor(IndexedColors.YELLOW.index);
 
-            headerCellStyle1 = cellStyle;
+            styleMap.put(key,cellStyle);
             return cellStyle;
         }else {
             return headerCellStyle1;
@@ -137,6 +135,10 @@ public abstract class AbstractXlsStyle {
 
 
     public CellStyle getHeaderCellStyle2(){
+
+        String key = "getHeaderCellStyle2="+ this.getWorkbook().getClass().getName() ;
+
+        CellStyle headerCellStyle2 = styleMap.get(key);
 
         if(headerCellStyle2 == null) {
 
@@ -166,7 +168,7 @@ public abstract class AbstractXlsStyle {
             Font font = getHeaderFont2();
             cellStyle.setFont(font);
 
-            headerCellStyle2 = cellStyle;
+            styleMap.put(key,cellStyle);
             return cellStyle;
         }else {
             return headerCellStyle2;
@@ -176,6 +178,11 @@ public abstract class AbstractXlsStyle {
 
 
     protected CellStyle commonTitleStyle() {
+
+        String key = "commonTitleStyle="+ this.getWorkbook().getClass().getName() ;
+
+        CellStyle commonTitleStyle = styleMap.get(key);
+
         if(commonTitleStyle == null) {
             CellStyle cellStyle = getWorkbook().createCellStyle();
             cellStyle.setBorderBottom((short) 1);
@@ -191,7 +198,9 @@ public abstract class AbstractXlsStyle {
 
             cellStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.index);
             cellStyle.setFont(getFont());
-            commonTitleStyle = cellStyle;
+
+
+            styleMap.put(key,cellStyle);
             return cellStyle;
         }else {
             return commonTitleStyle;
@@ -203,12 +212,16 @@ public abstract class AbstractXlsStyle {
 
     protected CellStyle getCellStyle(short alignment, boolean boldweight) {
 
-        String key = String.valueOf(alignment) + "=" + String.valueOf(boldweight);
-        CellStyle style = styleMap.get(key);
-        if(style != null){
-            return style;
+
+        String key = "cellStyle="+ this.getWorkbook().getClass().getName() ;
+
+        CellStyle cellStyle = styleMap.get(key);
+
+
+        if(cellStyle != null){
+            return cellStyle;
         }else {
-            CellStyle cellStyle = getWorkbook().createCellStyle();
+            cellStyle = getWorkbook().createCellStyle();
             cellStyle.setBorderBottom((short) 1);
             cellStyle.setBorderTop((short) 1);
             cellStyle.setBorderLeft((short) 1);
@@ -224,6 +237,7 @@ public abstract class AbstractXlsStyle {
             cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
             cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
             setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
+
             styleMap.put(key ,cellStyle );
             return cellStyle;
         }
@@ -233,15 +247,15 @@ public abstract class AbstractXlsStyle {
     protected CellStyle getCellStyle(short alignment, boolean boldweight, EnumXlsFormat formatEm) {
 
 
-        String key = String.valueOf(alignment) + "=" + String.valueOf(boldweight) + "=" + (formatEm==null?"":formatEm.name());
+        String key = "cellStyle="+this.getWorkbook().getClass().getName()+String.valueOf(alignment) + "=" + String.valueOf(boldweight) + "=" + (formatEm==null?"":formatEm.name());
 
 
-        CellStyle style = styleMap.get(key);
-        if(style != null){
-            return style;
+        CellStyle cellStyle = styleMap.get(key);
+        if(cellStyle != null){
+            return cellStyle;
         }else {
 
-            CellStyle cellStyle = getWorkbook().createCellStyle();
+            cellStyle = getWorkbook().createCellStyle();
             cellStyle.setBorderBottom((short) 1);
             cellStyle.setBorderTop((short) 1);
             cellStyle.setBorderLeft((short) 1);
@@ -321,10 +335,13 @@ public abstract class AbstractXlsStyle {
 
     protected CellStyle commonStyle(EnumXlsFormat formatEm) {
 
-        String key = "cs="+ (formatEm == null ? "" : formatEm.name());
-        CellStyle cs = styleMap.get(key);
-        if(cs == null) {
-            CellStyle cellStyle = getWorkbook().createCellStyle();
+
+        String key = "cellStyle="+ this.getWorkbook().getClass().getName() +  (formatEm==null?"":formatEm.name());
+
+        CellStyle cellStyle = styleMap.get(key);
+
+        if(cellStyle == null) {
+            cellStyle = getWorkbook().createCellStyle();
             cellStyle.setBorderBottom((short) 1);
             cellStyle.setBorderTop((short) 1);
             cellStyle.setBorderLeft((short) 1);
@@ -338,10 +355,11 @@ public abstract class AbstractXlsStyle {
             cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
             cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
             setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
-            cs = cellStyle;
+
+            styleMap.put(key,cellStyle);
             return cellStyle;
         }else {
-            return cs;
+            return cellStyle;
         }
 
     }
@@ -350,6 +368,13 @@ public abstract class AbstractXlsStyle {
 
 
     protected CellStyle commonStyle() {
+
+
+
+        String key = "commonStyle="+ this.getWorkbook().getClass().getName();
+
+        CellStyle commonStyle = styleMap.get(key);
+
         if(commonStyle == null) {
             CellStyle cellStyle = getWorkbook().createCellStyle();
             cellStyle.setBorderBottom((short) 1);
@@ -362,7 +387,7 @@ public abstract class AbstractXlsStyle {
             cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
             cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
             setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
-            commonStyle = cellStyle;
+            styleMap.put(key,cellStyle);
             return cellStyle;
         }else {
             return commonStyle;
@@ -386,36 +411,60 @@ public abstract class AbstractXlsStyle {
     }
 
     protected Font getFont() {
+
+        String key = "font="+ this.getWorkbook().getClass().getName();
+
+
+        Font font = fontMap.get(key);
+
         if(font != null){
             return font;
         }else {
             Font newFont = getWorkbook().createFont();
             //粗体显示
             newFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
-            font = newFont ;
+            fontMap.put(key , newFont);
             return newFont;
         }
     }
 
 
     private Font getHeaderFont1() {
-        Font font = getWorkbook().createFont();
-        font.setFontName("黑体");
-        //设置字体大小
-        font.setFontHeightInPoints((short) 16);
-        font.setBoldweight(Font.BOLDWEIGHT_BOLD);
-        return font;
 
+
+        String key = "headerFont1="+ this.getWorkbook().getClass().getName();
+
+        Font font = fontMap.get(key);
+        if(font == null) {
+            font = getWorkbook().createFont();
+            font.setFontName("黑体");
+            //设置字体大小
+            font.setFontHeightInPoints((short) 16);
+            font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+            fontMap.put(key, font);
+            return font;
+        }else {
+            return font;
+        }
 
     }
 
 
     private Font getHeaderFont2() {
-        Font font = getWorkbook().createFont();
-        font.setFontName("黑体");
-        //设置字体大小
-        font.setFontHeightInPoints((short) 10);
-        return font;
+
+        String key = "headerFont2="+ this.getWorkbook().getClass().getName();
+
+        Font font = fontMap.get(key);
+        if(font == null) {
+            font = getWorkbook().createFont();
+            font.setFontName("黑体");
+            //设置字体大小
+            font.setFontHeightInPoints((short) 10);
+            fontMap.put(key, font);
+            return font;
+        }else {
+            return font;
+        }
     }
 
 

@@ -2,7 +2,10 @@ package com.zz.bms.util.poi;
 
 import com.zz.bms.util.poi.util.ColumnUtil;
 import com.zz.bms.util.poi.vo.Column;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import javax.servlet.ServletOutputStream;
@@ -18,14 +21,20 @@ import java.util.List;
 public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExport<T> {
 
 
+
 	/**
 	 * 导出标题	
 	 * @param headers		头信息行数
 	 * @param t  			数据类型
 	 * @param isAddNumber	是否增加序号
 	 */
+
 	@Override
-	public void exportTitles(int headers ,  T t,boolean isAddNumber)  {
+	public void exportTitles(int headers ,  T t, boolean isAddNumber)  {
+		exportTitles(headers,t,null,isAddNumber);
+	}
+	@Override
+	public void exportTitles(int headers ,  T t, List<Column> columns ,boolean isAddNumber)  {
 		
 
 		int rowIndex = 0;
@@ -34,11 +43,8 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 		rowIndex = headLength;
 
 		this.createSheet(t , 0 , headLength+1);
-		List<Column> columns = null;
 
-		int position = isAddNumber ? 1 : 0;
-
-
+		int position = isAddNumber ? 1 : 0 ;
 		Row[] titleRows = null;
 
 		if(this.isWriteTitle()) {
@@ -51,7 +57,9 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				this.setTitleCell(0, getNumberName());
 			}
 
-			columns = ColumnUtil.getColumn(t.getClass() , false);
+			if(columns == null || columns.isEmpty()) {
+				columns = ColumnUtil.getColumn(t.getClass(), false);
+			}
 			for (Column column : columns) {
 				this.setTitleCell(column.getNumber() + position , column.getName());
 			}
@@ -124,9 +132,12 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 	 * 导出内容
 	 * @param contents      内容
 	 * @param rowIndex      行索引
-	 * @param columns       列设置
 	 * @param isAddNumber   是否增加序号
 	 */
+	@Override
+	public void exportContent(List<T> contents, int rowIndex,  boolean isAddNumber) {
+		exportContent( contents,  rowIndex, null, isAddNumber) ;
+	}
 	@Override
 	public void exportContent(List<T> contents, int rowIndex, List<Column> columns, boolean isAddNumber) {
 

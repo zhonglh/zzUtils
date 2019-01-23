@@ -169,16 +169,16 @@ public class ReflectionUtil extends ReflectionUtils {
                 EntityAttrExcelAnnotation excelAnnotation = field.getAnnotation(EntityAttrExcelAnnotation.class);
                 if(excelAnnotation != null){
 
-                    if(excelAnnotation.excelProcess().equals(EnumExcelType.IMPORT_EXPORT)){
+                    if(excelAnnotation.excelProcess().equals(EnumExcelType.IMPORT_EXPORT.getVal())){
                         return true;
                     }
 
                     if(importFlag) {
-                        if (excelAnnotation.excelProcess().equals(EnumExcelType.ONLY_IMPORT)){
+                        if (excelAnnotation.excelProcess().equals(EnumExcelType.ONLY_IMPORT.getVal())){
                             return true;
                         }
                     }else {
-                        if (excelAnnotation.excelProcess().equals(EnumExcelType.ONLY_EXPORT)){
+                        if (excelAnnotation.excelProcess().equals(EnumExcelType.ONLY_EXPORT.getVal())){
                             return true;
                         }
                     }

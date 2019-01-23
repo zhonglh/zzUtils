@@ -8,7 +8,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  * 不适用于大数据量
  * @author Administrator
  */
-public class HssfExport extends BaseXlsExport {
+public class HssfExport<T> extends BaseXlsExport<T> {
 
     public HssfExport() {
         this.workbook = new HSSFWorkbook();

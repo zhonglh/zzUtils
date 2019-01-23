@@ -8,7 +8,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
  * 用于大数据量
  * @author Administrator
  */
-public class SxssfExport extends BaseXlsExport {
+public class SxssfExport<T> extends BaseXlsExport<T> {
 
     //内存中保留的行数，超出后会写到磁盘
     //应该是在窗口中的行数
