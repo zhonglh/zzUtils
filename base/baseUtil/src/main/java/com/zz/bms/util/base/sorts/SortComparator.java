@@ -2,13 +2,14 @@ package com.zz.bms.util.base.sorts;
 
 import java.util.Comparator;
 
-public class SortComparator implements Comparator<Object> {
+public class SortComparator<T> implements Comparator<T> {
+
 
 
 
 
     @Override
-    public int compare(Object obj1,Object obj2){
+    public int compare(T obj1,T obj2){
         if(obj1 == null && obj2 == null) {
             return 0;
         }
@@ -28,4 +29,6 @@ public class SortComparator implements Comparator<Object> {
 
 
     }
+
+
 }

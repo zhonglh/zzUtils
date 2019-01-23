@@ -19,6 +19,7 @@
     <modules>
         <module>basePoiUtil</module>
         <module>springPoiUtil</module>
+        <module>simplePoiUtil</module>
     </modules>
 
 

@@ -40,8 +40,7 @@ public class ReflectHelper {
 	/**
 	 * 定义构造方法 -- 一般来说是个pojo
 	 * 
-	 * @param o
-	 *            目标对象
+	 * @param o  目标对象
 	 */
 	public ReflectHelper(Object o) {
 		obj = o;

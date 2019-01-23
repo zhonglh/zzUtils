@@ -55,6 +55,11 @@
             <version>1.0.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>configs</artifactId>
+            <version>1.0.1</version>
+        </dependency>
 
 
         <dependency>

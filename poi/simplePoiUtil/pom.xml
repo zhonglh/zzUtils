@@ -10,12 +10,11 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.zz.bms.util</groupId>
-    <artifactId>basePoiUtil</artifactId>
+    <artifactId>simplePoiUtil</artifactId>
     <packaging>jar</packaging>
     <version>1.0.1</version>
-    <name>basePoiUtil</name>
+    <name>simplePoiUtil</name>
     <url>http://www.example.com</url>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +24,14 @@
         <poi.version>3.12</poi.version>
         <jodconverter.version>3.0-beta-4</jodconverter.version>
         <openoffice.version>3.2.1</openoffice.version>
+
+
+        <!-- servlet jsp -->
+        <jstl.version>1.2</jstl.version>
+        <servlet.version>3.1.0</servlet.version>
+        <servlet-api.version>2.4</servlet-api.version>
+        <jsp.version>2.0</jsp.version>
+        <!-- servlet jsp -->
 
     </properties>
 
@@ -39,6 +46,12 @@
         <dependency>
             <groupId>com.zz.bms.util</groupId>
             <artifactId>baseUtil</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>springUtil</artifactId>
             <version>1.0.1</version>
         </dependency>
 
@@ -90,5 +103,33 @@
         </dependency>
 
 
+
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
+
+
+
+
 </project>

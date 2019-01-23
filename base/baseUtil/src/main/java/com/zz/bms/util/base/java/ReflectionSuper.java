@@ -28,7 +28,7 @@ public class ReflectionSuper {
 
 
 	@SuppressWarnings("rawtypes")
-	public static List<Class> getAllParentClass(Class class_ , Class top){
+	public static List<Class> getAllParentClass(Class class_ , Class stop){
 
 		Class clz = class_;
 
@@ -43,7 +43,7 @@ public class ReflectionSuper {
 			if(clz == Object.class) {
 				return list;
 			}
-			if(clz.getName().equals(top.getName())){
+			if(clz.getName().equals(stop.getName())){
 				return list;
 			}
 			list.add(clz);
