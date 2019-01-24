@@ -6,6 +6,10 @@ import com.zz.bms.util.poi.vo.Column;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * XML格式导出(Excel 2003)
+ * @author Administrator
+ */
 public class XmlExport<T> implements ExcelExport<T> {
 
 

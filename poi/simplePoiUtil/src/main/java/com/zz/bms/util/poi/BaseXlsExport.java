@@ -169,18 +169,20 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 			}
 
 			if(isAddNumber) {
-				this.setCell(0 , dataIndex);
+				this.setCell(0 , dataIndex , CellStyle.ALIGN_RIGHT);
 			}
+
 
 			for (Column column : columns) {
 				column.getField().setAccessible(true);
 				try {
 					Object value = column.getField().get(t);
 					if(value == null) {
-						this.setCell(column.getNumber() + position , "");
+						this.setCell(column.getNumber() + position , "" , column.getAlignment());
 					}else {
-						this.setCell(column.getNumber() + position, value);
+						this.setCell(column.getNumber() + position, value , column.getAlignment());
 					}
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

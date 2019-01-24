@@ -26,16 +26,16 @@ public abstract class AbstractXlsStyle {
      * 用于处理特殊的样式处理 (处理工资表， 表头是从Excel文件读取出来的)
      * 内容和标题的样式一样 , 颜色 背景色等和标题一样， 对齐方式和格式化不一样
      * @param cellStyle
-     * @param index
      * @param clz
-     * @param val
+     * @param columnIndex
+     * @param columnClz
      * @param operationModel
      * @param <T>
      * @return
      */
-    public <T> CellStyle firstCommonStyle(CellStyle cellStyle ,int index, Class<T> clz ,  Object val , String operationModel){
+    public <T> CellStyle firstCommonStyle(CellStyle cellStyle ,Class<T> clz ,  int columnIndex, Class<?> columnClz, String operationModel){
 
-        String key = "firstCommonStyle="+ this.getWorkbook().getClass().getName() + clz.getName() + "=" + index;
+        String key = "firstCommonStyle="+ this.getWorkbook().getClass().getName() + clz.getName() + "=" + columnIndex;
 
         CellStyle firstCommonStyle = styleMap.get(key);
 
@@ -43,31 +43,33 @@ public abstract class AbstractXlsStyle {
 
             EnumXlsFormat formatEm = null;
             short alignment = 0;
-            if (operationModel.equals(CellOperation.OPERATION_MODEL_DEFAULT)) {
-                if (val instanceof Date || val instanceof Timestamp) {
+
+            if(operationModel.equals(CellOperation.OPERATION_MODEL_DEFAULT)){
+                if(columnClz == Date.class || columnClz == java.sql.Date.class || columnClz == Timestamp.class){
                     formatEm = EnumXlsFormat.DATE;
                     alignment = CellStyle.ALIGN_CENTER;
-                } else if (val instanceof Integer || val instanceof Long) {
+                }else if(columnClz == Integer.class || columnClz == Long.class){
                     formatEm = EnumXlsFormat.DIGITS;
                     alignment = CellStyle.ALIGN_RIGHT;
-                } else if (val instanceof Float || val instanceof Double || val instanceof BigDecimal) {
+                }else if(columnClz == Float.class || columnClz == Double.class || columnClz == BigDecimal.class){
                     formatEm = EnumXlsFormat.CURRENCY;
                     alignment = CellStyle.ALIGN_RIGHT;
-                } else {
+                }else{
                     formatEm = null;
                     alignment = CellStyle.ALIGN_LEFT;
                 }
-            } else {
-                if (val instanceof Date || val instanceof Timestamp) {
+            }else {
+
+                if(columnClz == Date.class || columnClz == java.sql.Date.class || columnClz == Timestamp.class){
                     formatEm = null;
                     alignment = CellStyle.ALIGN_CENTER;
-                } else if (val instanceof Integer || val instanceof Long) {
+                }else if(columnClz == Integer.class || columnClz == Long.class){
                     formatEm = null;
                     alignment = CellStyle.ALIGN_RIGHT;
-                } else if (val instanceof Float || val instanceof Double || val instanceof BigDecimal) {
+                }else if(columnClz == Float.class || columnClz == Double.class || columnClz == BigDecimal.class){
                     formatEm = EnumXlsFormat.NUMBER;
                     alignment = CellStyle.ALIGN_RIGHT;
-                } else {
+                }else{
                     formatEm = null;
                     alignment = CellStyle.ALIGN_LEFT;
                 }
@@ -162,7 +164,7 @@ public abstract class AbstractXlsStyle {
             //右边框
             cellStyle.setBorderRight(CellStyle.BORDER_THIN);
             // 居中
-            cellStyle.setAlignment(CellStyle.ALIGN_LEFT);
+            cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
 
 
             Font font = getHeaderFont2();
@@ -285,25 +287,45 @@ public abstract class AbstractXlsStyle {
     }
 
 
+    /**
+     * 根据列属性设置Excel cell 样式
+     * @param clz
+     * @param columnIndex
+     * @param columnClz
+     * @param definAlignment
+     * @param operationModel
+     * @return
+     */
+    public CellStyle commonStyle(Class<?> clz , int columnIndex ,  Class<?> columnClz , short definAlignment , String operationModel){
+
+        String key = "commonStyle==="+this.getWorkbook().getClass().getName()+ "=" + clz.getName() + "=" + columnIndex ;
 
 
-    protected CellStyle commonStyle(Object val , String operationModel){
-
-        if(val == null){
-            return getCellStyle(CellStyle.ALIGN_LEFT, false, null);
+        CellStyle cellStyle = styleMap.get(key);
+        if(cellStyle != null){
+            return cellStyle;
+        }else {
+            cellStyle = commonStyle(columnClz , definAlignment , operationModel  );
+            styleMap.put(key , cellStyle);
+            return cellStyle;
         }
+
+    }
+
+    private CellStyle commonStyle( Class<?> columnClz, short definAlignment ,  String operationModel){
+
 
 
         EnumXlsFormat formatEm = null;
         short alignment = 0;
         if(operationModel.equals(CellOperation.OPERATION_MODEL_DEFAULT)){
-            if(val instanceof Date || val instanceof Timestamp){
+            if(columnClz == Date.class || columnClz == java.sql.Date.class || columnClz == Timestamp.class){
                 formatEm = EnumXlsFormat.DATE;
                 alignment = CellStyle.ALIGN_CENTER;
-            }else if(val instanceof Integer || val instanceof Long){
+            }else if(columnClz == Integer.class || columnClz == Long.class){
                 formatEm = EnumXlsFormat.DIGITS;
                 alignment = CellStyle.ALIGN_RIGHT;
-            }else if(val instanceof Float || val instanceof Double || val instanceof BigDecimal){
+            }else if(columnClz == Float.class || columnClz == Double.class || columnClz == BigDecimal.class){
                 formatEm = EnumXlsFormat.CURRENCY;
                 alignment = CellStyle.ALIGN_RIGHT;
             }else{
@@ -311,13 +333,14 @@ public abstract class AbstractXlsStyle {
                 alignment = CellStyle.ALIGN_LEFT;
             }
         }else {
-            if(val instanceof Date || val instanceof Timestamp){
+
+            if(columnClz == Date.class || columnClz == java.sql.Date.class || columnClz == Timestamp.class){
                 formatEm = null;
                 alignment = CellStyle.ALIGN_CENTER;
-            }else if(val instanceof Integer || val instanceof Long){
+            }else if(columnClz == Integer.class || columnClz == Long.class){
                 formatEm = null;
                 alignment = CellStyle.ALIGN_RIGHT;
-            }else if(val instanceof Float || val instanceof Double || val instanceof BigDecimal){
+            }else if(columnClz == Float.class || columnClz == Double.class || columnClz == BigDecimal.class){
                 formatEm = EnumXlsFormat.NUMBER;
                 alignment = CellStyle.ALIGN_RIGHT;
             }else{
@@ -326,6 +349,9 @@ public abstract class AbstractXlsStyle {
             }
         }
 
+        if(definAlignment != CellStyle.ALIGN_GENERAL){
+            alignment = definAlignment;
+        }
         return getCellStyle(alignment, false, formatEm);
 
     }
@@ -333,7 +359,7 @@ public abstract class AbstractXlsStyle {
 
 
 
-    protected CellStyle commonStyle(EnumXlsFormat formatEm) {
+    private CellStyle commonStyle(EnumXlsFormat formatEm) {
 
 
         String key = "cellStyle="+ this.getWorkbook().getClass().getName() +  (formatEm==null?"":formatEm.name());
@@ -367,7 +393,7 @@ public abstract class AbstractXlsStyle {
 
 
 
-    protected CellStyle commonStyle() {
+    public CellStyle commonStyle() {
 
 
 
@@ -397,7 +423,7 @@ public abstract class AbstractXlsStyle {
 
 
 
-    protected void setBorder(CellStyle style, short color, short borderType) {
+    private void setBorder(CellStyle style, short color, short borderType) {
 
         style.setBorderBottom(borderType);
         style.setBorderLeft(borderType);
@@ -410,7 +436,7 @@ public abstract class AbstractXlsStyle {
         style.setBottomBorderColor(color);
     }
 
-    protected Font getFont() {
+    private Font getFont() {
 
         String key = "font="+ this.getWorkbook().getClass().getName();
 

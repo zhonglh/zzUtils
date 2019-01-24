@@ -51,6 +51,8 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 	 */
 	public boolean isCustomTitleInfo = false ;
 
+	private Class<T> tClass = null;
+
 	public boolean isWriteTitle(){
 		return true;
 	}
@@ -100,68 +102,85 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 	}
 
 
-	public void setTitleCell(int index, String value) {
-		Cell cell = getCurrRow().createCell(index);
+	public void setTitleCell(int cellIndex, String value) {
+		Cell cell = getCurrRow().createCell(cellIndex);
 		cell.setCellType(Cell.CELL_TYPE_STRING);
 		CellStyle cellStyle = commonTitleStyle();
 		cell.setCellStyle(cellStyle);
 		cell.setCellValue(value);
 	}
 
-	public void setCell(int index, String value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
+	public void setCell(int cellIndex, String value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , String.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
-	public void setCell(int index, int value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
+	public void setCell(int cellIndex, int value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Integer.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
-
-	public void setCell(int index, long value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
-	}
-
-	public void setCell(int index, double value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
-	}
-
-	public void setCell(int index, float value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
-	}
-
-	public void setCell(int index, BigDecimal value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
-	}
-
-	public void setCell(int index, Date value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
-	}
-
-	public void setCell(int index, Timestamp value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
+	public void setCell(int cellIndex, Integer value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Integer.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
 
-	public void setCell(int index, Object value) {
-		CellStyle cellStyle = commonStyle(value , cellExport.getOperationModel());
-		cellExport.setCell(index , getCurrRow() , cellStyle , value);
+	public void setCell(int cellIndex, long value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Long.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+	public void setCell(int cellIndex, Long value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Long.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+
+	public void setCell(int cellIndex, double value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Double.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+	public void setCell(int cellIndex, Double value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Double.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+
+	public void setCell(int cellIndex, float value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Float.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+	public void setCell(int cellIndex, Float value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Float.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+
+	public void setCell(int cellIndex, BigDecimal value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , BigDecimal.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+
+	public void setCell(int cellIndex, Date value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Date.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+
+	public void setCell(int cellIndex, Timestamp value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Timestamp.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	}
+
+
+	public void setCell(int cellIndex, Object value , short definAlignment) {
+		CellStyle cellStyle = commonStyle(tClass , cellIndex , Object.class , definAlignment ,cellExport.getOperationModel());
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
 	
 
 
-	public CellStyle firstCommonStyle(int cellIndex , Class<T> clz, Object val) {
+	public CellStyle firstCommonStyle(int cellIndex , Class<?> columnClz) {
 		try{
 			if(titleRow != null && isCustomTitleInfo()){
 				CellStyle cellStyle =  this.titleRow[titleRow.length-1].getCell(cellIndex).getCellStyle();
-				return firstCommonStyle(cellStyle  ,cellIndex ,  clz ,  val , cellExport.getOperationModel());
+				return firstCommonStyle(cellStyle , tClass  ,cellIndex ,   columnClz , cellExport.getOperationModel());
 			}
 		}catch(Exception e){
 			;
@@ -177,14 +196,14 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 	
 	/**
 	 * 设置单元格内容
-	 * @param index
+	 * @param cellIndex
 	 * @param value
 	 * @param alignment
 	 * @param boldweight
 	 */
-	public void setCell(int index, String value, short alignment, boolean boldweight) {
+	public void setCell(int cellIndex, String value, short alignment, boolean boldweight) {
 		
-		Cell cell = getCurrRow().createCell(index);
+		Cell cell = getCurrRow().createCell(cellIndex);
 		cell.setCellType(Cell.CELL_TYPE_STRING);
 		CellStyle cellStyle = getCellStyle(alignment, boldweight);
 		cell.setCellStyle(cellStyle);
@@ -195,15 +214,15 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 
 	/**
 	 * 设置单元格内容
-	 * @param index
+	 * @param cellIndex
 	 * @param value
 	 * @param alignment
 	 * @param boldweight
 	 * @param formatEm
 	 */
-	public void setCell(int index, Double value, short alignment, boolean boldweight, EnumXlsFormat formatEm) {
+	public void setCell(int cellIndex, Double value, short alignment, boolean boldweight, EnumXlsFormat formatEm) {
 		
-		Cell cell = getCurrRow().createCell(index);
+		Cell cell = getCurrRow().createCell(cellIndex);
 		cell.setCellType(Cell.CELL_TYPE_NUMERIC);
 		CellStyle cellStyle = getCellStyle(alignment, boldweight, formatEm);
 		cell.setCellStyle(cellStyle);
@@ -211,16 +230,16 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 	}
 
 
-	public void setNumberCell(int index, Double value, short alignment, boolean boldweight) {
-		this.setCell(index, value, alignment,boldweight , EnumXlsFormat.NUMBER);
+	public void setNumberCell(int cellIndex, Double value, short alignment, boolean boldweight) {
+		this.setCell(cellIndex, value, alignment,boldweight , EnumXlsFormat.NUMBER);
 	}
 
-	public void setCurrencyCell(int index, Double value, short alignment, boolean boldweight) {
-		this.setCell(index, value, alignment,boldweight , EnumXlsFormat.CURRENCY);
+	public void setCurrencyCell(int cellIndex, Double value, short alignment, boolean boldweight) {
+		this.setCell(cellIndex, value, alignment,boldweight , EnumXlsFormat.CURRENCY);
 	}
 
-	public void setPercentCell(int index, Double value, short alignment, boolean boldweight) {
-		this.setCell(index, value, alignment,boldweight , EnumXlsFormat.PERCENT);
+	public void setPercentCell(int cellIndex, Double value, short alignment, boolean boldweight) {
+		this.setCell(cellIndex, value, alignment,boldweight , EnumXlsFormat.PERCENT);
 	}
 
 

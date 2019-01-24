@@ -1,6 +1,7 @@
 package com.zz.bms.util.poi.vo;
 
 import com.zz.bms.util.base.sorts.ISort;
+import org.apache.poi.ss.usermodel.CellStyle;
 
 import java.lang.reflect.Field;
 
@@ -36,6 +37,11 @@ public class Column implements ISort{
 	 * 例如 User 的  用户名
 	 */
 	private String name;
+
+	/**
+	 * 水平对齐方式
+	 */
+	private short alignment = CellStyle.ALIGN_GENERAL;
 
 
 	/**
@@ -88,9 +94,21 @@ public class Column implements ISort{
 		this.field = field;
 	}
 
+	public short getAlignment() {
+		return alignment;
+	}
+
+	public void setAlignment(short alignment) {
+		this.alignment = alignment;
+	}
 
 	@Override
 	public int getSort() {
 		return number;
+	}
+
+	@Override
+	public String getSort2() {
+		return code;
 	}
 }

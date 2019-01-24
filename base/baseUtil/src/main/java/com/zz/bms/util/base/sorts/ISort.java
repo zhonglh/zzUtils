@@ -4,4 +4,7 @@ public interface ISort {
 
     public int getSort() ;
 
+
+    public String getSort2() ;
+
 }
