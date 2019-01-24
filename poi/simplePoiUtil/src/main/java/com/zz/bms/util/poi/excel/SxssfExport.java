@@ -1,6 +1,8 @@
 package com.zz.bms.util.poi.excel;
 
+import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bms.util.poi.BaseXlsExport;
+import com.zz.bms.util.poi.ExcelExport;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 /**
@@ -18,9 +20,12 @@ public class SxssfExport<T> extends BaseXlsExport<T> {
     private static int maxSheetRows = 100000;
 
     public SxssfExport() {
-
         this.workbook = new SXSSFWorkbook(rowAccessWindowSize);
         //生成的临时文件将进行gzip压缩
         ((SXSSFWorkbook)workbook).setCompressTempFiles(true);
+    }
+
+    public static void main(String[] args) {
+
     }
 }

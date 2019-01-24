@@ -51,7 +51,6 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 	 */
 	public boolean isCustomTitleInfo = false ;
 
-	private Class<T> tClass = null;
 
 	public boolean isWriteTitle(){
 		return true;
@@ -110,73 +109,93 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 		cell.setCellValue(value);
 	}
 
-	public void setCell(int cellIndex, String value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, String value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , String.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
-	public void setCell(int cellIndex, int value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, int value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Integer.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
-	public void setCell(int cellIndex, Integer value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, Integer value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Integer.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
 
-	public void setCell(int cellIndex, long value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, long value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Long.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
-	public void setCell(int cellIndex, Long value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, Long value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Long.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
-	public void setCell(int cellIndex, double value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, double value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Double.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
-	public void setCell(int cellIndex, Double value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, Double value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Double.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
-	public void setCell(int cellIndex, float value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, float value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Float.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
-	public void setCell(int cellIndex, Float value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, Float value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Float.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
-	public void setCell(int cellIndex, BigDecimal value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, BigDecimal value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , BigDecimal.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
-	public void setCell(int cellIndex, Date value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, Date value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Date.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
-	public void setCell(int cellIndex, Timestamp value , short definAlignment) {
+	public void setCell(Class<T> tClass ,int cellIndex, Timestamp value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Timestamp.class , definAlignment ,cellExport.getOperationModel());
 		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
 	}
 
 
-	public void setCell(int cellIndex, Object value , short definAlignment) {
-		CellStyle cellStyle = commonStyle(tClass , cellIndex , Object.class , definAlignment ,cellExport.getOperationModel());
-		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+	public void setCell(Class<T> tClass ,int cellIndex, Object value , short definAlignment) {
+		if(value instanceof String){
+			setCell(tClass ,cellIndex, ((String) value ) , definAlignment) ;
+		}else if(value instanceof Integer){
+			setCell(tClass ,cellIndex, ((Integer) value ) , definAlignment) ;
+		}else if(value instanceof Long){
+			setCell(tClass ,cellIndex, ((Long) value ) , definAlignment) ;
+		}else if(value instanceof Double){
+			setCell(tClass ,cellIndex, ((Double) value ) , definAlignment) ;
+		}else if(value instanceof Float){
+			setCell(tClass ,cellIndex, ((Float) value ) , definAlignment) ;
+		}else if(value instanceof BigDecimal){
+			setCell(tClass ,cellIndex, ((BigDecimal) value ) , definAlignment) ;
+		}else if(value instanceof java.util.Date){
+			setCell(tClass ,cellIndex, ((java.util.Date) value ) , definAlignment) ;
+		}else if(value instanceof java.sql.Date){
+			setCell(tClass ,cellIndex, ((java.sql.Date) value ) , definAlignment) ;
+		}else if(value instanceof Timestamp){
+			setCell(tClass ,cellIndex, ((Timestamp) value ) , definAlignment) ;
+		}else {
+			setCell(tClass ,cellIndex, value.toString() , definAlignment) ;
+		}
 	}
+
 
 	
 
 
-	public CellStyle firstCommonStyle(int cellIndex , Class<?> columnClz) {
+	public CellStyle firstCommonStyle(Class<T> tClass ,int cellIndex , Class<?> columnClz) {
 		try{
 			if(titleRow != null && isCustomTitleInfo()){
 				CellStyle cellStyle =  this.titleRow[titleRow.length-1].getCell(cellIndex).getCellStyle();

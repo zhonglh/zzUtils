@@ -169,7 +169,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 			}
 
 			if(isAddNumber) {
-				this.setCell(0 , dataIndex , CellStyle.ALIGN_RIGHT);
+				this.setCell(  (Class<T>)contents.get(0).getClass(),  0 , dataIndex , CellStyle.ALIGN_RIGHT);
 			}
 
 
@@ -178,9 +178,9 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				try {
 					Object value = column.getField().get(t);
 					if(value == null) {
-						this.setCell(column.getNumber() + position , "" , column.getAlignment());
+						this.setCell((Class<T>)contents.get(0).getClass(), column.getNumber() + position , "" , column.getAlignment());
 					}else {
-						this.setCell(column.getNumber() + position, value , column.getAlignment());
+						this.setCell( (Class<T>)contents.get(0).getClass(),column.getNumber() + position, value , column.getAlignment());
 					}
 
 				} catch (Exception e) {

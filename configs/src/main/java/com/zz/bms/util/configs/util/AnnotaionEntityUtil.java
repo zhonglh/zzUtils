@@ -65,7 +65,7 @@ public class AnnotaionEntityUtil {
             return Math.min(pageMaxLength , dictAnnotation.dbColumnLength());
         }
 
-        throw new RuntimeException("代码编写错误， 没有在属性中配置注解( EntityAttrDBAnnotation/EntityAttrFkAnnotation/EntityAttrDictAnnotation/EntityAttrPageAnnotation )");
+        return pageMaxLength;
 
     }
 

@@ -19,6 +19,12 @@ public class ReflectionSuper {
 
 	private static Logger logger = Logger.getLogger(ReflectionSuper.class);
 
+
+	public static void main(String[] args) {
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		ReflectionSuper.getSuperClassGenricType(hm.getClass());
+	}
+
 	
 	
 	@SuppressWarnings("rawtypes")
