@@ -273,8 +273,12 @@ public abstract class AbstractXlsStyle {
             cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
 
             if(formatEm != null) {
-                DataFormat format = getWorkbook().createDataFormat();
-                cellStyle.setDataFormat(format.getFormat(formatEm.getPattern()));
+                if(formatEm.getCode() > 0){
+                    cellStyle.setDataFormat((short)formatEm.getCode());
+                }else {
+                    DataFormat format = getWorkbook().createDataFormat();
+                    cellStyle.setDataFormat(format.getFormat(formatEm.getPattern()));
+                }
             }
 
 
@@ -378,6 +382,18 @@ public abstract class AbstractXlsStyle {
             if(formatEm != null && formatEm != EnumXlsFormat.DATE){
                 cellStyle.setAlignment(CellStyle.ALIGN_RIGHT);
             }
+
+            if(formatEm != null) {
+                if(formatEm.getCode() > 0){
+                    cellStyle.setDataFormat((short)formatEm.getCode());
+                }else {
+                    DataFormat format = getWorkbook().createDataFormat();
+                    cellStyle.setDataFormat(format.getFormat(formatEm.getPattern()));
+                }
+            }
+
+
+
             cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
             cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
             setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);

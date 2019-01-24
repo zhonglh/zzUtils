@@ -7,20 +7,27 @@ package com.zz.bms.util.poi.enums;
 public enum EnumXlsFormat {
 
 
-    DIGITS("#,##0"),
-    DATE("yyyy/MM/dd"),
-    NUMBER("0.00"),
-    DOUBLE("##0.00"),
-    CURRENCY("#,##0.00"),
-    PERCENT("0.00%");
+    DIGITS(3,"#,##0"),
+    DATE(14,"yyyy/MM/dd"),
+    NUMBER(2,"0.00"),
+    DOUBLE(4,"##0.00"),
+    CURRENCY(4,"#,##0.00"),
+    PERCENT(11,"0.00%");
 
-    private final String pattern;
+    private int code;
+    private String pattern;
 
-    EnumXlsFormat(String pattern) {
+    EnumXlsFormat(int code, String pattern) {
+        this.code = code;
         this.pattern = pattern;
     }
 
+
     public String getPattern() {
         return this.pattern;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

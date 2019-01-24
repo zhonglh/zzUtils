@@ -95,4 +95,9 @@ public class DateProcess {
     }
 
 
+    public static void main(String[] args) {
+        System.out.println(DateKit.fmtDateToYMD(getFirst(new Date())));
+    }
+
+
 }

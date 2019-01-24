@@ -1,6 +1,7 @@
 package com.zz.bms.util.poi;
 
 import com.zz.bms.util.base.data.DateKit;
+import com.zz.bms.util.base.data.DateProcess;
 import com.zz.bms.util.poi.cell.CellBuild;
 import com.zz.bms.util.poi.cell.CellExport;
 import com.zz.bms.util.poi.enums.EnumXlsFormat;
@@ -158,12 +159,12 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 
 	public void setCell(Class<T> tClass ,int cellIndex, Date value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Date.class , definAlignment ,cellExport.getOperationModel());
-		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , DateProcess.getFirst(value));
 	}
 
 	public void setCell(Class<T> tClass ,int cellIndex, Timestamp value , short definAlignment) {
 		CellStyle cellStyle = commonStyle(tClass , cellIndex , Timestamp.class , definAlignment ,cellExport.getOperationModel());
-		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , value);
+		cellExport.setCell(cellIndex , getCurrRow() , cellStyle , DateProcess.getFirst(value));
 	}
 
 
