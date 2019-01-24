@@ -1,6 +1,7 @@
 package com.zz.bms.util.poi.cell;
 
 import com.zz.bms.util.base.data.DateKit;
+import com.zz.bms.util.base.data.DateProcess;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,7 +16,7 @@ import java.util.Date;
  * 全部转换为字符串导出， 字符的导出格式为文本， 日期的导出格式为日期
  * @author Administrator
  */
-public class StringCellExport implements CellExport {
+public class StringCellExport extends DefaultCellExport implements CellExport {
 
 
     @Override
@@ -31,25 +32,6 @@ public class StringCellExport implements CellExport {
         cell.setCellValue(value);
     }
 
-    @Override
-    public void setCell(int index, Row row, CellStyle cellStyle, Integer value) {
-        setCell(index, row, cellStyle, value.toString());
-    }
-
-    @Override
-    public void setCell(int index, Row row, CellStyle cellStyle, Long value) {
-        setCell(index, row, cellStyle, value.toString());
-    }
-
-    @Override
-    public void setCell(int index, Row row, CellStyle cellStyle, Double value) {
-        setCell(index, row, cellStyle, value.toString());
-    }
-
-    @Override
-    public void setCell(int index, Row row, CellStyle cellStyle, Float value) {
-        setCell(index, row, cellStyle, value.toString());
-    }
 
     @Override
     public void setCell(int index, Row row, CellStyle cellStyle, Boolean value) {
@@ -58,13 +40,8 @@ public class StringCellExport implements CellExport {
     }
 
     @Override
-    public void setCell(int index, Row row, CellStyle cellStyle, BigDecimal value) {
-        setCell(index, row, cellStyle, value.toString());
-    }
-
-    @Override
     public void setCell(int index, Row row, CellStyle cellStyle, Date value) {
-        setCell(index, row, cellStyle, DateKit.toShortDate(value));
+        setCell(index, row, cellStyle, DateKit.fmtDateToYMD(DateProcess.getFirst(value)));
     }
 
     @Override

@@ -202,8 +202,7 @@ public class DateKit extends DateUtils {
      * @since：2007-12-10 上午11:25:50
      */
     public static Date toShortDate(Date date){
-        String strD = fmtDateToStr (date, "yyyy-MM-dd");
-        return fmtStrToDate (strD);
+        return DateProcess.getFirst(date);
     }
 
     /**

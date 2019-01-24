@@ -77,6 +77,18 @@ public class DefaultCellExport implements CellExport {
         }
     }
 
+
+    @Override
+    public void setCell(int index, Row row, CellStyle cellStyle, BigDecimal value) {
+        Cell cell = row.createCell(index);
+        cell.setCellType(Cell.CELL_TYPE_BOOLEAN);
+        cell.setCellStyle(cellStyle);
+        if(value != null) {
+            cell.setCellValue(value.doubleValue());
+        }
+    }
+
+
     @Override
     public void setCell(int index, Row row, CellStyle cellStyle, Boolean value) {
 
@@ -87,16 +99,6 @@ public class DefaultCellExport implements CellExport {
             cell.setCellValue(value);
         }
 
-    }
-
-    @Override
-    public void setCell(int index, Row row, CellStyle cellStyle, BigDecimal value) {
-        Cell cell = row.createCell(index);
-        cell.setCellType(Cell.CELL_TYPE_BOOLEAN);
-        cell.setCellStyle(cellStyle);
-        if(value != null) {
-            cell.setCellValue(value.doubleValue());
-        }
     }
 
     @Override

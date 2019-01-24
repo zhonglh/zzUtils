@@ -64,7 +64,7 @@ public abstract class AbstractXlsStyle {
                     formatEm = null;
                     alignment = CellStyle.ALIGN_CENTER;
                 }else if(columnClz == Integer.class || columnClz == Long.class){
-                    formatEm = null;
+                    formatEm = EnumXlsFormat.DIGITS;
                     alignment = CellStyle.ALIGN_RIGHT;
                 }else if(columnClz == Float.class || columnClz == Double.class || columnClz == BigDecimal.class){
                     formatEm = EnumXlsFormat.NUMBER;
