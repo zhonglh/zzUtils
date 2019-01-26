@@ -54,6 +54,8 @@ public class SpringUtil {
 	}
 
 	public static String getMessage(Locale locale, String key, Object... args){
+
+
 		if (null == locale) {
 			locale = Locale.CHINA;
 		}

@@ -206,10 +206,9 @@ public class DateKit extends DateUtils {
     }
 
     /**
-     * Description:只保留日期中的年月日
+     * 只保留日期中的年月日
      * 
-     * @param date 格式要求yyyy
-     *            -MM-dd……………………
+     * @param date 格式要求yyyy -MM-dd
      * @return
      */
     public static Date toShortDate(String date){
@@ -223,10 +222,8 @@ public class DateKit extends DateUtils {
     /**
      * 求对日
      * 
-     * @param countMonth
-     *            :月份的个数(几个月)
-     * @param before
-     *            :true 求前countMonth个月的对日:false 求下countMonth个月的对日
+     * @param countMonth 月份的个数(几个月)
+     * @param before true 求前countMonth个月的对日:false 求下countMonth个月的对日
      * @return
      */
     public static Date getCounterglow(int countMonth, boolean before){

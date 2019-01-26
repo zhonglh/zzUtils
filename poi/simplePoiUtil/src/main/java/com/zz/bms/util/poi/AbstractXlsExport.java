@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
+public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements ExcelExport<T> {
 
 	public static int defaultColumnWidth = 15;
 	public static int titleColumnHeight = 400;
@@ -293,10 +293,17 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle {
 		this.row = row;
 	}
 
+
+
 	@Override
 	public Workbook getWorkbook() {
 		return workbook;
 	}
+
+	public void setWorkbook(Workbook workbook) {
+		this.workbook = workbook;
+	}
+
 
 	public Row[] getTitleRow() {
 		return titleRow;
