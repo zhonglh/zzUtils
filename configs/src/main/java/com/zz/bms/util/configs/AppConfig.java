@@ -19,6 +19,7 @@ public final class AppConfig {
     /**
      * 部署时是否使用了动静分离  SASS:Static and static separation
      */
+    @Deprecated
     public static boolean USE_SASS = false;
 
     /**
@@ -35,6 +36,18 @@ public final class AppConfig {
      * StringCellOperation      在Excel中所有的列属性都是文本类型
      */
     public static String EXCEL_OPERATION_MODEL = "DefaultCellOperation";
+
+
+    /**
+     * Excel 是否有序号列
+     */
+    public static boolean EXCEL_ADD_NUMBER = true;
+
+
+    /**
+     * Excel 导入导出列是否相同
+     */
+    public static boolean EXCEL_EXPORT_IMPORT_SAME = false;
 
 
 
