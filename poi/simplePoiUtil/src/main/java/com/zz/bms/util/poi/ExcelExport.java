@@ -20,6 +20,16 @@ public interface ExcelExport<T> {
     public void exportTitles(int headers , T t  ,  boolean isAddNumber);
     public void exportTitles(int headers , T t  , List<Column> columns, boolean isAddNumber);
 
+
+
+    /**
+     * 导出头信息
+     * @param headers           头信息内容
+     */
+    public default void exportHeaders(List<String> headers ){
+        exportHeaders(headers  , 13);
+    }
+
     /**
      * 导出头信息
      * @param headers           头信息内容

@@ -158,8 +158,13 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 		int position = isAddNumber ? 1 : 0;
 
 
+		Class<T> mclz = this.entityClz;
+		if(mclz == null || mclz == Object.class){
+			mclz = (Class<T>)contents.get(0).getClass();
+		}
+
 		if(columns == null) {
-			columns = ColumnUtil.getColumn(contents.get(0).getClass() , false);
+			columns = ColumnUtil.getColumn(mclz , false);
 		}
 
 		int dataIndex = 0;
@@ -178,7 +183,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 			}
 
 			if(isAddNumber) {
-				this.setCell(  (Class<T>)contents.get(0).getClass(),  0 , dataIndex , CellStyle.ALIGN_RIGHT);
+				this.setCell(  mclz ,  0 , dataIndex , CellStyle.ALIGN_RIGHT);
 			}
 
 
@@ -187,9 +192,9 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				try {
 					Object value = column.getField().get(t);
 					if(value == null) {
-						this.setCell((Class<T>)contents.get(0).getClass(), column.getNumber() + position , "" , column.getAlignment());
+						this.setCell(mclz, column.getNumber() + position , "" , column.getAlignment());
 					}else {
-						this.setCell( (Class<T>)contents.get(0).getClass(),column.getNumber() + position, value , column.getAlignment());
+						this.setCell( mclz ,column.getNumber() + position, value , column.getAlignment());
 					}
 
 				} catch (Exception e) {

@@ -63,7 +63,7 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 
 
 	public AbstractXlsExport(){
-		entityClz = GenericsHelper.getSuperClassGenricType(getClass(), 0);
+		//entityClz = GenericsHelper.getSuperClassGenricType(getClass(), 0);
 	}
 
 
@@ -85,7 +85,13 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 		}
 	}
 
+	public Class<T> getEntityClz() {
+		return entityClz;
+	}
 
+	public void setEntityClz(Class<T> entityClz) {
+		this.entityClz = entityClz;
+	}
 
 	public void createSheet(T t ) {
 		createSheet(t , defaultColumnWidth);
