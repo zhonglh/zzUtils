@@ -24,8 +24,7 @@ public class CsvExport<T> implements ExcelExport<T> {
     }
 
     @Override
-    public void exportHeaders(List<String> headers) {
-
+    public void exportHeaders(List<String> headers , int maxCellLength) {
     }
 
     @Override

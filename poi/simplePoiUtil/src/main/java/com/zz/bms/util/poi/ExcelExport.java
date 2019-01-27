@@ -22,9 +22,10 @@ public interface ExcelExport<T> {
 
     /**
      * 导出头信息
-     * @param headers
+     * @param headers           头信息内容
+     * @param maxCellLength     头信息 最多合并的列数
      */
-    public void exportHeaders(List<String> headers);
+    public void exportHeaders(List<String> headers , int maxCellLength);
 
 
     /**

@@ -94,7 +94,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 	 * @param headers
 	 */
 	@Override
-	public void exportHeaders(List<String> headers) {
+	public void exportHeaders(List<String> headers , int maxCellLength) {
 
 		if(headers == null || headers.isEmpty() ) {
 			return ;
@@ -103,12 +103,12 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 		CellStyle cellStyle1 = getHeaderCellStyle1();
 		CellStyle cellStyle2 = getHeaderCellStyle2();
 		Row row = this.getCurrSheet().getRow(this.getCurrSheet().getLastRowNum());
-		int cellLength = 13 ;
+		int cellLength = maxCellLength ;
 		if(row != null) {
 			cellLength = row.getLastCellNum();
 		}
-		if(cellLength > 13) {
-			cellLength = 13;
+		if(cellLength > maxCellLength) {
+			cellLength = maxCellLength;
 		}
 
 

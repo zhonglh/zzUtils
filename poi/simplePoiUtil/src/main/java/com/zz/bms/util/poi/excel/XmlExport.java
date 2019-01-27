@@ -24,9 +24,9 @@ public class XmlExport<T> implements ExcelExport<T> {
     }
 
     @Override
-    public void exportHeaders(List<String> headers) {
-
+    public void exportHeaders(List<String> headers , int maxCellLength) {
     }
+
 
     @Override
     public void exportContent(List<T> contents, int rowIndex, boolean isAddNumber) {

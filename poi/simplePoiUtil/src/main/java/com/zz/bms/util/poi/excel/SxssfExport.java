@@ -51,8 +51,8 @@ public class SxssfExport<T> implements ExcelExport<T> {
     }
 
     @Override
-    public void exportHeaders(List<String> headers) {
-        axe.exportHeaders(headers);
+    public void exportHeaders(List<String> headers , int maxCellLength) {
+        axe.exportHeaders(headers,maxCellLength);
     }
 
     @Override
