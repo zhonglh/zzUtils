@@ -44,6 +44,13 @@ public final class AppConfig {
     public static boolean EXCEL_ADD_NUMBER = true;
 
 
+
+    /**
+     * Excel 是否导出头信息
+     */
+    public static boolean EXCEL_EXPORT_HEADER = true;
+
+
     /**
      * Excel 导入导出列是否相同
      */
