@@ -4,6 +4,7 @@ import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bms.util.poi.AbstractXlsExport;
 import com.zz.bms.util.poi.BaseXlsExport;
 import com.zz.bms.util.poi.ExcelExport;
+import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.vo.Column;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
@@ -64,9 +65,16 @@ public class SxssfExport<T> implements ExcelExport<T> {
         axe.exportContent(contents , rowIndex , columns , isAddNumber);
     }
 
+
+
     @Override
-    public void exportXls(HttpServletResponse response) throws RuntimeException {
-        axe.exportXls(response);
+    public void exportXls(HttpServletResponse response ) throws RuntimeException {
+        axe.exportXls(response,axe.getExcelFileName()+"."+ EnumExcelFileType.SXSSF.getFileType());
+    }
+
+    @Override
+    public void exportXls(HttpServletResponse response , String fileName) throws RuntimeException {
+        axe.exportXls(response , fileName);
     }
 
     @Override

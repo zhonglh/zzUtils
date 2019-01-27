@@ -2,6 +2,7 @@ package com.zz.bms.util.poi;
 
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.data.DateProcess;
+import com.zz.bms.util.base.java.GenericsHelper;
 import com.zz.bms.util.poi.cell.CellBuild;
 import com.zz.bms.util.poi.cell.CellExport;
 import com.zz.bms.util.poi.enums.EnumXlsFormat;
@@ -24,6 +25,15 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 
 	CellExport cellExport = CellBuild.buildCellExport();
 
+	/**
+	 * 实体类型
+	 */
+	protected Class<T> entityClz = null;
+
+
+	/**
+	 * Excel workbook
+	 */
 	protected Workbook workbook;
 
 	/**
@@ -53,6 +63,11 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 	public boolean isCustomTitleInfo = false ;
 
 
+	public AbstractXlsExport(){
+		entityClz = GenericsHelper.getSuperClassGenricType(getClass(), 0);
+	}
+
+
 	public boolean isWriteTitle(){
 		return true;
 	}
@@ -63,7 +78,13 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 		return "序号";
 	}
 
-
+	public String getExcelFileName(){
+		if(entityClz == null || entityClz == Object.class){
+			return String.valueOf(System.currentTimeMillis());
+		}else {
+			return entityClz.getSimpleName() + String.valueOf(System.currentTimeMillis());
+		}
+	}
 
 
 

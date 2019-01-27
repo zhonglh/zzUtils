@@ -3,6 +3,7 @@ package com.zz.bms.util.poi.excel;
 import com.zz.bms.util.poi.AbstractXlsExport;
 import com.zz.bms.util.poi.BaseXlsExport;
 import com.zz.bms.util.poi.ExcelExport;
+import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.vo.Column;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
@@ -49,9 +50,15 @@ public class HssfExport<T> implements ExcelExport<T> {
         axe.exportContent(contents , rowIndex , columns , isAddNumber);
     }
 
+
+
     @Override
-    public void exportXls(HttpServletResponse response) throws RuntimeException {
-        axe.exportXls(response);
+    public void exportXls(HttpServletResponse response ) throws RuntimeException {
+        axe.exportXls(response,axe.getExcelFileName()+"."+ EnumExcelFileType.HSSF.getFileType());
+    }
+    @Override
+    public void exportXls(HttpServletResponse response, String fileName) throws RuntimeException {
+        axe.exportXls(response,fileName);
     }
 
     @Override

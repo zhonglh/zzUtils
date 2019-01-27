@@ -21,6 +21,11 @@ import java.util.List;
 public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExport<T> {
 
 
+	public BaseXlsExport(){
+		super();
+	}
+
+
 
 	/**
 	 * 导出标题	
@@ -58,7 +63,11 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 			}
 
 			if(columns == null || columns.isEmpty()) {
-				columns = ColumnUtil.getColumn(t.getClass(), false);
+				Class<T> clz = this.entityClz;
+				if(t != null){
+					clz = (Class<T>) t.getClass();
+				}
+				columns = ColumnUtil.getColumn(clz, false);
 			}
 			for (Column column : columns) {
 				this.setTitleCell(column.getNumber() + position , column.getName());
@@ -194,8 +203,6 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 
 
 
-
-
 	/**
 	 * 导出Excel文件
 	 *
@@ -229,18 +236,29 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 	}
 
 
+
+	@Override
+	public void exportXls(HttpServletResponse response) throws RuntimeException {
+		throw new RuntimeException("该方法不能调用");
+	}
+
+
 	/**
 	 * 下载文件
 	 * @param response
+	 * @param fileName
 	 * @throws RuntimeException
 	 */
 	@Override
-	public void exportXls(HttpServletResponse response) throws RuntimeException {
-		exportXls(response,workbook);
+	public void exportXls(HttpServletResponse response , String fileName) throws RuntimeException {
+		exportXls(response,workbook , fileName );
 	}
-	public void exportXls(HttpServletResponse response, Workbook workbook) throws RuntimeException {
+	public void exportXls(HttpServletResponse response, Workbook workbook, String fileName) throws RuntimeException {
 		ServletOutputStream os = null;
 		try {
+
+			response.setContentType("Application/excel");
+			response.addHeader("Content-Disposition","attachment;filename="+fileName);
 			os = response.getOutputStream();
 			workbook.write(os);
 			os.flush();

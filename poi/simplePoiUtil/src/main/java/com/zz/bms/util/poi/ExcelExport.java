@@ -43,6 +43,7 @@ public interface ExcelExport<T> {
      * @throws RuntimeException
      */
     public void exportXls(HttpServletResponse response) throws RuntimeException  ;
+    public void exportXls(HttpServletResponse response , String fileName) throws RuntimeException  ;
 
 
     /**

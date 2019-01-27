@@ -39,7 +39,13 @@ public class XmlExport<T> implements ExcelExport<T> {
     }
 
     @Override
-    public void exportXls(HttpServletResponse response) throws RuntimeException {
+    public void exportXls(HttpServletResponse response ) throws RuntimeException {
+
+    }
+
+
+    @Override
+    public void exportXls(HttpServletResponse response , String fileName ) throws RuntimeException {
 
     }
 

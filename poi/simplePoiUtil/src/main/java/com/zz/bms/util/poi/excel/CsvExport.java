@@ -1,6 +1,7 @@
 package com.zz.bms.util.poi.excel;
 
 import com.zz.bms.util.poi.ExcelExport;
+import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.vo.Column;
 
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +39,13 @@ public class CsvExport<T> implements ExcelExport<T> {
     }
 
     @Override
-    public void exportXls(HttpServletResponse response) throws RuntimeException {
+    public void exportXls(HttpServletResponse response ) throws RuntimeException {
+
+    }
+
+
+    @Override
+    public void exportXls(HttpServletResponse response , String fileName ) throws RuntimeException {
 
     }
 
