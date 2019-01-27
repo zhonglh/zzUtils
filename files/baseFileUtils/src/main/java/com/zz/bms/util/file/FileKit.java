@@ -438,10 +438,17 @@ public class FileKit {
             throw new FileNotFoundException(path + " file not found");
         }
         String fileName = file.getName ();
+        return  getFileTypeByFileName(fileName);
+    }
+
+
+    public static String getFileTypeByFileName(String fileName)  {
+
         String[] strs = fileName.split ("\\.");
         if (strs.length < 2) { return "unknownType"; }
         return strs[strs.length - 1];
     }
+
 
     /**
      * @Title: getFileName
