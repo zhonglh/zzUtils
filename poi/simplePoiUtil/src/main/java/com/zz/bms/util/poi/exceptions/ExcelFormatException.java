@@ -2,15 +2,14 @@ package com.zz.bms.util.poi.exceptions;
 
 
 /**
- * Excel 类型匹配错误
+ * Excel 格式错误
  * @author Administrator
  */
-public class ExcelTypeMatchingException extends RuntimeException {
-
+public class ExcelFormatException extends RuntimeException {
     int rowIndex = 0 ;
     int cellIndex = 0;
 
-    public ExcelTypeMatchingException(int rowIndex, int cellIndex) {
+    public ExcelFormatException(int rowIndex, int cellIndex) {
         this.rowIndex = rowIndex;
         this.cellIndex = cellIndex;
     }
@@ -30,5 +29,4 @@ public class ExcelTypeMatchingException extends RuntimeException {
     public void setCellIndex(int cellIndex) {
         this.cellIndex = cellIndex;
     }
-
 }

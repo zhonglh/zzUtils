@@ -7,10 +7,10 @@ package com.zz.bms.util.poi.enums;
 
 public enum EnumExcelFileType {
 
-    XML("xml" , "xls"),
     HSSF("hssf" , "xls"),
-    XSSF("xssf" , "xlsx"),
+    XML("xml" , "xls"),
     SXSSF("sxssf" , "xlsx"),
+    XSSF("xssf" , "xlsx"),
     CSV("csv" , "csv"),
 
     ;

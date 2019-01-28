@@ -45,6 +45,12 @@ public class Column implements ISort{
 
 
 	/**
+	 * 是否必填
+	 */
+	private boolean isRequired ;
+
+
+	/**
 	 * 对应列属性
 	 * 例如 User 实体类中的 String userName ;
 	 */
@@ -102,6 +108,14 @@ public class Column implements ISort{
 		this.alignment = alignment;
 	}
 
+	public boolean isRequired() {
+		return isRequired;
+	}
+
+	public void setRequired(boolean required) {
+		isRequired = required;
+	}
+
 	@Override
 	public int getSort() {
 		return number;
@@ -111,4 +125,6 @@ public class Column implements ISort{
 	public String getSort2() {
 		return code;
 	}
+
+
 }

@@ -57,6 +57,11 @@ public final class AppConfig {
      */
     public static boolean EXCEL_EXPORT_IMPORT_SAME = false;
 
+    /**
+     * 导入所有的Sheet数据
+     */
+    public static boolean EXCEL_IMPORT_ALLSHEET = false;
+
 
 
 
