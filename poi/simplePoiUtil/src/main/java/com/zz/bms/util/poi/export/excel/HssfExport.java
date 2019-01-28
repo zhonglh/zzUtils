@@ -1,28 +1,27 @@
-package com.zz.bms.util.poi.excel;
+package com.zz.bms.util.poi.export.excel;
 
-import com.zz.bms.util.poi.AbstractXlsExport;
-import com.zz.bms.util.poi.BaseXlsExport;
-import com.zz.bms.util.poi.ExcelExport;
+import com.zz.bms.util.poi.export.AbstractXlsExport;
+import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.vo.Column;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Excel2007 格式
- * 不适用大数据量
+ * Excel 2003 格式
+ * 不适用于大数据量
  * @author Administrator
  */
-public class XssfExport<T> implements ExcelExport<T> {
-
+public class HssfExport<T> implements ExcelExport<T> {
+    
     private AbstractXlsExport<T> axe ;
-
-    public XssfExport(AbstractXlsExport<T> axe) {
+    
+    
+    public HssfExport(AbstractXlsExport<T> axe) {
         this.axe = axe;
-        axe.setWorkbook( new XSSFWorkbook() );
+        axe.setWorkbook( new HSSFWorkbook() );
     }
 
     @Override
@@ -51,13 +50,13 @@ public class XssfExport<T> implements ExcelExport<T> {
     }
 
 
-    @Override
-    public void exportXls(HttpServletResponse response ) throws RuntimeException {
-        axe.exportXls(response,axe.getExcelFileName()+"."+ EnumExcelFileType.XSSF.getFileType());
-    }
 
     @Override
-    public void exportXls(HttpServletResponse response , String fileName) throws RuntimeException {
+    public void exportXls(HttpServletResponse response ) throws RuntimeException {
+        axe.exportXls(response,axe.getExcelFileName()+"."+ EnumExcelFileType.HSSF.getFileType());
+    }
+    @Override
+    public void exportXls(HttpServletResponse response, String fileName) throws RuntimeException {
         axe.exportXls(response,fileName);
     }
 
@@ -65,5 +64,4 @@ public class XssfExport<T> implements ExcelExport<T> {
     public void exportXls(String xlsFileName) throws RuntimeException {
         axe.exportXls(xlsFileName);
     }
-
 }

@@ -1,17 +1,17 @@
-package com.zz.bms.util.poi.excel;
+package com.zz.bms.util.poi.export.excel;
 
-import com.zz.bms.util.poi.ExcelExport;
-import com.zz.bms.util.poi.enums.EnumExcelFileType;
+import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.vo.Column;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * CSV 格式导出
+ * XML格式导出(Excel 2003)
  * @author Administrator
  */
-public class CsvExport<T> implements ExcelExport<T> {
+public class XmlExport<T> implements ExcelExport<T> {
+
 
     @Override
     public void exportTitles(int headers, T t, boolean isAddNumber) {
@@ -26,6 +26,7 @@ public class CsvExport<T> implements ExcelExport<T> {
     @Override
     public void exportHeaders(List<String> headers , int maxCellLength) {
     }
+
 
     @Override
     public void exportContent(List<T> contents, int rowIndex, boolean isAddNumber) {
