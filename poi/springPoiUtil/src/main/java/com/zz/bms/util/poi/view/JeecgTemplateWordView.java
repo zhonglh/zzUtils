@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import com.zz.bms.util.poi.excel.entity.vo.TemplateWordConstants;
+import com.zz.bms.util.poi.export.excel.entity.vo.TemplateWordConstants;
 import com.zz.bms.util.poi.word.WordExportUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.view.AbstractView;

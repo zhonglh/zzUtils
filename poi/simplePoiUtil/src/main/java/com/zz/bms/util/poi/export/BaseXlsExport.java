@@ -123,7 +123,9 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				cell.setCellStyle(cellStyle2);
 			}
 			cell.setCellType(Cell.CELL_TYPE_STRING);
-			cell.setCellValue(headers.get(i));
+			if(headers.get(i) != null) {
+				cell.setCellValue(headers.get(i));
+			}
 
 			for(int index = 1 ; index<cellLength;index ++){
 				cell = this.getCurrRow().createCell(index);

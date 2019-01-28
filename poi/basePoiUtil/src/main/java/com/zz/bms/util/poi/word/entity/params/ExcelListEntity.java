@@ -17,7 +17,7 @@ package com.zz.bms.util.poi.word.entity.params;
 
 import java.util.List;
 
-import com.zz.bms.util.poi.excel.entity.ExcelBaseParams;
+import com.zz.bms.util.poi.export.excel.entity.ExcelBaseParams;
 import com.zz.bms.util.poi.handler.inter.IExcelDataHandler;
 
 /**

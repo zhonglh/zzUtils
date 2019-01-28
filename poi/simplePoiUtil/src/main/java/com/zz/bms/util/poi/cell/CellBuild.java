@@ -1,6 +1,13 @@
 package com.zz.bms.util.poi.cell;
 
 import com.zz.bms.util.configs.AppConfig;
+import com.zz.bms.util.poi.export.cell.CellExport;
+import com.zz.bms.util.poi.export.cell.DefaultCellExport;
+import com.zz.bms.util.poi.export.cell.StringCellExport;
+import com.zz.bms.util.poi.imports.cell.CellImport;
+import com.zz.bms.util.poi.cell.CellOperation;
+import com.zz.bms.util.poi.imports.cell.DefaultCellImport;
+import com.zz.bms.util.poi.imports.cell.StringCellImport;
 
 /**
  * @author Administrator
@@ -21,7 +28,11 @@ public class CellBuild {
 
 
     public static CellImport buildCellImport(){
-        //todo
-       return null;
+
+        if(AppConfig.EXCEL_OPERATION_MODEL.equals(CellOperation.OPERATION_MODEL_DEFAULT)) {
+            return new DefaultCellImport();
+        }else {
+            return new StringCellImport();
+        }
     }
 }

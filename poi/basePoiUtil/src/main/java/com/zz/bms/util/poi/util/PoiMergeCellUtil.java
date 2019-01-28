@@ -11,7 +11,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
-import com.zz.bms.util.poi.excel.entity.params.MergeEntity;
+import com.zz.bms.util.poi.export.excel.entity.params.MergeEntity;
 import com.zz.bms.util.poi.exception.excel.ExcelExportException;
 
 /**

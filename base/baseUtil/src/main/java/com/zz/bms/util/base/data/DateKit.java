@@ -60,25 +60,25 @@ public class DateKit extends DateUtils {
     /**
      * 将字符串转化为DATE
      * 
-     * @param dtFormat
+     * @param date
      *            格式yyyy-MM-dd HH:mm:ss 或 yyyy-MM-dd或 yyyy-M-dd或 yyyy-M-d或 yyyy-MM-d或 yyyy-M-dd
      * @return
      */
-    public static Date fmtStrToDate(String dtFormat){
-        if (dtFormat == null || dtFormat.equals ("")) { return null; }
+    public static Date fmtStrToDate(String date){
+        if (date == null || date.equals ("")) { return null; }
         try {
-            if (dtFormat.length () == 9 || dtFormat.length () == 8) {
-                String[] dateStr = dtFormat.split ("-");
-                dtFormat = dateStr[0] + (dateStr[1].length () == 1 ? "-0" : "-") + dateStr[1] + (dateStr[2].length () == 1 ? "-0" : "-") + dateStr[2];
+            if (date.length () == 9 || date.length () == 8) {
+                String[] dateStr = date.split ("-");
+                date = dateStr[0] + (dateStr[1].length () == 1 ? "-0" : "-") + dateStr[1] + (dateStr[2].length () == 1 ? "-0" : "-") + dateStr[2];
             }
-            if (dtFormat.length () != 10 & dtFormat.length () != 19) {
+            if (date.length () != 10 & date.length () != 19) {
                 return null;
             }
-            if (dtFormat.length () == 10) {
-                dtFormat = dtFormat + " 00:00:00";
+            if (date.length () == 10) {
+                date = date + " 00:00:00";
             }
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            return dateFormat.parse (dtFormat);
+            return dateFormat.parse (date);
         } catch (Exception e) {
             e.printStackTrace ();
             return null;

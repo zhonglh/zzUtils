@@ -15,7 +15,7 @@
  */
 package com.zz.bms.util.poi.handler.inter;
 
-import com.zz.bms.util.poi.excel.entity.result.ExcelVerifyHanlderResult;
+import com.zz.bms.util.poi.export.excel.entity.result.ExcelVerifyHanlderResult;
 
 /**
  * 导入校验接口
