@@ -40,4 +40,38 @@ public enum EnumExcelFileType {
     public void setFileType(String fileType) {
         this.fileType = fileType;
     }
+
+
+
+    public static EnumExcelFileType getEnum(String code){
+        if(code == null || code.isEmpty()){
+            return null;
+        }
+        code = code.toLowerCase();
+        for(EnumExcelFileType ft : EnumExcelFileType.values()){
+            if(ft.getCode().equals(code)){
+                return ft;
+            }
+        }
+        return null;
+    }
+
+
+    public static EnumExcelFileType getEnumByFileType(String fileType){
+        if(fileType == null || fileType.isEmpty()){
+            return null;
+        }
+        fileType = fileType.toLowerCase();
+        for(EnumExcelFileType ft : EnumExcelFileType.values()){
+            if(ft.getFileType().equals(fileType)){
+                return ft;
+            }
+        }
+
+        return null;
+    }
+
+
+
+
 }

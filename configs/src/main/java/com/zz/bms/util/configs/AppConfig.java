@@ -53,6 +53,7 @@ public final class AppConfig {
 
     /**
      * Excel 导入导出列是否相同
+     * 如果设置为相同， 导出的数据可以用于导入
      */
     public static boolean EXCEL_EXPORT_IMPORT_SAME = false;
 

@@ -139,15 +139,16 @@ public class ReflectionUtil extends ReflectionUtils {
     /**
      * 获取业务属性(字段)
      * Excel处理的
-     * @param clazz
-     * @param importFlag
+     * @param clazz         类型
+     * @param all           是否全部Excel列， 导入导出任意一种
+     * @param importFlag    是否导入  all为false 时才有意义
      * @return
      */
 
-    public static List<Field> getExcelFields(Class<?> clazz , boolean importFlag ) {
-        return getExcelFields(clazz , null , importFlag );
+    public static List<Field> getExcelFields(Class<?> clazz , boolean all , boolean importFlag ) {
+        return getExcelFields(clazz , null , all, importFlag );
     }
-    public static List<Field> getExcelFields(Class<?> clazz , Class stopClz , boolean importFlag) {
+    public static List<Field> getExcelFields(Class<?> clazz , Class stopClz ,boolean all , boolean importFlag) {
         final List<Field> fieldList = new ArrayList<Field>();
 
         FieldCallback fc = new FieldCallback() {
@@ -169,17 +170,23 @@ public class ReflectionUtil extends ReflectionUtils {
                 EntityAttrExcelAnnotation excelAnnotation = field.getAnnotation(EntityAttrExcelAnnotation.class);
                 if(excelAnnotation != null){
 
-                    if(excelAnnotation.excelProcess().equals(EnumExcelType.IMPORT_EXPORT.getVal())){
-                        return true;
-                    }
 
-                    if(importFlag) {
-                        if (excelAnnotation.excelProcess().equals(EnumExcelType.ONLY_IMPORT.getVal())){
+                    if(all){
+                        if(!excelAnnotation.excelProcess().equals(EnumExcelType.NONE.getVal())){
                             return true;
                         }
                     }else {
-                        if (excelAnnotation.excelProcess().equals(EnumExcelType.ONLY_EXPORT.getVal())){
+                        if(excelAnnotation.excelProcess().equals(EnumExcelType.IMPORT_EXPORT.getVal())){
                             return true;
+                        }
+                        if (importFlag) {
+                            if (excelAnnotation.excelProcess().equals(EnumExcelType.ONLY_IMPORT.getVal())) {
+                                return true;
+                            }
+                        } else {
+                            if (excelAnnotation.excelProcess().equals(EnumExcelType.ONLY_EXPORT.getVal())) {
+                                return true;
+                            }
                         }
                     }
                 }

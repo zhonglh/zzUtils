@@ -1,5 +1,6 @@
 package com.zz.bms.util.poi;
 
+import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.poi.util.ColumnUtil;
 import com.zz.bms.util.poi.vo.Column;
 import org.apache.poi.ss.usermodel.Cell;
@@ -67,7 +68,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				if(t != null){
 					clz = (Class<T>) t.getClass();
 				}
-				columns = ColumnUtil.getColumn(clz, false);
+				columns = ColumnUtil.getColumn(clz , false);
 			}
 			for (Column column : columns) {
 				this.setTitleCell(column.getNumber() + position , column.getName());
@@ -164,7 +165,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 		}
 
 		if(columns == null) {
-			columns = ColumnUtil.getColumn(mclz , false);
+			columns = ColumnUtil.getColumn(mclz ,false);
 		}
 
 		int dataIndex = 0;
