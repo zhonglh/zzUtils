@@ -166,6 +166,11 @@ public class StringFormatKit {
 
     public final static char SEPARATOR = '_';
 
+
+    public static void main(String[] args) {
+        System.out.println(toUnderlineName("userNoAbc"));
+    }
+
     /**
      * @Title: toUnderlineName
      * @Description: 驼峰转下划线方法
