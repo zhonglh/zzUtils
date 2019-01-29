@@ -36,9 +36,9 @@ public class ExcelUtil {
                 Object val = PubMethod.getObject(column.getField() , fieldVlaues[index]);
                 column.getField().set(obj, val);
             }catch(RuntimeException e){
-                throw new ExcelFormatException(0,index+1);
+                throw new ExcelFormatException(0,index);
             }catch(Exception e){
-                throw new ExcelTypeMatchingException(0,index+1);
+                throw new ExcelTypeMatchingException(0,index);
             }
             index++ ;
         }
