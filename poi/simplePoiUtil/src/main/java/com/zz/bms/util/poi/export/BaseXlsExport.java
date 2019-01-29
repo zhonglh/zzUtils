@@ -67,7 +67,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				if(t != null){
 					clz = (Class<T>) t.getClass();
 				}
-				columns = ColumnUtil.getColumn(clz , false);
+				columns = ColumnUtil.getExcelColumn(clz , false);
 			}
 			for (Column column : columns) {
 				this.setTitleCell(column.getNumber() + position , column.getName());
@@ -166,7 +166,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 		}
 
 		if(columns == null) {
-			columns = ColumnUtil.getColumn(mclz ,false);
+			columns = ColumnUtil.getExcelColumn(mclz ,false);
 		}
 
 		int dataIndex = 0;

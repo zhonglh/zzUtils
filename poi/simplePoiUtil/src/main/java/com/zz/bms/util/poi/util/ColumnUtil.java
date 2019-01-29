@@ -8,10 +8,7 @@ import com.zz.bms.util.poi.vo.Column;
 import com.zz.bms.util.spring.ReflectionUtil;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -24,25 +21,12 @@ public class ColumnUtil {
 
 
 
-    public static <T> List<Field> getExcelFields(Class<T> clz,  boolean isImport){
+    public static <T> List<Field> getBusinessAllFields(Class<T> clz){
 
-
-        List<Field> fields = null;
-        if(AppConfig.EXCEL_EXPORT_IMPORT_SAME){
-            fields = ColumnUtil.getExcelFields(clz , true , false);
-        }else {
-            fields = ColumnUtil.getExcelFields(clz , false , isImport);
-        }
-        return fields;
-    }
-
-
-    public static <T> List<Field> getExcelFields(Class<T> clz, boolean isAll, boolean isImport){
-
-        String key = clz.getName()+String.valueOf(isAll)+String.valueOf(isImport);
+        String key = clz.getName();
         List<Field> list = fieldsMap.get(key);
         if(list == null) {
-            list = ReflectionUtil.getExcelFields(clz, isAll, isImport);
+            list = ReflectionUtil.getBusinessAllFields(clz , null);
             if(list != null) {
                 fieldsMap.put(key, list);
             }
@@ -51,12 +35,26 @@ public class ColumnUtil {
     }
 
 
-    public static <T> List<Column> getColumn(Class<T> mclz , boolean isImport) {
+    public static <T> List<Field> getBusinessAllFields(Class<T> clz, Class stopClz){
+
+        String key = clz.getName()+stopClz.getName();
+        List<Field> list = fieldsMap.get(key);
+        if(list == null) {
+            list = ReflectionUtil.getBusinessAllFields(clz, stopClz);
+            if(list != null) {
+                fieldsMap.put(key, list);
+            }
+        }
+        return list;
+    }
+
+
+    public static <T> List<Column> getExcelColumn(Class<T> mclz , boolean isImport) {
         List<Column> columns = null;
         if(AppConfig.EXCEL_EXPORT_IMPORT_SAME){
-            columns = ColumnUtil.getAllColumns(mclz);
+            columns = ColumnUtil.getAllExcelColumns(mclz);
         }else {
-            columns = ColumnUtil.getAllColumns(mclz, isImport);
+            columns = ColumnUtil.getAllExcelColumns(mclz, isImport);
         }
         return columns;
     }
@@ -68,12 +66,12 @@ public class ColumnUtil {
      * @param <T>
      * @return
      */
-    private static  <T> List<Column> getAllColumns(Class<T> clz) {
+    private static  <T> List<Column> getAllExcelColumns(Class<T> clz) {
 
         String key = clz.getName();
         List<Column> list = columnsMap.get(key);
         if(list == null){
-            list = getAllColumns0(clz, true, false);
+            list = getAllExcelColumns0(clz, true, false);
             if (list != null) {
                 columnsMap.put(key, list);
             }
@@ -89,23 +87,23 @@ public class ColumnUtil {
      * @param <T>
      * @return
      */
-    public static  <T> List<Column> getAllColumns(Class<T> clz, boolean isImport) {
+    public static  <T> List<Column> getAllExcelColumns(Class<T> clz, boolean isImport) {
         String key = clz.getName() + String.valueOf(isImport);
         List<Column> list = columnsMap.get(key);
 
         if(list == null){
-            list = getAllColumns0(clz, false, isImport);
+            list = getAllExcelColumns0(clz, false, isImport);
             if(list != null) {
                 columnsMap.put(key, list);
             }
         }
         return list;
     }
-    private static  <T> List<Column> getAllColumns0(Class<T> clz, boolean isAll, boolean isImport) {
+    private static  <T> List<Column> getAllExcelColumns0(Class<T> clz, boolean isAll, boolean isImport) {
 
         synchronized (clz) {
 
-            List<Field> fs = getExcelFields(clz, isAll, isImport);
+            List<Field> fs = ReflectionUtil.getExcelFields(clz, isAll, isImport);
             if (fs == null || fs.isEmpty()) {
                 return null;
             }
@@ -135,6 +133,7 @@ public class ColumnUtil {
         EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
         EntityAttrFkAnnotation fkAnnotation = f.getAnnotation(EntityAttrFkAnnotation.class);
 
+        boolean required = AnnotaionEntityUtil.isRequired(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation);
         int maxLength = AnnotaionEntityUtil.maxLength(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation);
 
         Column column = new Column();
@@ -142,8 +141,27 @@ public class ColumnUtil {
         column.setCode(f.getName());
         column.setLength(maxLength);
         column.setName(pageAnnotation.title());
+        column.setRequired(required);
         column.setField(f);
         return column;
+    }
+
+
+    /**
+     * 获的每个类中 所有的字典类型
+     * @param fs
+     * @return
+     */
+    public static String[] getDictTypeCodes(List<Field> fs) {
+        Set<String> dictTypeSet = new HashSet<String>();
+        for(Field f : fs){
+            EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
+            if(dictAnnotation != null){
+                dictTypeSet.add(dictAnnotation.group());
+            }
+        }
+        String[] arr = new String[dictTypeSet.size()];
+        return dictTypeSet.toArray(arr);
     }
 
 }
