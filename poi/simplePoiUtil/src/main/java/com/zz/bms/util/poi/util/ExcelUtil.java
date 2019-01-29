@@ -7,13 +7,53 @@ import com.zz.bms.util.poi.exceptions.ExcelTypeMatchingException;
 import com.zz.bms.util.poi.vo.Column;
 import com.zz.bms.util.spring.ReflectionUtil;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Excel工具类
  * @author Administrator
  */
 public class ExcelUtil {
+
+    private static Map<Class,Method> setErrorMethodMap = new ConcurrentHashMap<Class,Method>();
+    private static Map<Class,Method> getErrorMethodMap = new ConcurrentHashMap<Class,Method>();
+
+
+
+    public static Method getErrorMethod(Class clz){
+        Method getError = getErrorMethodMap.get(clz);
+        if(getError != null){
+            return getError;
+        }else {
+            try {
+                getError =  clz.getMethod("getErrorInfo");
+                return getError;
+            } catch (NoSuchMethodException e) {
+
+            }
+        }
+        return null;
+    }
+
+    public static Method setErrorMethod(Class clz){
+        Method setError = setErrorMethodMap.get(clz);
+        if(setError != null){
+            return setError;
+        }else {
+            try {
+                setError =  clz.getMethod("setErrorInfo" , String.class);
+                return setError;
+            } catch (NoSuchMethodException e) {
+
+            }
+        }
+        return null;
+    }
 
     /**
      * Excel Row 转为对应的对象
@@ -30,15 +70,33 @@ public class ExcelUtil {
             throw new ExcelAbsenceException();
         }
         int index = 0;
+
+
+        Method setErrorMethod = setErrorMethod(obj.getClass());
+
         for(Column column : columns){
             ReflectionUtil.makeAccessible(column.getField());
             try {
                 Object val = PubMethod.getObject(column.getField() , fieldVlaues[index]);
                 column.getField().set(obj, val);
             }catch(RuntimeException e){
-                throw new ExcelFormatException(0,index);
+                if(setErrorMethod == null) {
+                    throw new ExcelFormatException(0, index);
+                }else {
+                    try {
+                        setErrorMethod.invoke(obj , column.getName()+" 列格式错误;");
+                    } catch (Exception e1) {
+                    }
+                }
             }catch(Exception e){
-                throw new ExcelTypeMatchingException(0,index);
+                if(setErrorMethod == null) {
+                    throw new ExcelTypeMatchingException(0,index);
+                }else {
+                    try {
+                        setErrorMethod.invoke(obj , column.getName()+" 列匹配错误;");
+                    } catch (Exception e1) {
+                    }
+                }
             }
             index++ ;
         }

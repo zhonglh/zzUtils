@@ -128,9 +128,15 @@ public class DefaultExcelImport implements ExcelImport{
 
         //计算内容数据
         for(int i=startColumn; i < columnLength ; i++ ){
-            Cell cell = row.getCell(i);
-            Object val = ci.getCellContent(cell);
-            valArray[i] = val;
+            try {
+                Cell cell = row.getCell(i);
+                Object val = ci.getCellContent(cell);
+                valArray[i] = val;
+            }catch(RuntimeException e){
+
+            }catch (Exception e ){
+
+            }
         }
 
         return valArray;

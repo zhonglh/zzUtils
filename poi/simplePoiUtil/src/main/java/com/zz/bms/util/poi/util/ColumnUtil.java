@@ -20,10 +20,39 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ColumnUtil {
 
     private static Map<String,List<Column>> columnsMap = new ConcurrentHashMap<String,List<Column>>();
+    private static Map<String,List<Field>> fieldsMap = new ConcurrentHashMap<String,List<Field>>();
+
+
+
+    public static <T> List<Field> getExcelFields(Class<T> clz,  boolean isImport){
+
+
+        List<Field> fields = null;
+        if(AppConfig.EXCEL_EXPORT_IMPORT_SAME){
+            fields = ColumnUtil.getExcelFields(clz , true , false);
+        }else {
+            fields = ColumnUtil.getExcelFields(clz , false , isImport);
+        }
+        return fields;
+    }
+
+
+    public static <T> List<Field> getExcelFields(Class<T> clz, boolean isAll, boolean isImport){
+
+        String key = clz.getName()+String.valueOf(isAll)+String.valueOf(isImport);
+        List<Field> list = fieldsMap.get(key);
+        if(list == null) {
+            list = ReflectionUtil.getExcelFields(clz, isAll, isImport);
+            if(list != null) {
+                fieldsMap.put(key, list);
+            }
+        }
+        return list;
+    }
 
 
     public static <T> List<Column> getColumn(Class<T> mclz , boolean isImport) {
-        List<Column> columns;
+        List<Column> columns = null;
         if(AppConfig.EXCEL_EXPORT_IMPORT_SAME){
             columns = ColumnUtil.getAllColumns(mclz);
         }else {
@@ -39,7 +68,7 @@ public class ColumnUtil {
      * @param <T>
      * @return
      */
-    public static  <T> List<Column> getAllColumns(Class<T> clz) {
+    private static  <T> List<Column> getAllColumns(Class<T> clz) {
 
         String key = clz.getName();
         List<Column> list = columnsMap.get(key);
@@ -76,7 +105,7 @@ public class ColumnUtil {
 
         synchronized (clz) {
 
-            List<Field> fs = ReflectionUtil.getExcelFields(clz, isAll, isImport);
+            List<Field> fs = getExcelFields(clz, isAll, isImport);
             if (fs == null || fs.isEmpty()) {
                 return null;
             }
