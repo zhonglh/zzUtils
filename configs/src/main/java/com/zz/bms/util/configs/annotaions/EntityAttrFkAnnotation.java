@@ -37,19 +37,6 @@ public @interface EntityAttrFkAnnotation {
     public boolean isFkId() default false;
 
 
-    /**
-     * 是否为外键名称 ,  比如 project_name 为 true
-     * @return
-     */
-    public boolean isFkBusinessName() default false;
-
-    /**
-     * 是否为业务识别字段 ，
-     * 比如人员， 不能通过姓名识别， 需要通过工号或者身份证 号码识别
-     * 如果识别字段为多个联合， 有多个字段值为 true
-     * @return
-     */
-    public boolean isFkBusinessKey() default false;
 
     /**
      * 组对应的列名称 ,
@@ -88,10 +75,18 @@ public @interface EntityAttrFkAnnotation {
 
     /**
      * 外键对应的实体类全称
-     * 例： com.zz.bms.system.bo.TsUserBO
+     * fkClassName  fkClass 两者必填一个
+     * 例： "com.zz.bms.system.bo.TsUserBO"
      * @return
      */
-    public String fkEntity() ;
+    public String fkClassName() default "";
+    /**
+     * 外键对应的实体类全称
+     * fkClassName  fkClass 两者必填一个
+     * 例： com.zz.bms.system.bo.TsUserBO.class
+     * @return
+     */
+    public Class fkClass() default Object.class;
 
 }
 

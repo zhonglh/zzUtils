@@ -7,6 +7,7 @@ import com.zz.bms.util.configs.util.AnnotaionEntityUtil;
 import com.zz.bms.util.poi.vo.Column;
 import com.zz.bms.util.spring.ReflectionUtil;
 
+import javax.print.attribute.HashAttributeSet;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -127,7 +128,7 @@ public class ColumnUtil {
 
     }
 
-    private static Column field2Column(Field f) {
+    public static Column field2Column(Field f) {
         EntityAttrPageAnnotation pageAnnotation = f.getAnnotation(EntityAttrPageAnnotation.class);
         EntityAttrDBAnnotation dbAnnotation = f.getAnnotation(EntityAttrDBAnnotation.class);
         EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
@@ -163,5 +164,117 @@ public class ColumnUtil {
         String[] arr = new String[dictTypeSet.size()];
         return dictTypeSet.toArray(arr);
     }
+
+
+    /**
+     * 获的所有的字典类型属性分组
+     * 结果如 <"deptStatus",<deptStatus,deptStatusName> >
+     * @param fs
+     * @return
+     */
+    public static Map<String , Map<Field,Field>> getDictMap(List<Field> fs){
+
+        Map<String,List<Field>> dictMap = new HashMap<String,List<Field>>();
+        for(Field f : fs){
+            EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
+            if(dictAnnotation == null){
+                continue;
+            }
+            List<Field> list = dictMap.get(dictAnnotation.group());
+            if(list == null){
+                dictMap.put(dictAnnotation.group() , list);
+            }
+            list.add(f);
+        }
+
+        Map<String , Map<Field,Field>> result = new HashMap<String , Map<Field,Field>>();
+        for(Map.Entry<String , List<Field>> dict : dictMap.entrySet()){
+            String key = dict.getKey();
+            List<Field> fields = dict.getValue();
+            if(fields.size() != 2){
+                throw new RuntimeException(key+"注解编写错误,个数为"+fields.size() + ", 应该为2");
+            }
+
+            EntityAttrDictAnnotation dictAnnotation1 = fields.get(0).getAnnotation(EntityAttrDictAnnotation.class);
+            EntityAttrDictAnnotation dictAnnotation2 = fields.get(1).getAnnotation(EntityAttrDictAnnotation.class);
+            Field dictVal = null;
+            Field dictName = null;
+            if(dictAnnotation1.isValueField()){
+                dictVal = fields.get(0);
+                if(dictAnnotation2.isNameField()){
+                    dictName = fields.get(1);
+                }
+            }else {
+                if(dictAnnotation1.isNameField()){
+                    dictName = fields.get(0);
+                }
+                if(dictAnnotation2.isValueField()){
+                    dictVal = fields.get(1);
+                }
+            }
+
+
+            if(dictVal == null || dictName == null){
+                throw new RuntimeException(key+"注解编写错误");
+            }
+
+            Map<Field,Field> map= new HashMap<Field,Field>();
+            map.put(dictVal , dictName);
+            result.put(key , map);
+        }
+
+        return result;
+    }
+
+    /**
+     * 将所有的外键类型属性分组
+     * 结果如 <"manageDeptId",<manageDeptId,<manageDeptId,manageDeptName,manageDeptCode,manageDeptLeadId> >
+     * @param fs
+     * @return
+     */
+    public static Map<String , Map<Field,List<Field>>> getFkMap(List<Field> fs){
+
+        Map<String,List<Field>> fkMap = new HashMap<String,List<Field>>();
+        for(Field f : fs){
+            EntityAttrFkAnnotation fkAnnotation = f.getAnnotation(EntityAttrFkAnnotation.class);
+            if(fkAnnotation == null){
+                continue;
+            }
+            List<Field> list = fkMap.get(fkAnnotation.group());
+            if(list == null){
+                fkMap.put(fkAnnotation.group() , list);
+            }
+            list.add(f);
+        }
+
+
+        Map<String , Map<Field,List<Field>>> result = new HashMap<String , Map<Field,List<Field>>>();
+        for(Map.Entry<String , List<Field>> dict : fkMap.entrySet()){
+
+            String key = dict.getKey();
+            List<Field> fields = dict.getValue();
+
+            Field fkIdField = null;
+            for(Field f : fields){
+                EntityAttrFkAnnotation fkAnnotation = f.getAnnotation(EntityAttrFkAnnotation.class);
+                if(fkAnnotation.isFkId()){
+                    fkIdField = f;
+                    break;
+                }
+            }
+            if(fkIdField == null){
+                throw new RuntimeException(key+"外键注解没有ID列");
+            }
+
+            Map<Field,List<Field>> map = new HashMap<Field,List<Field>>();
+            map.put(fkIdField,fields);
+            result.put(key , map);
+
+        }
+        return result;
+
+    }
+
+
 
 }
