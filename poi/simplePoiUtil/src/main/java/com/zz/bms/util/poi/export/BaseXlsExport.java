@@ -263,8 +263,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 	public void exportXls(HttpServletResponse response, Workbook workbook, String fileName) throws RuntimeException {
 		ServletOutputStream os = null;
 		try {
-
-			response.setContentType("Application/excel");
+			response.setContentType ("application/vnd.ms-excel;charset=utf-8");
 			response.addHeader("Content-Disposition","attachment;filename="+fileName);
 			os = response.getOutputStream();
 			workbook.write(os);
