@@ -127,10 +127,12 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 	}
 
 
-	public void setTitleCell(int cellIndex, String value) {
+
+
+	public void setTitleCell(int cellIndex, String value, Column column) {
 		Cell cell = getCurrRow().createCell(cellIndex);
 		cell.setCellType(Cell.CELL_TYPE_STRING);
-		CellStyle cellStyle = commonTitleStyle();
+		CellStyle cellStyle = commonTitleStyle(column);
 		cell.setCellStyle(cellStyle);
 		cell.setCellValue(value);
 	}

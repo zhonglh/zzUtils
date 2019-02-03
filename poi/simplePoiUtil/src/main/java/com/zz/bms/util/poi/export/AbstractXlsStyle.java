@@ -2,6 +2,7 @@ package com.zz.bms.util.poi.export;
 
 import com.zz.bms.util.poi.cell.CellOperation;
 import com.zz.bms.util.poi.enums.EnumXlsFormat;
+import com.zz.bms.util.poi.vo.Column;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 
@@ -179,7 +180,7 @@ public abstract class AbstractXlsStyle {
 
 
 
-    protected CellStyle commonTitleStyle() {
+    protected CellStyle commonTitleStyle(Column column) {
 
         String key = "commonTitleStyle="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode() ;
 
@@ -192,6 +193,7 @@ public abstract class AbstractXlsStyle {
             cellStyle.setBorderLeft((short) 1);
             cellStyle.setBorderRight((short) 1);
 
+
             cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
             cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
             cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
@@ -199,7 +201,7 @@ public abstract class AbstractXlsStyle {
             setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
 
             cellStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.index);
-            cellStyle.setFont(getFont());
+            cellStyle.setFont(getTitleFont(column));
 
 
             styleMap.put(key,cellStyle);
@@ -439,7 +441,7 @@ public abstract class AbstractXlsStyle {
 
 
 
-    private void setBorder(CellStyle style, short color, short borderType) {
+    protected void setBorder(CellStyle style, short color, short borderType) {
 
         style.setBorderBottom(borderType);
         style.setBorderLeft(borderType);
@@ -452,7 +454,27 @@ public abstract class AbstractXlsStyle {
         style.setBottomBorderColor(color);
     }
 
-    private Font getFont() {
+
+
+    protected Font getTitleFont(Column column) {
+
+        String key = "font="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode();
+
+
+        Font font = fontMap.get(key);
+
+        if(font != null){
+            return font;
+        }else {
+            Font newFont = getWorkbook().createFont();
+            //粗体显示
+            newFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+            fontMap.put(key , newFont);
+            return newFont;
+        }
+    }
+
+    protected Font getFont() {
 
         String key = "font="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode();
 

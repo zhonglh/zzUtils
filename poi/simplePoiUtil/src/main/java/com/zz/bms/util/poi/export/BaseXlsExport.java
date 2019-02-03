@@ -59,7 +59,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 
 			this.getCurrRow().setHeight((short)titleColumnHeight);
 			if(isAddNumber) {
-				this.setTitleCell(0, getNumberName());
+				this.setTitleCell(0, getNumberName() , null);
 			}
 
 			if(columns == null || columns.isEmpty()) {
@@ -70,7 +70,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				columns = ColumnUtil.getExcelColumn(clz , false);
 			}
 			for (Column column : columns) {
-				this.setTitleCell(column.getNumber() + position , column.getName());
+				this.setTitleCell(column.getNumber() + position , column.getName() , column);
 			}
 
 			titleRows = new Row[1];
