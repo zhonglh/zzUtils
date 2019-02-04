@@ -36,7 +36,7 @@ public abstract class AbstractXlsStyle {
      */
     public <T> CellStyle firstCommonStyle(CellStyle cellStyle ,Class<T> clz ,  int columnIndex, Class<?> columnClz, String operationModel){
 
-        String key = "firstCommonStyle="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode() + clz.getName() + "=" + columnIndex;
+        String key = "firstCommonStyle="+ this.getWorkbook().getClass().getName()+ "=" + columnIndex;
 
         CellStyle firstCommonStyle = styleMap.get(key);
 
@@ -94,7 +94,7 @@ public abstract class AbstractXlsStyle {
 
     public CellStyle getHeaderCellStyle1(){
 
-        String key = "getHeaderCellStyle1="+ this.getWorkbook().getClass().getName() + this.getWorkbook().hashCode();
+        String key = "getHeaderCellStyle1="+ this.getWorkbook().getClass().getName() ;
 
         CellStyle headerCellStyle1 = styleMap.get(key);
 
@@ -139,7 +139,7 @@ public abstract class AbstractXlsStyle {
 
     public CellStyle getHeaderCellStyle2(){
 
-        String key = "getHeaderCellStyle2="+ this.getWorkbook().getClass().getName() + this.getWorkbook().hashCode();
+        String key = "getHeaderCellStyle2="+ this.getWorkbook().getClass().getName() ;
 
         CellStyle headerCellStyle2 = styleMap.get(key);
 
@@ -182,7 +182,7 @@ public abstract class AbstractXlsStyle {
 
     protected CellStyle commonTitleStyle(Column column) {
 
-        String key = "commonTitleStyle="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode() ;
+        String key = "commonTitleStyle="+ this.getWorkbook().getClass().getName() ;
 
         CellStyle commonTitleStyle = styleMap.get(key);
 
@@ -217,7 +217,7 @@ public abstract class AbstractXlsStyle {
     protected CellStyle getCellStyle(short alignment, boolean boldweight) {
 
 
-        String key = "cellStyle="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode() ;
+        String key = "cellStyle="+ this.getWorkbook().getClass().getName() ;
 
         CellStyle cellStyle = styleMap.get(key);
 
@@ -251,7 +251,7 @@ public abstract class AbstractXlsStyle {
     protected CellStyle getCellStyle(short alignment, boolean boldweight, EnumXlsFormat formatEm) {
 
 
-        String key = "cellStyle="+this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode()+String.valueOf(alignment) + "=" + String.valueOf(boldweight) + "=" + (formatEm==null?"":formatEm.name());
+        String key = "cellStyle="+this.getWorkbook().getClass().getName()+ String.valueOf(alignment) + "=" + String.valueOf(boldweight) + "=" + (formatEm==null?"":formatEm.name());
 
 
         CellStyle cellStyle = styleMap.get(key);
@@ -304,7 +304,7 @@ public abstract class AbstractXlsStyle {
      */
     public CellStyle commonStyle(Class<?> clz , int columnIndex ,  Class<?> columnClz , short definAlignment , String operationModel){
 
-        String key = "commonStyle==="+this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode()+ "=" + clz.getName() + "=" + columnIndex ;
+        String key = "commonStyle==="+this.getWorkbook().getClass().getName()+  "=" + clz.getName() + "=" + columnIndex ;
 
 
         CellStyle cellStyle = styleMap.get(key);
@@ -368,7 +368,7 @@ public abstract class AbstractXlsStyle {
     private CellStyle commonStyle(EnumXlsFormat formatEm) {
 
 
-        String key = "cellStyle="+ this.getWorkbook().getClass().getName() + this.getWorkbook().hashCode()+  (formatEm==null?"":formatEm.name());
+        String key = "cellStyle="+ this.getWorkbook().getClass().getName() +   (formatEm==null?"":formatEm.name());
 
         CellStyle cellStyle = styleMap.get(key);
 
@@ -415,7 +415,7 @@ public abstract class AbstractXlsStyle {
 
 
 
-        String key = "commonStyle="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode();
+        String key = "commonStyle="+ this.getWorkbook().getClass().getName();
 
         CellStyle commonStyle = styleMap.get(key);
 
@@ -458,7 +458,11 @@ public abstract class AbstractXlsStyle {
 
     protected Font getTitleFont(Column column) {
 
-        String key = "font="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode();
+        String columnKey = "";
+        if(column != null){
+            columnKey = column.getField().getName();
+        }
+        String key = "font="+ this.getWorkbook().getClass().getName()+ columnKey;
 
 
         Font font = fontMap.get(key);
@@ -476,7 +480,7 @@ public abstract class AbstractXlsStyle {
 
     protected Font getFont() {
 
-        String key = "font="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode();
+        String key = "font="+ this.getWorkbook().getClass().getName();
 
 
         Font font = fontMap.get(key);
@@ -496,7 +500,7 @@ public abstract class AbstractXlsStyle {
     private Font getHeaderFont1() {
 
 
-        String key = "headerFont1="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode();
+        String key = "headerFont1="+ this.getWorkbook().getClass().getName();
 
         Font font = fontMap.get(key);
         if(font == null) {
@@ -516,7 +520,7 @@ public abstract class AbstractXlsStyle {
 
     private Font getHeaderFont2() {
 
-        String key = "headerFont2="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode();
+        String key = "headerFont2="+ this.getWorkbook().getClass().getName();
 
         Font font = fontMap.get(key);
         if(font == null) {

@@ -39,12 +39,16 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
 
     @Override
     protected CellStyle commonTitleStyle(Column column) {
-
-        String key = "commonTitleStyle="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode() ;
+        String columnKey = "";
+        if(column != null){
+            columnKey = column.getField().getName();
+        }
+        String key = "commonTitleStyle="+ this.getWorkbook().getClass().getName()+  columnKey ;
 
         CellStyle commonTitleStyle = templetStyleMap.get(key);
 
         if(commonTitleStyle == null) {
+            System.out.println(key+"false");
             CellStyle cellStyle = getWorkbook().createCellStyle();
             cellStyle.setBorderBottom((short) 1);
             cellStyle.setBorderTop((short) 1);
@@ -64,6 +68,7 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
             templetStyleMap.put(key,cellStyle);
             return cellStyle;
         }else {
+            System.out.println(key+"true");
             return commonTitleStyle;
         }
 
@@ -74,7 +79,11 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
     @Override
     protected Font getTitleFont(Column column) {
 
-        String key = "font="+ this.getWorkbook().getClass().getName()+ this.getWorkbook().hashCode();
+        String columnKey = "";
+        if(column != null && column.isRequired()){
+            columnKey = "required";
+        }
+        String key = "font="+ this.getWorkbook().getClass().getName()+ columnKey;
 
 
         Font font = templetFontMap.get(key);
