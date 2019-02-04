@@ -38,7 +38,7 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
     }
 
     @Override
-    protected CellStyle commonTitleStyle(Column column) {
+    public CellStyle commonTitleStyle(Column column) {
         String columnKey = "";
         if(column != null){
             columnKey = column.getField().getName();

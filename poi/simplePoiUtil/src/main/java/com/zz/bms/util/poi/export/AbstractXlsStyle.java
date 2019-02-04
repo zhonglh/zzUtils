@@ -180,7 +180,7 @@ public abstract class AbstractXlsStyle {
 
 
 
-    protected CellStyle commonTitleStyle(Column column) {
+    public CellStyle commonTitleStyle(Column column) {
 
         String key = "commonTitleStyle="+ this.getWorkbook().getClass().getName() ;
 
