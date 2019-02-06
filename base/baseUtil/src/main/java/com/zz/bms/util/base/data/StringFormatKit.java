@@ -2,6 +2,9 @@ package com.zz.bms.util.base.data;
 
 import java.util.ArrayList;
 
+/**
+ * @author Administrator
+ */
 public class StringFormatKit {
 
     /**
