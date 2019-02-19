@@ -564,7 +564,7 @@ public class BaseValidateUtils {
 		if (obj == null) {
 			return true;
 		}
-		if (obj instanceof String && obj.toString().trim().length() == 0) {
+		if (obj instanceof String && obj.toString().trim().isEmpty()) {
 			return true;
 		}
 		if (obj.getClass().isArray() && Array.getLength(obj) == 0) {
