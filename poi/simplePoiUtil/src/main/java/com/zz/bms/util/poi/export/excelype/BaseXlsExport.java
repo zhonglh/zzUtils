@@ -203,9 +203,10 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 
 			dataIndex ++;
 
-			this.createRow(rowIndex++);
+			this.createRow(rowIndex);
 
 			if(this.specialHand(t, columns, isAddNumber , dataIndex)) {
+				rowIndex ++ ;
 				continue;
 			}
 
@@ -235,6 +236,8 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				}
 
 			}
+
+			rowIndex ++ ;
 		}
 
 	}

@@ -68,6 +68,17 @@ public final class AppConfig {
      */
     public static boolean EXCEL_IMPORT_ALLSHEET = false;
 
+    /**
+     * 表头占用的列数
+     */
+    public static int HEADER_DEFAULT_CELLS = 13;
+
+
+    /**
+     * 导入的数据都正确才入库
+     */
+    public static boolean NO_ERROR_SAVE_DB = false;
+
 
 
 

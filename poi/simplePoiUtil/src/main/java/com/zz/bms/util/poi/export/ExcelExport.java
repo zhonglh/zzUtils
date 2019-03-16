@@ -1,5 +1,6 @@
 package com.zz.bms.util.poi.export;
 
+import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.poi.vo.Column;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,7 @@ public interface ExcelExport<T> {
      * @param headers           头信息内容
      */
     public default void exportHeaders(List<String> headers ){
-        exportHeaders(headers  , 13);
+        exportHeaders(headers  , AppConfig.HEADER_DEFAULT_CELLS);
     }
 
     /**
