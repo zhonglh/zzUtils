@@ -80,6 +80,7 @@ public @interface EntityAttrFkAnnotation {
      * @return
      */
     public String fkClassName() default "";
+
     /**
      * 外键对应的实体类全称
      * fkClassName  fkClass 两者必填一个

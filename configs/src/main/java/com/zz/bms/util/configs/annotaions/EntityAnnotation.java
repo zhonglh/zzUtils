@@ -45,4 +45,22 @@ public @interface EntityAnnotation {
      */
     public String[] businessKey() default {};
 
+
+    /**
+     * 上级ID的列名称
+     * 如 pid , parent_id
+     * 树状态结构才需要设置
+     * @return
+     */
+    public String parentColumnName() default "";
+
+
+    /**
+     * 树节点显示的列名称
+     * 如 dep_name , menu_name
+     * 树状态结构才需要设置
+     * @return
+     */
+    public String textColumnName() default "";
+
 }

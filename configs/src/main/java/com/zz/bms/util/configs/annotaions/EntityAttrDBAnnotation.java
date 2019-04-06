@@ -13,24 +13,36 @@ public @interface EntityAttrDBAnnotation {
 
     /**
      * 属性名称
+     * 如:用户名
      * @return
      */
     public String attrName();
 
+
+    /**
+     * 属性列名
+     * 如:user_name
+     * @return
+     */
+    public String attrColumn();
+
     /**
      * 属性类型(字段类型)
+     * 如:CHAR
      * @return
      */
     public String type() ;
 
     /**
      * 属性长度
+     * 如:32
      * @return
      */
     public int attrLength() ;
 
     /**
      * 属性小数点长度
+     * 如:0
      * @return
      */
     public int attrDecimals() default 0;
