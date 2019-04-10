@@ -38,7 +38,7 @@ public @interface EntityAttrDBAnnotation {
      * 如:32
      * @return
      */
-    public int attrLength() ;
+    public int attrLength() default 100000 ;
 
     /**
      * 属性小数点长度
