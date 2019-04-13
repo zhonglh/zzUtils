@@ -3,6 +3,7 @@ package com.zz.bms.util.spring;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,6 +22,12 @@ public class ApplicationContextUtil implements ApplicationContextAware {
 
 	public static ApplicationContext getContext() {
 		return context;
+	}
+
+
+
+	public static void pushEvent(ApplicationEvent event) {
+		context.publishEvent(event);
 	}
 
 

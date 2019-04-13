@@ -26,6 +26,24 @@ public class ReflectionSuper {
 		ReflectionSuper.getSuperClassGenricType(hm.getClass());
 	}
 
+	/**
+	 * 判断两个类之间 接口是否相同，或是否是其超类或超接口
+	 * @param p
+	 * @param c
+	 * @return
+	 */
+	public boolean isAssignableFrom(Class p , Class c){
+		if(p == null || c == null){
+			return false;
+		}
+
+		if(p.isAssignableFrom(c) || c.isAssignableFrom(p)){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 	
 	
 	@SuppressWarnings("rawtypes")

@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 public class DesEncImpl {
 	
 
-    private static final String PASSWORD_CRYPT_KEY = "FBL_*5Plg;Eb_";
+    private static String PASSWORD_CRYPT_KEY = "FBL_*5Plg;Eb_";
     private final static String DES = "DES";
 
     /**
@@ -84,17 +84,19 @@ public class DesEncImpl {
         String stmp = "";
         for (int n = 0; n < b.length; n++) {
             stmp = (Integer.toHexString(b[n] & 0XFF));
-            if (stmp.length() == 1)
+            if (stmp.length() == 1) {
                 hs = hs + "0" + stmp;
-            else
+            }else {
                 hs = hs + stmp;
+            }
         }
         return hs.toUpperCase();
     }
 
     private static byte[] hex2byte(byte[] b) {
-        if ((b.length % 2) != 0)
+        if ((b.length % 2) != 0) {
             throw new IllegalArgumentException("decrypt error!");
+        }
         byte[] b2 = new byte[b.length / 2];
         for (int n = 0; n < b.length; n += 2) {
             String item = new String(b, n, 2);
