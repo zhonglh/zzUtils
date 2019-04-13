@@ -32,7 +32,7 @@ public class ReflectionSuper {
 	 * @param c
 	 * @return
 	 */
-	public boolean isAssignableFrom(Class p , Class c){
+	public static boolean isAssignableFrom(Class p , Class c){
 		if(p == null || c == null){
 			return false;
 		}
