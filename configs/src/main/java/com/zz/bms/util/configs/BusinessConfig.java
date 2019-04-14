@@ -22,4 +22,18 @@ public class BusinessConfig {
      */
     public static boolean USE_ORGAN = true;
 
+
+    /**
+     * 是否要启动租户拦截器
+     */
+    public static boolean IS_Tenant_Intercept = true;
+
+
+
+
+    /**
+     * 是否要启动机构拦截器
+     */
+    public static boolean IS_Organ_Intercept = true;
+
 }
