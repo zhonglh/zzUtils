@@ -45,6 +45,21 @@ public @interface EntityAnnotation {
      */
     public String[] businessKey() default {};
 
+    /**
+     * 是否有租户列
+     * @return
+     */
+    public boolean haveTenant() default false;
+
+
+    /**
+     * 是否有机构列
+     * @return
+     */
+    public boolean haveOrgan() default false;
+
+
+
 
     /**
      * 上级ID的列名称
