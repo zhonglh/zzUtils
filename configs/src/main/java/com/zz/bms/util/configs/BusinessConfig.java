@@ -26,7 +26,7 @@ public class BusinessConfig {
     /**
      * 是否要启动租户拦截器
      */
-    public static boolean IS_Tenant_Intercept = true;
+    public static boolean IS_CHECK_Tenant = true;
 
 
 
@@ -34,6 +34,6 @@ public class BusinessConfig {
     /**
      * 是否要启动机构拦截器
      */
-    public static boolean IS_Organ_Intercept = true;
+    public static boolean IS_CHECK_Organ = true;
 
 }
