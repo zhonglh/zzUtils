@@ -31,7 +31,7 @@ public final class AppConfig {
     /**
      * 菜单的最大层级
      */
-    public static int MENU_MAX_LEVEL = 6;
+    public static int MENU_MAX_LEVEL = 4;
 
     //
     //DefaultCellOperation
