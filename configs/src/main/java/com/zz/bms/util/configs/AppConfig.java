@@ -18,6 +18,7 @@ public final class AppConfig {
 
     /**
      * 部署时是否使用了动静分离  SASS:Static and static separation
+     * 比如 Vue
      */
     @Deprecated
     public static boolean USE_SASS = false;
@@ -26,6 +27,11 @@ public final class AppConfig {
      * 是否有面包屑(导航)功能
      */
     public static boolean USE_CRUMB = true;
+
+    /**
+     * 菜单的最大层级
+     */
+    public static int MENU_MAX_LEVEL = 6;
 
     //
     //DefaultCellOperation
