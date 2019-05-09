@@ -18,10 +18,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T> {
 
 
-    private static Map<String,CellStyle> templetStyleMap = new ConcurrentHashMap<String,CellStyle>();
-    private static Map<String,Font> templetFontMap = new ConcurrentHashMap<String,Font>();
-
-
 
     @Override
     public boolean isImport() {
@@ -45,36 +41,26 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
 
     @Override
     public CellStyle commonTitleStyle(Column column) {
-        String columnKey = "";
-        if(column != null){
-            columnKey = column.getField().getName();
-        }
-        String key = "temlpet_title_commonTitleStyle="+ this.getWorkbook().getClass().getName()+  columnKey ;
 
-        CellStyle commonTitleStyle = templetStyleMap.get(key);
+        CellStyle cellStyle = getWorkbook().createCellStyle();
+        cellStyle.setBorderBottom((short) 1);
+        cellStyle.setBorderTop((short) 1);
+        cellStyle.setBorderLeft((short) 1);
+        cellStyle.setBorderRight((short) 1);
 
-        if(commonTitleStyle == null) {
-            CellStyle cellStyle = getWorkbook().createCellStyle();
-            cellStyle.setBorderBottom((short) 1);
-            cellStyle.setBorderTop((short) 1);
-            cellStyle.setBorderLeft((short) 1);
-            cellStyle.setBorderRight((short) 1);
+        cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+        cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
+        cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+        setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
 
-            cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
-            cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-            cellStyle.setFillForegroundColor(HSSFColor.WHITE.index);
-            cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
-            setBorder(cellStyle, HSSFColor.BLACK.index, CellStyle.BORDER_THIN);
-
-            cellStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.index);
-            cellStyle.setFont(getTitleFont(column));
+        cellStyle.setFillForegroundColor(IndexedColors.BLUE_GREY.index);
+        cellStyle.setFont(getTitleFont(column));
 
 
-            templetStyleMap.put(key,cellStyle);
-            return cellStyle;
-        }else {
-            return commonTitleStyle;
-        }
+        return cellStyle;
+
+
 
     }
 
@@ -83,27 +69,15 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
     @Override
     protected Font getTitleFont(Column column) {
 
-        String columnKey = "";
-        if(column != null && column.isRequired()){
-            columnKey = "required";
+
+        Font newFont = getWorkbook().createFont();
+        //粗体显示
+        newFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        if(column != null && column.isRequired()) {
+            newFont.setColor(HSSFColor.RED.index);
         }
-        String key = "temlpet_title_font="+ this.getWorkbook().getClass().getName()+ columnKey;
+        return newFont;
 
-
-        Font font = templetFontMap.get(key);
-
-        if(font != null){
-            return font;
-        }else {
-            Font newFont = getWorkbook().createFont();
-            //粗体显示
-            newFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
-            if(column != null && column.isRequired()) {
-                newFont.setColor(HSSFColor.RED.index);
-            }
-            templetFontMap.put(key , newFont);
-            return newFont;
-        }
     }
 
 
