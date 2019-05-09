@@ -31,7 +31,6 @@ public class FileViewer {
             for (Iterator<String> i = arrayList.iterator (); i.hasNext () ; ) {
                 String temp = (String) i.next ();
                 // temp = temp.replace (contextFilePath, "");// 把根路径去掉
-                System.out.println (temp);
                 filePathList.add (temp);
             }
         }

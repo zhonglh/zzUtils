@@ -25,6 +25,11 @@ public class HssfExport<T> implements ExcelExport<T> {
     }
 
     @Override
+    public boolean isImport() {
+        return axe.isImport();
+    }
+
+    @Override
     public void exportTitles(int headers, T t, boolean isAddNumber) {
         axe.exportTitles(headers , t , isAddNumber);
     }

@@ -218,8 +218,8 @@ abstract public class AbstractClient {
     private void setDefaultCert() throws Exception{
         HostnameVerifier hv = new HostnameVerifier () {
 
-            public boolean verify(String urlHostName,SSLSession session){
-                System.out.println ("Warning: URL Host: " + urlHostName + " vs. " + session.getPeerHost ());
+            @Override
+            public boolean verify(String urlHostName, SSLSession session){
                 return true;
             }
         };

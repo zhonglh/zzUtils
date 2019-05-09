@@ -26,6 +26,10 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 	}
 
 
+	@Override
+	public boolean isImport() {
+		return false;
+	}
 
 	/**
 	 * 导出标题	
@@ -67,7 +71,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 				if(t != null){
 					clz = (Class<T>) t.getClass();
 				}
-				columns = ColumnUtil.getExcelColumn(clz , false);
+				columns = ColumnUtil.getExcelColumn(clz , isImport());
 			}
 			for (Column column : columns) {
 				this.setTitleCell(column.getNumber() + position , column.getName() , column);
@@ -166,7 +170,7 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 		}
 
 		if(columns == null) {
-			columns = ColumnUtil.getExcelColumn(mclz ,false);
+			columns = ColumnUtil.getExcelColumn(mclz ,isImport());
 		}
 
 		int dataIndex = 0;

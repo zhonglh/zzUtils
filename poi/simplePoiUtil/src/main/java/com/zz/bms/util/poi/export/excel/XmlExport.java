@@ -19,6 +19,11 @@ public class XmlExport<T> implements ExcelExport<T> {
     }
 
     @Override
+    public boolean isImport() {
+        return true;
+    }
+
+    @Override
     public void exportTitles(int headers, T t, List<Column> columns, boolean isAddNumber) {
 
     }

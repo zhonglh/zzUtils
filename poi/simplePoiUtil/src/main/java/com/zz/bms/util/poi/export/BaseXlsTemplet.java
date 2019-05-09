@@ -22,6 +22,12 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
     private static Map<String,Font> templetFontMap = new ConcurrentHashMap<String,Font>();
 
 
+
+    @Override
+    public boolean isImport() {
+        return true;
+    }
+
     @Override
     public String getExcelFileName(){
         if(entityClz == null || entityClz == Object.class){
@@ -43,12 +49,11 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
         if(column != null){
             columnKey = column.getField().getName();
         }
-        String key = "commonTitleStyle="+ this.getWorkbook().getClass().getName()+  columnKey ;
+        String key = "temlpet_title_commonTitleStyle="+ this.getWorkbook().getClass().getName()+  columnKey ;
 
         CellStyle commonTitleStyle = templetStyleMap.get(key);
 
         if(commonTitleStyle == null) {
-            System.out.println(key+"false");
             CellStyle cellStyle = getWorkbook().createCellStyle();
             cellStyle.setBorderBottom((short) 1);
             cellStyle.setBorderTop((short) 1);
@@ -68,7 +73,6 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
             templetStyleMap.put(key,cellStyle);
             return cellStyle;
         }else {
-            System.out.println(key+"true");
             return commonTitleStyle;
         }
 
@@ -83,7 +87,7 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
         if(column != null && column.isRequired()){
             columnKey = "required";
         }
-        String key = "font="+ this.getWorkbook().getClass().getName()+ columnKey;
+        String key = "temlpet_title_font="+ this.getWorkbook().getClass().getName()+ columnKey;
 
 
         Font font = templetFontMap.get(key);

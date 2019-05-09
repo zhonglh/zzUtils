@@ -213,7 +213,6 @@ public class StreamUtils {
 		try {
 			fileInputStream = new FileInputStream(filepath);
 		} catch (FileNotFoundException e) {
-			System.out.print("错误信息:文件不存在");
 			e.printStackTrace();
 		}
 		return fileInputStream;
@@ -221,7 +220,7 @@ public class StreamUtils {
 	/**
 	 * 根据文件对象创建文件输入流处理
 	 * 以字节为单位（非 unicode ）
-	 * @param path
+	 * @param file
 	 * @return
 	 */
 	public static FileInputStream getFileInputStream(File file) {
@@ -229,7 +228,6 @@ public class StreamUtils {
 		try {
 			fileInputStream = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			System.out.print("错误信息:文件不存在");
 			e.printStackTrace();
 		}
 		return fileInputStream;
@@ -246,7 +244,6 @@ public class StreamUtils {
 		try {
 			fileOutputStream = new FileOutputStream(file,append);
 		} catch (FileNotFoundException e) {
-			System.out.print("错误信息:文件不存在");
 			e.printStackTrace();
 		}
 		return fileOutputStream;
@@ -254,7 +251,7 @@ public class StreamUtils {
 	/**
 	 * 根据文件路径创建文件输出流处理
 	 * 以字节为单位（非 unicode ）
-	 * @param path
+	 * @param filepath
 	 * @param append true:文件以追加方式打开,false:则覆盖原文件的内容
 	 * @return
 	 */

@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface ExcelExport<T> {
 
+    public boolean isImport();
+
 
     /**
      * 导出标题信息

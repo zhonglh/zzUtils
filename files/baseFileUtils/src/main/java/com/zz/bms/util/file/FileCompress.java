@@ -139,7 +139,6 @@ public class FileCompress {
      */
     public static void unRarFile(String srcRarPath, String dstDirectoryPath) {
         if (!srcRarPath.toLowerCase().endsWith(".rar")) {
-            System.out.println("非rar文件！");
             return;
         }
         File dstDiretory = new File(dstDirectoryPath);
