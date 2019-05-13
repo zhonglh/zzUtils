@@ -1,6 +1,6 @@
-package com.zz.bms.util.poi.export.excel;
+package com.zz.bms.util.poi.export.filetype;
 
-import com.zz.bms.util.poi.export.AbstractXlsExport;
+import com.zz.bms.util.poi.export.excelype.AbstractXlsExport;
 import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.vo.Column;
@@ -14,7 +14,7 @@ import java.util.List;
  * 不适用大数据量
  * @author Administrator
  */
-public class XssfExport<T> implements ExcelExport<T> {
+public class XssfExport<T> implements ExcelExport<T>  {
 
     private AbstractXlsExport<T> axe ;
 
@@ -23,10 +23,8 @@ public class XssfExport<T> implements ExcelExport<T> {
         axe.setWorkbook( new XSSFWorkbook() );
     }
 
-    @Override
-    public boolean isImport() {
-        return axe.isImport();
-    }
+
+
 
     @Override
     public void exportTitles(int headers, T t, boolean isAddNumber) {

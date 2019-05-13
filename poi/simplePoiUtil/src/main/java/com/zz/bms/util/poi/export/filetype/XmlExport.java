@@ -1,4 +1,4 @@
-package com.zz.bms.util.poi.export.excel;
+package com.zz.bms.util.poi.export.filetype;
 
 import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.vo.Column;
@@ -10,7 +10,8 @@ import java.util.List;
  * XML格式导出(Excel 2003)
  * @author Administrator
  */
-public class XmlExport<T> implements ExcelExport<T> {
+public class XmlExport<T> implements ExcelExport<T>  {
+
 
 
     @Override
@@ -18,10 +19,6 @@ public class XmlExport<T> implements ExcelExport<T> {
 
     }
 
-    @Override
-    public boolean isImport() {
-        return true;
-    }
 
     @Override
     public void exportTitles(int headers, T t, List<Column> columns, boolean isAddNumber) {

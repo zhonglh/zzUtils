@@ -10,7 +10,6 @@ import java.util.List;
  */
 public interface ExcelExport<T> {
 
-    public boolean isImport();
 
 
     /**

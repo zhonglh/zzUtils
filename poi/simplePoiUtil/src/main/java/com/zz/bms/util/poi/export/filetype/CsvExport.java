@@ -1,4 +1,4 @@
-package com.zz.bms.util.poi.export.excel;
+package com.zz.bms.util.poi.export.filetype;
 
 import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.vo.Column;
@@ -10,17 +10,13 @@ import java.util.List;
  * CSV 格式导出
  * @author Administrator
  */
-public class CsvExport<T> implements ExcelExport<T> {
+public class CsvExport<T> implements ExcelExport<T>  {
 
     @Override
     public void exportTitles(int headers, T t, boolean isAddNumber) {
 
     }
 
-    @Override
-    public boolean isImport() {
-        return true;
-    }
 
     @Override
     public void exportTitles(int headers, T t, List<Column> columns, boolean isAddNumber) {
@@ -56,4 +52,6 @@ public class CsvExport<T> implements ExcelExport<T> {
     public void exportXls(String xlsFileName) throws RuntimeException {
 
     }
+
+
 }

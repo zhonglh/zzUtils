@@ -1,12 +1,13 @@
-package com.zz.bms.util.poi.export;
+package com.zz.bms.util.poi.export.excelype;
 
+import com.zz.bms.util.poi.export.ExcelExport;
+import com.zz.bms.util.poi.export.ExcelTypeExport;
 import com.zz.bms.util.poi.util.ColumnUtil;
 import com.zz.bms.util.poi.vo.Column;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.CellRangeAddressList;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExport<T> {
+public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExport<T> , ExcelTypeExport {
 
 
 	public BaseXlsExport(){
@@ -30,6 +31,23 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 	public boolean isImport() {
 		return false;
 	}
+
+	@Override
+	public void setPrompt(Sheet sheet, String promptTitle, String promptContent, int firstRow, int endRow, int firstCol, int endCol) {
+		DataValidationHelper dvHelper = sheet.getDataValidationHelper();
+		DataValidationConstraint constraint = dvHelper.createCustomConstraint("DD1");
+		CellRangeAddressList regions = new CellRangeAddressList(firstRow, endRow, firstCol, endCol);
+		DataValidation dataValidation = dvHelper.createValidation(constraint, regions);
+		dataValidation.createPromptBox(promptTitle, promptContent);
+		dataValidation.setShowPromptBox(true);
+		sheet.addValidationData(dataValidation);
+	}
+
+	@Override
+	public void setValidation(Sheet sheet, String[] textlist, int firstRow, int endRow, int firstCol, int endCol) {
+
+	}
+
 
 	/**
 	 * 导出标题	
@@ -75,6 +93,9 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 			}
 			for (Column column : columns) {
 				this.setTitleCell(column.getNumber() + position , column.getName() , column);
+				if(column.getWidth() > 0) {
+					this.getCurrSheet().setColumnWidth(column.getNumber() + position, (int) ((column.getWidth() + 0.72) * 256));
+				}
 			}
 
 			titleRows = new Row[1];
@@ -201,6 +222,12 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 						this.setCell(mclz, column.getNumber() + position , "" , column.getAlignment());
 					}else {
 						this.setCell( mclz ,column.getNumber() + position, value , column.getAlignment());
+					}
+
+
+					// 如果设置了combo属性则本列只能选择不能输入
+					if (column.getCombo() != null &&column.getCombo().length > 0) {
+						setValidation(sheet, column.getCombo(), rowIndex, rowIndex, column.getNumber() + position , column.getNumber() + position );
 					}
 
 				} catch (Exception e) {

@@ -21,7 +21,7 @@ public class Column implements ISort{
 
 
 	/**
-	 * 对应列长度
+	 * 对应列字符长度
 	 */
 	private int length;
 
@@ -48,6 +48,21 @@ public class Column implements ISort{
 	 * 是否必填
 	 */
 	private boolean isRequired ;
+
+
+
+
+
+	/**
+	 * Excel 列的宽度
+	 */
+	private int width ;
+
+	/**
+	 * 列的下拉内容
+	 */
+	private String[] combo;
+
 
 
 	/**
@@ -114,6 +129,23 @@ public class Column implements ISort{
 
 	public void setRequired(boolean required) {
 		isRequired = required;
+	}
+
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public String[] getCombo() {
+		return combo;
+	}
+
+	public void setCombo(String[] combo) {
+		this.combo = combo;
 	}
 
 	@Override

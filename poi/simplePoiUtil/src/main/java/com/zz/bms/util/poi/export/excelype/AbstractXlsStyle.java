@@ -1,11 +1,10 @@
-package com.zz.bms.util.poi.export;
+package com.zz.bms.util.poi.export.excelype;
 
 import com.zz.bms.util.poi.cell.CellOperation;
 import com.zz.bms.util.poi.enums.EnumXlsFormat;
 import com.zz.bms.util.poi.vo.Column;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
-import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

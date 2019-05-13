@@ -1,11 +1,14 @@
 package com.zz.bms.util.poi.util;
 
+import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.sorts.SortComparator;
 import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.util.configs.util.AnnotaionEntityUtil;
+import com.zz.bms.util.poi.ExcelDictHolder;
 import com.zz.bms.util.poi.vo.Column;
 import com.zz.bms.util.spring.ReflectionUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.print.attribute.HashAttributeSet;
 import java.lang.reflect.Field;
@@ -129,6 +132,7 @@ public class ColumnUtil {
     }
 
     public static Column field2Column(Field f) {
+        EntityAttrExcelAnnotation excelAnnotation = f.getAnnotation(EntityAttrExcelAnnotation.class);
         EntityAttrPageAnnotation pageAnnotation = f.getAnnotation(EntityAttrPageAnnotation.class);
         EntityAttrDBAnnotation dbAnnotation = f.getAnnotation(EntityAttrDBAnnotation.class);
         EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
@@ -143,6 +147,21 @@ public class ColumnUtil {
         column.setLength(maxLength);
         column.setName(pageAnnotation.title());
         column.setRequired(required);
+        column.setWidth(excelAnnotation.width());
+        if(dictAnnotation != null && StringUtils.isNotEmpty(dictAnnotation.dictType()) && dictAnnotation.isNameField()){
+            Map<String, List<String>> dictAllMap = ExcelDictHolder.getDictMap();
+            if(dictAllMap != null){
+                List<String> list = dictAllMap.get(dictAnnotation.dictType().toLowerCase());
+                if(list != null && !list.isEmpty()){
+                    if(!required){
+                        list.add(0, "");
+                    }
+                    String[] combo = new String[list.size()];
+                    combo = list.toArray(combo);
+                    column.setCombo(combo);
+                }
+            }
+        }
         column.setField(f);
         return column;
     }

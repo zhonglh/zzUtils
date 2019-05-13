@@ -1,33 +1,45 @@
-package com.zz.bms.util.poi.export.excel;
+package com.zz.bms.util.poi.export.filetype;
 
-import com.zz.bms.util.poi.export.AbstractXlsExport;
+import com.zz.bms.util.poi.export.excelype.AbstractXlsExport;
 import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.vo.Column;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Excel 2003 格式
- * 不适用于大数据量
+ * Excel2007 格式
+ * 用于大数据量
  * @author Administrator
  */
-public class HssfExport<T> implements ExcelExport<T> {
-    
+public class SxssfExport<T> implements ExcelExport<T>  {
+
+    //内存中保留的行数，超出后会写到磁盘
+    //应该是在窗口中的行数
+    private static int rowAccessWindowSize = 1000;
+
+    //每个sheet 10w条
+    private static int maxSheetRows = 100000;
+
+
+
     private AbstractXlsExport<T> axe ;
-    
-    
-    public HssfExport(AbstractXlsExport<T> axe) {
+
+
+    public SxssfExport(AbstractXlsExport<T> axe) {
         this.axe = axe;
-        axe.setWorkbook( new HSSFWorkbook() );
+
+        SXSSFWorkbook workbook = new SXSSFWorkbook(rowAccessWindowSize);
+        //生成的临时文件将进行gzip压缩
+        workbook.setCompressTempFiles(true);
+        axe.setWorkbook( workbook );
     }
 
-    @Override
-    public boolean isImport() {
-        return axe.isImport();
-    }
+
+
+
 
     @Override
     public void exportTitles(int headers, T t, boolean isAddNumber) {
@@ -58,15 +70,18 @@ public class HssfExport<T> implements ExcelExport<T> {
 
     @Override
     public void exportXls(HttpServletResponse response ) throws RuntimeException {
-        axe.exportXls(response,axe.getExcelFileName()+"."+ EnumExcelFileType.HSSF.getFileType());
+        axe.exportXls(response,axe.getExcelFileName()+"."+ EnumExcelFileType.SXSSF.getFileType());
     }
+
     @Override
-    public void exportXls(HttpServletResponse response, String fileName) throws RuntimeException {
-        axe.exportXls(response,fileName);
+    public void exportXls(HttpServletResponse response , String fileName) throws RuntimeException {
+        axe.exportXls(response , fileName);
     }
 
     @Override
     public void exportXls(String xlsFileName) throws RuntimeException {
         axe.exportXls(xlsFileName);
     }
+
+
 }

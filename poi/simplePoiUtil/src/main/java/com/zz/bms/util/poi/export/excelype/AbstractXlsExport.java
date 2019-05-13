@@ -1,7 +1,9 @@
-package com.zz.bms.util.poi.export;
+package com.zz.bms.util.poi.export.excelype;
 
 import com.zz.bms.util.base.data.DateProcess;
 import com.zz.bms.util.poi.cell.CellBuild;
+import com.zz.bms.util.poi.export.ExcelExport;
+import com.zz.bms.util.poi.export.ExcelTypeExport;
 import com.zz.bms.util.poi.export.cell.CellExport;
 import com.zz.bms.util.poi.enums.EnumXlsFormat;
 import com.zz.bms.util.poi.vo.Column;
@@ -15,7 +17,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements ExcelExport<T> {
+public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements ExcelExport<T>  , ExcelTypeExport {
 
 	public static int defaultColumnWidth = 15;
 	public static int titleColumnHeight = 400;

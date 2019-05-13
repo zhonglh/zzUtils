@@ -1,27 +1,49 @@
-package com.zz.bms.util.poi.export;
+package com.zz.bms.util.poi.export.excelype;
 
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
+import com.zz.bms.util.poi.export.ExcelExport;
+import com.zz.bms.util.poi.export.ExcelTypeExport;
 import com.zz.bms.util.poi.vo.Column;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.IndexedColors;
-
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddressList;
+import org.apache.poi.xssf.usermodel.XSSFDataValidation;
 
 /**
  * Excel 模板
  * @author Administrator
  */
-public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T> {
+public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T> , ExcelTypeExport {
 
 
 
     @Override
     public boolean isImport() {
         return true;
+    }
+
+    @Override
+    public void setPrompt(Sheet sheet, String promptTitle, String promptContent, int firstRow, int endRow, int firstCol, int endCol) {
+        super.setPrompt(sheet, promptTitle, promptContent, firstRow, endRow, firstCol, endCol);
+    }
+
+    @Override
+    public void setValidation(Sheet sheet, String[] textlist, int firstRow, int endRow, int firstCol, int endCol) {
+        DataValidationHelper helper = sheet.getDataValidationHelper();
+        // 加载下拉列表内容
+        DataValidationConstraint constraint = helper.createExplicitListConstraint(textlist);
+        // 设置数据有效性加载在哪个单元格上,四个参数分别是：起始行、终止行、起始列、终止列
+        CellRangeAddressList regions = new CellRangeAddressList(firstRow, endRow, firstCol, endCol);
+        // 数据有效性对象
+        DataValidation dataValidation = helper.createValidation(constraint, regions);
+        // 处理Excel兼容性问题
+        if (dataValidation instanceof XSSFDataValidation){
+            dataValidation.setSuppressDropDownArrow(true);
+            dataValidation.setShowErrorBox(true);
+        }else{
+            dataValidation.setSuppressDropDownArrow(false);
+        }
+        sheet.addValidationData(dataValidation);
     }
 
     @Override
