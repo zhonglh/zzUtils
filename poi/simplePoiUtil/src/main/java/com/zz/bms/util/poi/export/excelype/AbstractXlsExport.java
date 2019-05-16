@@ -1,6 +1,7 @@
 package com.zz.bms.util.poi.export.excelype;
 
 import com.zz.bms.util.base.data.DateProcess;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.poi.cell.CellBuild;
 import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.export.ExcelTypeExport;
@@ -20,6 +21,7 @@ import java.util.List;
 public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements ExcelExport<T>  , ExcelTypeExport {
 
 	public static int defaultColumnWidth = 15;
+	public static int defaultColumnHeight = 15;
 	public static int titleColumnHeight = 400;
 
 
@@ -79,10 +81,20 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 	}
 
 	public String getExcelFileName(){
+
 		if(entityClz == null || entityClz == Object.class){
 			return String.valueOf(System.currentTimeMillis());
 		}else {
-			return entityClz.getSimpleName() + String.valueOf(System.currentTimeMillis());
+
+			EntityAnnotation ea = entityClz.getAnnotation(EntityAnnotation.class);
+			if(ea == null){
+				ea = entityClz.getSuperclass().getAnnotation(EntityAnnotation.class);
+			}
+			if(ea == null){
+				return String.valueOf(System.currentTimeMillis());
+			}else {
+				return ea.value()+String.valueOf(System.currentTimeMillis());
+			}
 		}
 	}
 
@@ -111,6 +123,7 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 	public void createSheet(T t, int columnWidth , int cols, int rows) {
 		this.sheet = workbook.createSheet();
 		this.sheet.setDefaultColumnWidth(columnWidth);
+		this.sheet.setDefaultRowHeight((short)defaultColumnHeight);
 		this.sheet.createFreezePane(cols, rows);
 	}	
 

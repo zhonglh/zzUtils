@@ -54,6 +54,9 @@ public class BaseXlsTemplet<T> extends BaseXlsExport<T> implements ExcelExport<T
 
             EntityAnnotation ea = entityClz.getAnnotation(EntityAnnotation.class);
             if(ea == null){
+                ea = entityClz.getSuperclass().getAnnotation(EntityAnnotation.class);
+            }
+            if(ea == null){
                 return "模板";
             }else {
                 return ea.value()+"模板";
