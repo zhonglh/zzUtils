@@ -1691,7 +1691,7 @@ public class StringKit {
         content = replace (content, "</script", "&lt/script", false);
         content = replace (content, "<marquee", "&ltmarquee", false);
         content = replace (content, "</marquee", "&lt/marquee", false);
-        // FIXME 加这个过滤换行到 BR 的功能会把原始 HTML 代码搞乱 2006-07-30
+
         // content = replace(content, "\r\n", "<BR>");
         // 滤除脚本事件代码
         for ( int i = 0 ; i < eventKeywords.length ; i++ ) {

@@ -61,7 +61,6 @@ public class ConvertUtils {
 		try {
 			strIn = new String(strIn.getBytes("ISO-8859-1"), "GBK");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return strIn;

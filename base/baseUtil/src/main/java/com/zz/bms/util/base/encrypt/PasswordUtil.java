@@ -64,7 +64,6 @@ public class PasswordUtil {
 			// 生成密钥
 			secretKey = keyFactory.generateSecret(keySpec);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -127,8 +126,12 @@ public class PasswordUtil {
 		catch (Exception e) {
 			
 		}
-		if(passDec == null) return null;
-		else return new String(passDec);
+		if(passDec == null) {
+			return null;
+		}
+		else {
+			return new String(passDec);
+		}
 	}
 
 	/**
