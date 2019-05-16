@@ -1,5 +1,6 @@
 package com.zz.bms.util.poi.export.excelype;
 
+import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.data.DateProcess;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.poi.cell.CellBuild;
@@ -82,8 +83,9 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 
 	public String getExcelFileName(){
 
+		String currTime = DateKit.formatDate(new Date() , "yyyyMMddHHmmss");
 		if(entityClz == null || entityClz == Object.class){
-			return String.valueOf(System.currentTimeMillis());
+			return currTime;
 		}else {
 
 			EntityAnnotation ea = entityClz.getAnnotation(EntityAnnotation.class);
@@ -91,9 +93,9 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 				ea = entityClz.getSuperclass().getAnnotation(EntityAnnotation.class);
 			}
 			if(ea == null){
-				return String.valueOf(System.currentTimeMillis());
+				return currTime;
 			}else {
-				return ea.value()+String.valueOf(System.currentTimeMillis());
+				return ea.value()+currTime;
 			}
 		}
 	}
