@@ -298,7 +298,10 @@ public class BaseXlsExport<T> extends AbstractXlsExport<T> implements ExcelExpor
 		ServletOutputStream os = null;
 		try {
 			response.setContentType ("application/vnd.ms-excel;charset=utf-8");
-			response.addHeader("Content-Disposition","attachment;filename="+fileName);
+
+			String excelName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+
+			response.addHeader("Content-Disposition","attachment;filename="+excelName);
 			os = response.getOutputStream();
 			workbook.write(os);
 			os.flush();
