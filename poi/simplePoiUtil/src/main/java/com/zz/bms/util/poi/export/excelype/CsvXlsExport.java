@@ -135,6 +135,8 @@ public class CsvXlsExport<T> extends BaseXlsExport<T> implements ExcelExport<T>,
                         cs[index] = PubMethod.obj2String(value);
                         if (cs[index] == null) {
                             cs[index] = "";
+                        }else {
+                            cs[index] = cs[index] + "   ";
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
