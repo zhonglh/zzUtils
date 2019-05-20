@@ -37,7 +37,7 @@ public class DownloadBaseUtil {
      * @param delFlag
      *            是否删除文件
      */
-    protected static void download(File file, String returnName, HttpServletResponse response, boolean delFlag){
+    public static void download(File file, String returnName, HttpServletResponse response, boolean delFlag){
         prototypeDownload (file, returnName, response, delFlag);
     }
 

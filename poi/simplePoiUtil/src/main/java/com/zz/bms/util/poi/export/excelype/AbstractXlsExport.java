@@ -2,6 +2,7 @@ package com.zz.bms.util.poi.export.excelype;
 
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.data.DateProcess;
+import com.zz.bms.util.base.java.GenericsHelper;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.poi.cell.CellBuild;
 import com.zz.bms.util.poi.export.ExcelExport;
@@ -22,7 +23,7 @@ import java.util.List;
 public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements ExcelExport<T>  , ExcelTypeExport {
 
 	public static int defaultColumnWidth = 15;
-	public static int defaultColumnHeight = 15;
+	public static int defaultColumnHeight = 250;
 	public static int titleColumnHeight = 400;
 
 
@@ -67,7 +68,7 @@ public abstract class AbstractXlsExport<T> extends AbstractXlsStyle implements E
 
 
 	public AbstractXlsExport(){
-		//entityClz = GenericsHelper.getSuperClassGenricType(getClass(), 0);
+		entityClz = GenericsHelper.getSuperClassGenricType(getClass(), 0);
 	}
 
 

@@ -11,6 +11,38 @@ import java.sql.Timestamp;
  */
 public class PubMethod {
 
+
+    public static String obj2String(Object val){
+        if(val == null){
+            return null;
+        }
+
+        Class fieldClz = val.getClass() ;
+        if(fieldClz == String.class){
+            return (String)val;
+        }else if(fieldClz == int.class || fieldClz == Integer.class){
+            return String.valueOf(val);
+        }else if(fieldClz == long.class || fieldClz == Long.class){
+            return String.valueOf(val);
+        }else if(fieldClz == float.class || fieldClz == Float.class){
+            return String.valueOf(val);
+        }else if(fieldClz == double.class || fieldClz == Double.class){
+            return String.valueOf(val);
+        }else if(fieldClz == BigDecimal.class){
+            return ((BigDecimal )val).toString();
+        }else if(fieldClz == boolean.class || fieldClz == Boolean.class){
+            return String.valueOf(val);
+        }else if(fieldClz == java.util.Date.class  || fieldClz == java.sql.Date.class ){
+            return DateKit.fmtDateToYMD((java.util.Date)val);
+        }else if(fieldClz == java.sql.Timestamp.class){
+            return DateKit.dateTo19String((java.util.Date)val);
+        }else {
+            throw new RuntimeException("列格式错误");
+        }
+
+
+    }
+
     /**
      * 获取转换后的类型
      * @param field

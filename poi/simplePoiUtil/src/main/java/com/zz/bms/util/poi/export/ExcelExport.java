@@ -4,6 +4,7 @@ import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.poi.vo.Column;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public interface ExcelExport<T> {
      * @param isAddNumber
      */
     public void exportTitles(int headers , T t  ,  boolean isAddNumber);
-    public void exportTitles(int headers , T t  , List<Column> columns, boolean isAddNumber);
+    public void exportTitles(int headers , T t  , List<Column> columns, boolean isAddNumber) ;
 
 
 
