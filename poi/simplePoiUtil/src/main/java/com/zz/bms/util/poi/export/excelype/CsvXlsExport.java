@@ -24,9 +24,8 @@ import java.util.List;
 /**
  * @author admin
  */
-public class CsvXlsExport<T> extends AbstractXlsExport<T> implements ExcelExport<T>, ExcelTypeExport {
+public class CsvXlsExport<T> extends BaseXlsExport<T> implements ExcelExport<T>, ExcelTypeExport {
 
-    Writer w = null;
     private Class<T> entityClz = null;
     CsvWriter csvWriter = null ;
     String filePaht = null;
