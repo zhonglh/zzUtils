@@ -69,6 +69,12 @@ public class AnnotaionEntityUtil {
 
     }
 
+    /**
+     * 获取小数点位数
+     * @param dbAnnotation
+     * @param fkAnnotation
+     * @return
+     */
     public static int  decimalsLength(EntityAttrDBAnnotation dbAnnotation ,
                           EntityAttrFkAnnotation fkAnnotation ){
 
