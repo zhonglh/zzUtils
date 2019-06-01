@@ -11,6 +11,9 @@ import java.util.*;
  */
 public class AnnotaionEntityUtil {
 
+
+
+
     /**
      * 获取属性(字段)是否必填
      * @param dbAnnotation

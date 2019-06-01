@@ -1,7 +1,10 @@
 package com.zz.bms.util.file;
 
 import com.zz.bms.util.base.data.Base64;
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.fileupload.util.Streams;
+import org.apache.commons.lang.StringUtils;
+import org.apache.tools.ant.util.DateUtils;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -17,6 +20,32 @@ import java.util.List;
  * @author Administrator
  */
 public class FileKit {
+
+    /**
+     * 生成一个文件路径
+     * @param prefix
+     * @return
+     */
+    public static String buildFilePath(String prefix) {
+        Date currDate = new Date();
+        StringBuilder sb = new StringBuilder();
+
+
+        if (StringUtils.isNotEmpty(prefix)) {
+            sb.append(prefix);
+        }
+
+
+        //生成uuid
+        String uuid = IdUtils.getId();
+        //文件路径
+        sb.append(File.separatorChar).append(DateUtils.format(currDate, "yyyyMMdd"));
+        sb.append(File.separatorChar).append(DateUtils.format(currDate, "HHmmssS"));
+        sb.append(uuid);
+
+        return sb.toString();
+
+    }
 
 
     /**

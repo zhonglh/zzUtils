@@ -219,6 +219,35 @@ public class ReflectionUtil extends ReflectionUtils {
     }
 
 
+    /**
+     * 获得所有的文件类型的字段
+     * @param clazz
+     * @return
+     */
+    public static List<Field> getFileFields(Class<?> clazz ) {
+        final List<Field> fieldList = new ArrayList<Field>();
+
+        FieldCallback fc = new FieldCallback() {
+            @Override
+            public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
+                fieldList.add(field);
+            }
+        };
+        FieldFilter ff = new FieldFilter(){
+
+            @Override
+            public boolean matches(Field field) {
+
+                FilesAnnotation filesAnnotation = field.getAnnotation(FilesAnnotation.class);
+                return filesAnnotation != null;
+
+            }
+        };
+        ReflectionUtils.doWithFields(clazz, clazz.getSuperclass() ,fc , ff);
+        return fieldList;
+    }
+
+
 
 
 

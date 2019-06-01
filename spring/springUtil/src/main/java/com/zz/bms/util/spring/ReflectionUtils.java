@@ -485,7 +485,7 @@ public abstract class ReflectionUtils {
             }
 
             targetClass = targetClass.getSuperclass();
-        } while(targetClass != null && targetClass != stopClz);
+        } while(targetClass != null   &&  targetClass != Object.class  && targetClass != stopClz);
 
     }
 

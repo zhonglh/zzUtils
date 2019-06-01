@@ -27,8 +27,11 @@ public class SortComparator<T> implements Comparator<T> {
                     return 1;
                 }else if(s1 < s2){
                     return -1;
+                }else {
+                    String s21 = ((ISort)obj1).getSort2();
+                    String s22 = ((ISort)obj2).getSort2();
+                    return  s21.compareTo(s22) ;
                 }
-                return 0;
             }else {
                 return obj2.toString().compareTo(obj1.toString());
             }

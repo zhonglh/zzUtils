@@ -105,7 +105,9 @@ public class RestClient extends AbstractClient {
         } catch (Exception e1) {
             throw new RuntimeException (e1);
         } finally {
-            if (null != con) con.disconnect ();
+            if (null != con) {
+                con.disconnect ();
+            }
         }
         logger.debug ("Result: " + result);
         return result;
@@ -145,7 +147,9 @@ public class RestClient extends AbstractClient {
         String[] contextTypes = contextType.split (";");
         if (contextTypes.length > 0) {
             for ( String string : contextTypes ) {
-                if (string.trim ().startsWith ("charset")) return string.trim ().split ("=")[1].trim ();
+                if (string.trim ().startsWith ("charset")) {
+                    return string.trim ().split ("=")[1].trim ();
+                }
             }
         }
         return "utf-8";

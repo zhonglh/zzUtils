@@ -9,27 +9,24 @@ public class ObjectUtil {
 	public static boolean isEmpty(Object obj){
 		if(obj == null){  
 			return true;  
-		}
-
-		if(obj.getClass().isArray()){  
+		}else if(obj.getClass().isArray()){
 			if(Array.getLength(obj) == 0){
 				return true;  
 			}
-		}
-
-		if(obj instanceof Collection<?>){
+		}else if(obj instanceof Collection<?>){
 			Collection<?> collection = (Collection<?>) obj ;
 			if(collection.isEmpty()){  
 				return true;  
 			}  
-		}  
-
-		if(obj instanceof Map<?,?>){
+		}else if(obj instanceof Map<?,?>){
 			Map<?,?> map = (Map<?,?>) obj ;
 			if(map.isEmpty()){  
 				return true;  
 			}  
-		}  
+		}else if(obj instanceof String){
+			return ((String)obj).isEmpty() ;
+		}
+
 		return false;
 	}
 
