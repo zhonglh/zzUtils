@@ -103,6 +103,7 @@ public class RestClient extends AbstractClient {
                 int errorCode = this.getStatus ().getCode ();
             }
         } catch (Exception e1) {
+            e1.printStackTrace();
             throw new RuntimeException (e1);
         } finally {
             if (null != con) {
@@ -138,6 +139,7 @@ public class RestClient extends AbstractClient {
         try {
             return con.getResponseCode ();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

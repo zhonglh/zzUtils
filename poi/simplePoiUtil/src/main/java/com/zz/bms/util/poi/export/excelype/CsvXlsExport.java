@@ -83,6 +83,7 @@ public class CsvXlsExport<T> extends BaseXlsExport<T> implements ExcelExport<T>,
         try {
             csvWriter.writeRecord(titles);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -155,6 +156,7 @@ public class CsvXlsExport<T> extends BaseXlsExport<T> implements ExcelExport<T>,
             csvWriter.close();
 
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 

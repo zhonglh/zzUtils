@@ -62,14 +62,14 @@ public class ExcelUtil {
      * @param obj
      * @return
      */
-    public static void row2Object(Object[] fieldVlaues , List<Column> columns , Object obj) throws ExcelAbsenceException,ExcelAbsenceException,ExcelTypeMatchingException{
+    public static void row2Object(Object[] fieldVlaues , List<Column> columns , Object obj , boolean isAddNumber) throws ExcelAbsenceException,ExcelAbsenceException,ExcelTypeMatchingException{
         if(fieldVlaues == null || fieldVlaues.length == 0 || columns == null || columns.isEmpty() || obj == null){
             return ;
         }
         if(fieldVlaues.length < columns.size()){
             throw new ExcelAbsenceException();
         }
-        int index = 0;
+        int index = isAddNumber?1:0;
 
 
         Method setErrorMethod = setErrorMethod(obj.getClass());

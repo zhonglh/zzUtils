@@ -177,7 +177,7 @@ public class ColumnUtil {
         for(Field f : fs){
             EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
             if(dictAnnotation != null){
-                dictTypeSet.add(dictAnnotation.group());
+                dictTypeSet.add(dictAnnotation.dictType());
             }
         }
         String[] arr = new String[dictTypeSet.size()];
@@ -201,6 +201,7 @@ public class ColumnUtil {
             }
             List<Field> list = dictMap.get(dictAnnotation.group());
             if(list == null){
+                list = new ArrayList<Field>();
                 dictMap.put(dictAnnotation.group() , list);
             }
             list.add(f);
@@ -259,8 +260,12 @@ public class ColumnUtil {
             if(fkAnnotation == null){
                 continue;
             }
+            if(StringUtils.isEmpty(fkAnnotation.group())){
+                continue;
+            }
             List<Field> list = fkMap.get(fkAnnotation.group());
             if(list == null){
+                list = new ArrayList<Field>();
                 fkMap.put(fkAnnotation.group() , list);
             }
             list.add(f);
