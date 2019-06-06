@@ -147,7 +147,9 @@ public class ColumnUtil {
         column.setLength(maxLength);
         column.setName(pageAnnotation.title());
         column.setRequired(required);
-        column.setWidth(excelAnnotation.width());
+        if(excelAnnotation != null && excelAnnotation.width() != 0) {
+            column.setWidth(excelAnnotation.width());
+        }
         if(dictAnnotation != null && StringUtils.isNotEmpty(dictAnnotation.dictType()) && dictAnnotation.isNameField()){
             Map<String, List<String>> dictAllMap = ExcelDictHolder.getDictMap();
             if(dictAllMap != null){
