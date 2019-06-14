@@ -3,7 +3,7 @@ package com.zz.bms.util.file;
 import com.zz.bms.util.base.data.Base64;
 import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.fileupload.util.Streams;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tools.ant.util.DateUtils;
 
 import java.io.*;
@@ -44,6 +44,22 @@ public class FileKit {
         sb.append(uuid);
 
         return sb.toString();
+
+    }
+
+    /**
+     * 生成一个文件路径
+     * @param prefix    前缀
+     * @param suffix    后缀
+     * @return
+     */
+    public static String buildFilePath(String prefix , String suffix) {
+        String filePath = buildFilePath(prefix);
+        if(StringUtils.isEmpty(suffix)){
+            return filePath;
+        }else {
+            return filePath + "." + suffix;
+        }
 
     }
 
