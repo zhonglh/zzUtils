@@ -619,7 +619,6 @@ public class PinyinUtil {
     /**
      * 字符串集合转换字符串(逗号分隔)
      *
-     * @author wyh
      * @param stringSet
      * @return
      */
@@ -640,7 +639,6 @@ public class PinyinUtil {
     /**
      * 获取拼音集合
      *
-     * @author wyh
      * @param src
      * @return Set<String>
      */
@@ -687,7 +685,6 @@ public class PinyinUtil {
     /**
      * 递归
      *
-     * @author wyh
      * @param strJaggedArray
      * @return
      */
@@ -699,7 +696,6 @@ public class PinyinUtil {
     /**
      * 递归
      *
-     * @author wyh
      * @param strJaggedArray
      * @return
      */

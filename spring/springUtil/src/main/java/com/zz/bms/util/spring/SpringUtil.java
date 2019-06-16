@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * Spring Bean 获取
- * @author zhonglihong
+ * @author admin
  * @date 2016年5月30日 下午3:18:27
  */
 public class SpringUtil {

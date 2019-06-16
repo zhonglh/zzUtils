@@ -197,8 +197,6 @@ public class DateKit extends DateUtils {
      * Description:只保留日期中的年月日
      * 
      * @param date
-     * @return
-     * @author 孙钰佳
      * @since：2007-12-10 上午11:25:50
      */
     public static Date toShortDate(Date date){
@@ -250,8 +248,6 @@ public class DateKit extends DateUtils {
      * Description:加一天
      * 
      * @param date
-     * @return
-     * @author 孙钰佳
      * @since：2007-12-13 下午02:57:38
      */
     public static Date addDay(Date date){
@@ -379,8 +375,6 @@ public class DateKit extends DateUtils {
      * 
      * @param date1
      * @param months
-     * @return
-     * @author 孙钰佳
      * @since：2008-3-5 下午05:17:26
      */
     public static Date addMonth(Date date1, int months){

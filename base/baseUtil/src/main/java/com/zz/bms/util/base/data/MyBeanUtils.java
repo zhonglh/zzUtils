@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * 
- * @author zhonglihong
+ * @author admin
  * @date 2016年3月5日 下午11:44:57
  */
 public class MyBeanUtils extends PropertyUtilsBean {

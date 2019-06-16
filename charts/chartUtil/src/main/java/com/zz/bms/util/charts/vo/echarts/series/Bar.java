@@ -6,7 +6,7 @@ import com.zz.bms.util.charts.vo.echarts.base.MarkLine;
 
 /**
  * 条状图表
- * @author zhonglihong
+ * @author admin
  * @date 2016年12月7日 下午6:42:01
  */
 @SuppressWarnings("serial")

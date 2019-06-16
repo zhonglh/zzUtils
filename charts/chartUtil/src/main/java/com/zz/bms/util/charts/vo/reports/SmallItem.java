@@ -3,7 +3,7 @@ package com.zz.bms.util.charts.vo.reports;
 
 /**
  * 图标数据项
- * @author zhonglihong
+ * @author admin
  * @date 2016年12月4日 下午10:44:51
  */
 @SuppressWarnings("serial")
