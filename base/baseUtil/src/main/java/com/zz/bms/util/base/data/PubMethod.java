@@ -110,18 +110,21 @@ public class PubMethod {
         if(fieldClz == null ){
             return null;
         }
+
+        BigDecimal bd = new BigDecimal(val);
+
         if(fieldClz == String.class){
-            return String.valueOf(val);
+            return bd.toPlainString();
         }else if(fieldClz == int.class || fieldClz == Integer.class){
-            return new Integer(distaa(String.valueOf(val)));
+            return new Integer(distaa(bd.toPlainString()));
         }else if(fieldClz == long.class || fieldClz == Long.class){
-            return new Long(distaa(String.valueOf(val)));
+            return new Long(distaa(bd.toPlainString()));
         }else if(fieldClz == float.class || fieldClz == Float.class){
             return new Float (val);
         }else if(fieldClz == double.class || fieldClz == Double.class){
             return new Double (val);
         }else if(fieldClz == BigDecimal.class){
-            return new BigDecimal (String.valueOf(val));
+            return new BigDecimal (bd.toPlainString());
         }else if(fieldClz == boolean.class || fieldClz == Boolean.class){
             if(val == 1){
                 return true;
