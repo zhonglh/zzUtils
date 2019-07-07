@@ -8,6 +8,7 @@ public class Xaxis implements java.io.Serializable{
 	private SplitLine splitLine;
 	private boolean scale; 
 	private int nameGap = 16;
+	private AxisLabel axisLabel;
 	
 	public String getType() {
 		return type;
@@ -39,7 +40,12 @@ public class Xaxis implements java.io.Serializable{
 	public void setNameGap(int nameGap) {
 		this.nameGap = nameGap;
 	}
-	
-	
 
+	public AxisLabel getAxisLabel() {
+		return axisLabel;
+	}
+
+	public void setAxisLabel(AxisLabel axisLabel) {
+		this.axisLabel = axisLabel;
+	}
 }

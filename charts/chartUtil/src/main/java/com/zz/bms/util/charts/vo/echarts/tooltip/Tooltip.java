@@ -2,7 +2,7 @@ package com.zz.bms.util.charts.vo.echarts.tooltip;
 
 /**
  * 提示框组件
- * @author admin
+ * @author zhonglihong
  * @date 2016年12月4日 下午10:07:47
  */
 @SuppressWarnings("serial")

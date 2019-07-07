@@ -1,5 +1,6 @@
 package com.zz.bms.util.charts.vo.echarts.legend;
 
+
 import com.zz.bms.util.charts.vo.echarts.base.TextStyle;
 
 @SuppressWarnings("serial")
@@ -14,7 +15,7 @@ public class LegendData implements  java.io.Serializable{
 	private String icon;
 	
 	//图例项的文本样式
-	private TextStyle  textStyle ;
+	private TextStyle textStyle ;
 
 	public String getName() {
 		return name;

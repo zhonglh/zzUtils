@@ -1,12 +1,12 @@
 package com.zz.bms.util.charts.vo.echarts.series;
 
-import com.zz.bms.util.charts.vo.echarts.base.Label;
-import com.zz.bms.util.charts.vo.echarts.base.MarkArea;
-import com.zz.bms.util.charts.vo.echarts.base.MarkLine;
+import com.pm.vo.echarts.base.Label;
+import com.pm.vo.echarts.base.MarkArea;
+import com.pm.vo.echarts.base.MarkLine;
 
 /**
  * 条状图表
- * @author admin
+ * @author zhonglihong
  * @date 2016年12月7日 下午6:42:01
  */
 @SuppressWarnings("serial")

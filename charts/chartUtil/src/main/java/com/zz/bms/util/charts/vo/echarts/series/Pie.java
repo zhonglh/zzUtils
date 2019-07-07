@@ -1,11 +1,11 @@
 package com.zz.bms.util.charts.vo.echarts.series;
 
-import com.zz.bms.util.charts.vo.echarts.base.Label;
-import com.zz.bms.util.charts.vo.echarts.base.LableLine;
+import com.pm.vo.echarts.base.Label;
+import com.pm.vo.echarts.base.LableLine;
 
 /**
  * 饼图图表
- * @author admin
+ * @author zhonglihong
  * @date 2016年12月4日 下午9:47:24
  */
 @SuppressWarnings("serial")

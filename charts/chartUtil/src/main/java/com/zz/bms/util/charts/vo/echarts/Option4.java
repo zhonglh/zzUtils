@@ -1,24 +1,22 @@
 package com.zz.bms.util.charts.vo.echarts;
 
-import com.pm.vo.echarts.base.Grid;
-import com.pm.vo.echarts.base.VisualMap;
-import com.pm.vo.echarts.base.Xaxis;
-import com.pm.vo.echarts.base.Yaxis;
-import com.pm.vo.echarts.legend.Legend;
-import com.pm.vo.echarts.series.Series;
-import com.pm.vo.echarts.title.Title;
-import com.pm.vo.echarts.tooltip.Tooltip;
+
+import com.zz.bms.util.charts.vo.echarts.base.*;
+import com.zz.bms.util.charts.vo.echarts.legend.*;
+import com.zz.bms.util.charts.vo.echarts.series.*;
+import com.zz.bms.util.charts.vo.echarts.title.*;
+import com.zz.bms.util.charts.vo.echarts.tooltip.Tooltip;
 
 @SuppressWarnings("serial")
-public class Option implements  java.io.Serializable{
+public class Option4 implements  java.io.Serializable{
 	
-	private String backgroundColor;
+	private BackgroundColor4 backgroundColor;
 	private String[] color;
 	
 	private Title[] title;
 	private Legend[] legend;
 	private Series[] series;
-	private Tooltip[] tooltip;
+	private Tooltip tooltip;
 	private VisualMap[] visualMap;
 	
 	private Grid[] grid;
@@ -39,10 +37,10 @@ public class Option implements  java.io.Serializable{
 	public void setSeries(Series[] series) {
 		this.series = series;
 	}
-	public Tooltip[] getTooltip() {
+	public Tooltip getTooltip() {
 		return tooltip;
 	}
-	public void setTooltip(Tooltip[] tooltip) {
+	public void setTooltip(Tooltip tooltip) {
 		this.tooltip = tooltip;
 	}
 	public Title[] getTitle() {
@@ -51,10 +49,10 @@ public class Option implements  java.io.Serializable{
 	public void setTitle(Title[] title) {
 		this.title = title;
 	}
-	public String getBackgroundColor() {
+	public BackgroundColor4 getBackgroundColor() {
 		return backgroundColor;
 	}
-	public void setBackgroundColor(String backgroundColor) {
+	public void setBackgroundColor(BackgroundColor4 backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
 	public String[] getColor() {

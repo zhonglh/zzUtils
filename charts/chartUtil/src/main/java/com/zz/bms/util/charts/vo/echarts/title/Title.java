@@ -1,5 +1,6 @@
 package com.zz.bms.util.charts.vo.echarts.title;
 
+
 import com.zz.bms.util.charts.vo.echarts.base.TextStyle;
 
 @SuppressWarnings("serial")
@@ -18,7 +19,7 @@ public class Title implements  java.io.Serializable{
 	//可选：	'self' 当前窗口打开    	'blank' 新窗口打开
 	private String target = "blank";
 	
-	private TextStyle  textStyle ;
+	private TextStyle textStyle ;
 	
 	//标题文本水平对齐，支持 'left', 'center', 'right'，默认根据标题位置决定
 	private String textAlign;

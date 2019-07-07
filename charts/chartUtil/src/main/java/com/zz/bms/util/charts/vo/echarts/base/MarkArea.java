@@ -7,7 +7,7 @@ public class MarkArea implements java.io.Serializable{
 	
 
 	private boolean silent ;
-	private String symbol;	
+	private String symbol;
 	private Label itemStyle ;
 	private JSON[] data;
 
