@@ -1,8 +1,7 @@
 package com.zz.bms.util.charts.vo.echarts.series;
 
-import com.pm.vo.echarts.base.Label;
-import com.pm.vo.echarts.base.MarkArea;
-import com.pm.vo.echarts.base.MarkLine;
+
+import com.zz.bms.util.charts.vo.echarts.base.*;
 
 public class Bar4 extends Series implements  java.io.Serializable{
 

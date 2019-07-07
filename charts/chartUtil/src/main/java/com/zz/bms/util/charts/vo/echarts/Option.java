@@ -1,13 +1,11 @@
 package com.zz.bms.util.charts.vo.echarts;
 
-import com.pm.vo.echarts.base.Grid;
-import com.pm.vo.echarts.base.VisualMap;
-import com.pm.vo.echarts.base.Xaxis;
-import com.pm.vo.echarts.base.Yaxis;
-import com.pm.vo.echarts.legend.Legend;
-import com.pm.vo.echarts.series.Series;
-import com.pm.vo.echarts.title.Title;
-import com.pm.vo.echarts.tooltip.Tooltip;
+
+import com.zz.bms.util.charts.vo.echarts.base.*;
+import com.zz.bms.util.charts.vo.echarts.legend.*;
+import com.zz.bms.util.charts.vo.echarts.series.*;
+import com.zz.bms.util.charts.vo.echarts.title.*;
+import com.zz.bms.util.charts.vo.echarts.tooltip.*;
 
 @SuppressWarnings("serial")
 public class Option implements  java.io.Serializable{

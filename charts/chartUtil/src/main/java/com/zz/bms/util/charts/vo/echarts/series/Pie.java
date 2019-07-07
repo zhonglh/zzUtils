@@ -1,7 +1,7 @@
 package com.zz.bms.util.charts.vo.echarts.series;
 
-import com.pm.vo.echarts.base.Label;
-import com.pm.vo.echarts.base.LableLine;
+import com.zz.bms.util.charts.vo.echarts.base.Label;
+import com.zz.bms.util.charts.vo.echarts.base.LableLine;
 
 /**
  * 饼图图表

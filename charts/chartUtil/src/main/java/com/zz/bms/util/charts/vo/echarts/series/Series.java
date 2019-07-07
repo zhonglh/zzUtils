@@ -1,6 +1,7 @@
 package com.zz.bms.util.charts.vo.echarts.series;
 
-import com.pm.vo.echarts.tooltip.Tooltip;
+
+import com.zz.bms.util.charts.vo.echarts.tooltip.Tooltip;
 
 @SuppressWarnings("serial")
 public class Series  implements  java.io.Serializable{
