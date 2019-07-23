@@ -943,6 +943,21 @@ public class FileKit {
 
 
 
+    public static String getFileMD5(byte[] bytes) {
+        MessageDigest digest = null;
+        byte buffer[] = new byte[10240];
+        try {
+            digest = MessageDigest.getInstance("MD5");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        BigInteger bigInt = new BigInteger(1, digest.digest(bytes));
+        return bigInt.toString(16);
+    }
+
+
+
     public static boolean downLoading(String resourcePath , String targetPath){
         try {
             java.net.URL url = new java.net.URL(resourcePath);
